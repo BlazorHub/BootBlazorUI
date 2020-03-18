@@ -1,0 +1,57 @@
+﻿
+<div class="tab-pane @CssClass @GetTabPageClass()" @attributes="AdditionalAttributes">
+    @ChildContent
+</div>
+@using System.Text
+@code{
+    /// <summary>
+    /// 标签控件。
+    /// </summary>
+    [CascadingParameter]
+    private TabControl Parent { get; set; }
+
+    /// <summary>
+    /// 设置标签页内容。
+    /// </summary>
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    /// <summary>
+    /// 设置标签页面标题。
+    /// </summary>
+    [Parameter]
+    public string Title { get; set; }
+
+    /// <summary>
+    /// 其他属性。
+    /// </summary>
+    [Parameter(CaptureUnmatchedValues =true)]
+    public Dictionary<string,object> AdditionalAttributes { get; set; }
+
+    /// <summary>
+    /// 设置标签页的 class 属性。
+    /// </summary>
+    [Parameter]
+    public string CssClass { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+        {
+            throw new ArgumentNullException(nameof(Parent), "TabPage 必须在 TabControl 内部创建");
+        }
+        base.OnInitialized();
+        Parent.AddPage(this);
+    }
+
+    string GetTabPageClass()
+    {
+        var classBuilder = new StringBuilder();
+
+        if (Parent.ActivedPage == this)
+        {
+            classBuilder.Append("active");
+        }
+        return classBuilder.ToString();
+    }
+}

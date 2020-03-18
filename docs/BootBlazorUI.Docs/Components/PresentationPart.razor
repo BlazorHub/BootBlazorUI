@@ -1,0 +1,28 @@
+﻿<section class="mt-3">
+    <h4>@Title</h4>
+    @if (Description != null)
+    {
+    <blockquote class="bg-light p-2">
+        @Description
+    </blockquote>
+    }
+    <TabControl>
+        <TabPage Title="运行效果">
+            @RunTemplate
+        </TabPage>
+        <TabPage Title="示例代码">
+            @CodeTemplate
+        </TabPage>
+    </TabControl>
+</section>
+
+@code{
+    [Parameter]
+    public string Title { get; set; }
+    [Parameter]
+    public RenderFragment Description { get; set; }
+    [Parameter]
+    public RenderFragment RunTemplate { get; set; }
+     [Parameter]
+    public RenderFragment CodeTemplate { get; set; }
+}

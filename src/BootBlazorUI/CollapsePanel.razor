@@ -1,0 +1,91 @@
+﻿@inherits BaseComponent
+
+<div class="@GetCssClass() @(IsExpand?"show":"")" @attributes="Attributes" style="@GetStyles()">
+    @ChildContent
+</div>
+
+@code{
+    /// <summary>
+    /// 设置伸缩面板的内容。
+    /// </summary>
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    /// <summary>
+    /// 设置一个布尔值，表示是否为展开状态。
+    /// </summary>
+    [Parameter]
+    public bool Expanded { get; set; }
+
+    /// <summary>
+    /// 获取一个布尔值，表示面板是否处于展开状态。
+    /// </summary>
+    public bool IsExpand { get; private set; }
+
+    /// <summary>
+    /// 设置当面板展开前触发的事件。
+    /// </summary>
+    [Parameter]
+    public EventCallback<CollapsePanel> OnExpanding { get; set; }
+    /// <summary>
+    /// 设置当面板收缩前触发的事件。
+    /// </summary>
+    [Parameter]
+    public EventCallback<CollapsePanel> OnCollapsing { get; set; }
+
+    /// <summary>
+    /// 对伸缩面板进行展开操作。
+    /// </summary>
+    public async Task Expand()
+    {
+        if (OnExpanding.HasDelegate)
+        {
+            await OnExpanding.InvokeAsync(this);
+        }
+        IsExpand = true;
+        StateHasChanged();
+    }
+
+    /// <summary>
+    /// 对面板进行收缩操作。
+    /// </summary>
+    public async Task Collapse()
+    {
+        if (OnCollapsing.HasDelegate)
+        {
+            await OnCollapsing.InvokeAsync(this);
+        }
+        IsExpand = false;
+        StateHasChanged();
+    }
+
+    /// <summary>
+    /// 如果面板处于伸缩状态，则会进行展开，否则会进行收缩。
+    /// </summary>
+    public async Task Toggle()
+    {
+        if (IsExpand)
+        {
+            await Collapse();
+        }
+        else
+        {
+           await Expand();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        IsExpand = Expanded;
+    }
+
+    protected override void BuildCssClass(List<string> classList)
+    {
+        classList.Add("collapse");
+
+        if (Expanded)
+        {
+            classList.Add("show");
+        }
+    }
+}

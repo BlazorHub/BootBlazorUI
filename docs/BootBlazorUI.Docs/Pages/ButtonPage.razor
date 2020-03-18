@@ -1,0 +1,168 @@
+﻿@page "/buttons"
+
+<PageTitle Title="Button 按钮">
+    按钮是一种常用的控件。
+</PageTitle>
+
+<PresentationPart Title="简单示例">
+    <Description>
+        按钮分为 <code>Primary, Secondary, Info, Success, Warning, Danger, Light, Dark</code> 几种颜色风格。
+        可设置 <code>Color</code> 属性，默认为 <code>Primary</code>。
+    </Description>
+    <RunTemplate>
+        <Button Color="ControlColor.Primary">Primary</Button>
+        <Button Color="ControlColor.Secondary">Secondary</Button>
+        <Button Color="ControlColor.Info">Info</Button>
+        <Button Color="ControlColor.Warning">Warning</Button>
+        <Button Color="ControlColor.Success">Success</Button>
+        <Button Color="ControlColor.Danger">Danger</Button>
+        <Button Color="ControlColor.Light">Light</Button>
+        <Button Color="ControlColor.Dark">Dark</Button>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<Button Color=""ControlColor.Primary"">Primary</Button>
+<Button Color=""ControlColor.Secondary"">Secondary</Button>
+<Button Color=""ControlColor.Info"">Info</Button>
+<Button Color=""ControlColor.Warning"">Warning</Button>
+<Button Color=""ControlColor.Success"">Success</Button>
+<Button Color=""ControlColor.Danger"">Danger</Button>
+<Button Color=""ControlColor.Light"">Light</Button>
+<Button Color=""ControlColor.Dark"">Dark</Button>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="边框按钮">
+    <Description>
+        设置 <code>Outline</code> 属性为 <code>true</code> 表示启用边框按钮风格。
+    </Description>
+    <RunTemplate>
+        <Button Color="ControlColor.Primary" Outline="true">Primary</Button>
+        <Button Color="ControlColor.Secondary" Outline="true">Secondary</Button>
+        <Button Color="ControlColor.Info" Outline="true">Info</Button>
+        <Button Color="ControlColor.Warning" Outline="true">Warning</Button>
+        <Button Color="ControlColor.Success" Outline="true">Success</Button>
+        <Button Color="ControlColor.Danger" Outline="true">Danger</Button>
+        <Button Color="ControlColor.Light" Outline="true">Light</Button>
+        <Button Color="ControlColor.Dark" Outline="true">Dark</Button>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<Button Color=""ControlColor.Primary"" Outline=""true"">Primary</Button>
+<Button Color=""ControlColor.Primary"" Outline=""true"">Secondary</Button>
+<Button Color=""ControlColor.Info"" Outline=""true"">Info</Button>
+<Button Color=""ControlColor.Warning"" Outline=""true"">Warning</Button>
+<Button Color=""ControlColor.Success"" Outline=""true"">Success</Button>
+<Button Color=""ControlColor.Danger"" Outline=""true"">Danger</Button>
+<Button Color=""ControlColor.Light"" Outline=""true"">Light</Button>
+<Button Color=""ControlColor.Dark"" Outline=""true"">Dark</Button>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="尺寸">
+    <Description>
+        设置 <code>Size</code> 改变按钮尺寸，分为 SM、LG 和 Default。
+    </Description>
+    <RunTemplate>
+        <Button Size="ControlSize.LG">大尺寸</Button>
+        <Button Size="ControlSize.Default">默认尺寸</Button>
+        <Button Size="ControlSize.SM">小尺寸</Button>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<Button Size=""ControlSize.LG"">大尺寸</Button>
+<Button Size=""ControlSize.Default"">默认尺寸</Button>
+<Button Size=""ControlSize.SM"">小尺寸</Button>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="禁用和激活">
+    <Description>
+        <p>
+            可设置 <code>Disabled="true"</code> 属性为禁止状态。
+        </p>
+        <p>
+            可设置 <code>Actived="true"</code> 属性为活动状态。
+        </p>
+    </Description>
+    <RunTemplate>
+        <Button Disabled="true">禁用</Button>
+        <Button Actived="true">活动</Button>
+        <Button>正常</Button>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<Button Disabled=""true"">禁用</Button>
+<Button Actived=""true"">活动</Button>
+<Button>正常</Button>
+```
+        ")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="块状按钮">
+    <Description>
+        可设置 <code>Blocked="true"</code> 属性为块状，并占用整行。
+    </Description>
+    <RunTemplate>
+        <Button Blocked="true">块状</Button>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<Button Blocked=""true"">块状</Button>
+```
+        ")
+    </CodeTemplate>
+</PresentationPart>
+
+<ArgumentDescriptionTable Title="属性">
+    <tr>
+        <td>Color</td>
+        <td>ConctrolColor</td>
+        <td>设置按钮的主题配色。默认是 <code>Primary</code></td>
+    </tr>
+    <tr>
+        <td>Size</td>
+        <td>ConctrolSize</td>
+        <td>设置按钮的尺寸。仅 <code>SM</code> <code>LG</code> 有效，不设置为 <code>Default</code></td>
+    </tr>
+    <tr>
+        <td>Type</td>
+        <td>ButtonType</td>
+        <td>设置按钮的类型。默认是 <code>Button</code></td>
+    </tr>
+    <tr>
+        <td>Outline</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示呈现为边框样式。</td>
+    </tr>
+    <tr>
+        <td>Actived</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示按钮呈现为启用状态的样式。</td>
+    </tr>
+    <tr>
+        <td>Disabled</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示按钮呈现为禁用状态的样式。</td>
+    </tr>
+</ArgumentDescriptionTable>
+
+<ArgumentDescriptionTable Title="事件">
+    <tr>
+        <td>OnClick</td>
+        <td>EventCallBack&lt;MouseEventArgs></td>
+        <td>当点击按钮时触发的事件。</td>
+    </tr>
+</ArgumentDescriptionTable>

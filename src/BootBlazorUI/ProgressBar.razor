@@ -1,0 +1,18 @@
+﻿<div class="progress" style="@GetHeight()" @attributes="Attributes">
+    <div class="@GetCssClass()" style="@GetStyles()" role="progressbar" aria-valuenow="@Value" aria-valuemin="@Min" aria-valuemax="@Max">
+        @if (Template == null)
+        {
+            @ChildContent
+        }
+        else
+        {
+            @Template(this)
+        }
+    </div>
+</div>
+
+@inherits BaseComponent
+
+@code{
+    string GetHeight() => Height.HasValue ? $"height:{Height}px" : string.Empty;
+}

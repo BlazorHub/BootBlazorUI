@@ -1,0 +1,35 @@
+﻿<div class="modal fade @(IsShown?"show":"hide")" tabindex="-1" role="dialog" style="@(IsShown?"display:block":"")">
+    <div class="modal-dialog @(BuildModalClass())" role="document" @attributes="AdditianalAttributes">
+        <div class="modal-content">
+            @if (HeaderTemplate != null)
+            {
+                <div class="modal-header">
+                    <div class="modal-title">@HeaderTemplate</div>
+
+                    @if (Closable)
+                    {
+                        <button type="button" class="close" @onclick="@(() => Hide())">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    }
+                </div>
+            }
+            @if (BodyTemplate != null)
+            {
+                <div class="modal-body">
+                    @BodyTemplate
+                </div>
+            }
+            @if (FooterTemplate != null)
+            {
+                <div class="modal-footer">
+                    @FooterTemplate
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@if (IsShown)
+{
+    <div class="modal-backdrop show fade"></div>
+}

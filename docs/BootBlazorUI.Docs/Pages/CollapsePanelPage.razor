@@ -1,0 +1,129 @@
+﻿@page "/collapse"
+
+<PageTitle Title="折叠面板 Collapse Panel">
+    可以通过折叠控件对某些部分进行折叠伸缩显示。
+</PageTitle>
+
+<PresentationPart Title="简单示例">
+    <Description>@Code.GetCode("> 通过使用 `@ref` 将声明的 `CollapsePanel` 对象和元素进行绑定，之后可以在适合的地方调用 `Expand` 展开面板，调用 `Collapse` 方法收缩面板，或调用 `Toggle` 方法自动切换伸缩状态。")</Description>
+    <RunTemplate>
+        <Button OnClick="@(()=>collapsePanel.Toggle())">
+            点击呈现内容
+        </Button>
+        <CollapsePanel @ref="collapsePanel" CssClass="mt-3 border p-3">
+            这里是伸缩才能看见的内容
+        </CollapsePanel>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<Button OnClick=""@(() => collapsePanel.Toggle())"">
+点击呈现内容
+</Button>
+<CollapsePanel @ref=""collapsePanel"" CssClass=""mt-3 border p-3"">
+这里是伸缩才能看见的内容
+</CollapsePanel>
+```
+```cs
+@code {
+CollapsePanel collapsePanel = new CollapsePanel();
+}
+```
+        ")
+    </CodeTemplate>
+</PresentationPart>
+
+@code {
+    CollapsePanel collapsePanel = new CollapsePanel();
+}
+
+
+<PresentationPart Title="多个折叠面板">
+    <Description></Description>
+    <RunTemplate>
+        <Button OnClick="@(()=>panel1.Toggle())">
+            点击第一个伸缩面板
+        </Button>
+        <CollapsePanel @ref="panel1" CssClass="mt-3 border p-3">
+            伸缩面板1
+        </CollapsePanel>
+        <Button OnClick="@(()=>panel2.Toggle())">
+            点击第二个伸缩面板
+        </Button>
+        <CollapsePanel @ref="panel2" CssClass="mt-3 border p-3">
+            伸缩面板2
+        </CollapsePanel>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<Button Text=""点击第一个伸缩面板"" OnClick=""@(() => panel1.Toggle())"">
+点击第一个伸缩面板
+</Button>
+<CollapsePanel @ref=""panel1"" CssClass=""mt-3 border p-3"">
+伸缩面板1
+</CollapsePanel>
+<Button Text=""点击第二个伸缩面板"" OnClick=""@(()=>panel2.Toggle())"">
+点击第二个伸缩面板
+</Button>
+<CollapsePanel @ref=""panel2"" CssClass=""mt-3 border p-3"">
+伸缩面板2
+</CollapsePanel>
+```
+```cs
+@code{
+CollapsePanel panel1 = new CollapsePanel();
+CollapsePanel panel2 = new CollapsePanel();
+}
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@code{
+    CollapsePanel panel1 = new CollapsePanel();
+    CollapsePanel panel2 = new CollapsePanel();
+}
+
+<ArgumentDescriptionTable Title="属性">
+    <tr>
+        <td>Expanded</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示是否为展开状态。</td>
+    </tr>
+    <tr>
+        <td>Text</td>
+        <td>Boolean</td>
+        <td>获取一个布尔值，表示面板是否处于展开状态。</td>
+    </tr>
+    <tr>
+        <td>ChildContent</td>
+        <td>RenderFragment</td>
+        <td>设置伸缩面板的内容。</td>
+    </tr>
+</ArgumentDescriptionTable>
+
+<ArgumentDescriptionTable Title="事件">
+    <tr>
+        <td>OnExpanding</td>
+        <td>EventCallback&lt;CollapsePanel></td>
+        <td>设置当面板展开前触发的事件。</td>
+    </tr>
+    <tr>
+        <td>OnCollapsing</td>
+        <td>EventCallback&lt;CollapsePanel></td>
+        <td>设置当面板收缩前触发的事件。</td>
+    </tr>
+
+</ArgumentDescriptionTable>
+<ArgumentDescriptionTable Title="方法">
+    <tr>
+        <td>Expand</td>
+        <td>Task</td>
+        <td>对伸缩面板进行展开操作。</td>
+    </tr>
+    <tr>
+        <td>Collapse</td>
+        <td>Task</td>
+        <td>对面板进行收缩操作。</td>
+    </tr>
+</ArgumentDescriptionTable>
