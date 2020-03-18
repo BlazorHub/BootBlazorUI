@@ -1,0 +1,34 @@
+﻿@page "/"
+
+<PageTitle Title="介绍">
+    BootBlazorUI 是基于 Bootstrap 4.x 版本并构建于 ASP.NET CORE 3.1 的 UI 库，不依赖于 JQuery 和 Bootstrap.js 实现所有交互，
+    可应用于 Mvc / Razor Page / Blazor 等 Web 应用程序。
+</PageTitle>
+<PageTitle Title="特性">
+    @Code.GetCode(@"
+* 依托于 VS 的强大 IDE，如同使用 HTML 组件一样容易使用这些组件；
+* 简单易用，让那些对 UI 并不擅长的程序员也能轻而易举的构建出想要的组件功能，再也不用去记那些 Bootstrap 组件的样式；
+* 教科书般的注释，每一个参数都有很清晰的注释，形成注释即文档（Code As A Document）的风格；
+* 开源、免费，并且不断更新丰富内容；
+")
+</PageTitle>
+
+
+
+<PageTitle Title="支持环境">
+    @Code.GetCode(@"
+* 安装 .NET CORE 3.1+ SDK
+* Microsoft.AspNetCore 3.1+ 
+* .NET Standard 2.0+
+")
+</PageTitle>
+<PageTitle Title="最新版本（v0.1.0）">
+    <TabControl MinHeight="auto">
+        <TabPage Title="Nuget 包">
+            @Code.GetCode("`> Install-Package BootBlazorUI`")
+        </TabPage>
+        <TabPage Title="dotnet 命令行">
+            @Code.GetCode("`> dotnet add package BootBlazorUI`")
+        </TabPage>
+    </TabControl>
+</PageTitle>

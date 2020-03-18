@@ -1,0 +1,164 @@
+﻿@page "/progressbar"
+
+<PageTitle Title="进度条 Progress Bar">
+
+</PageTitle>
+<PresentationPart Title="不同主题">
+
+    <Description>
+        设置 <code>Color</code> 属性使用不同的主题颜色。并设置 <code>Value</code> 来定义进度条的值，宽度会自动计算。
+    </Description>
+    <RunTemplate>
+        <ProgressBar Value="80" Color="ControlColor.Primary" />
+        <div class="mt-1"></div>
+        <ProgressBar Value="65" Color="ControlColor.Secondary" />
+        <div class="mt-1"></div>
+        <ProgressBar Value="30" Color="ControlColor.Info" />
+        <div class="mt-1"></div>
+        <ProgressBar Value="77" Color="ControlColor.Warning" />
+        <div class="mt-1"></div>
+        <ProgressBar Value="100" Color="ControlColor.Success" />
+        <div class="mt-1"></div>
+        <ProgressBar Value="40" Color="ControlColor.Danger" />
+        <div class="mt-1"></div>
+        <ProgressBar Value="92" Color="ControlColor.Light" />
+        <div class="mt-1"></div>
+        <ProgressBar Value="50" Color="ControlColor.Dark" />
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<ProgressBar Value=""80"" Color=""ControlColor.Primary"" />
+<ProgressBar Value=""65"" Color=""ControlColor.Secondary"" />
+<ProgressBar Value=""30"" Color=""ControlColor.Info"" />
+<ProgressBar Value=""77"" Color=""ControlColor.Warning"" />
+<ProgressBar Value=""100"" Color=""ControlColor.Success"" />
+<ProgressBar Value=""40"" Color=""ControlColor.Danger"" />
+<ProgressBar Value=""92"" Color=""ControlColor.Light"" />
+<ProgressBar Value=""50"" Color=""ControlColor.Dark"" />
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="自定义内容">
+    <Description>
+        可以在控件之间插入任何要呈现的其他内容
+    </Description>
+    <RunTemplate>
+        <ProgressBar Value="90" Color="ControlColor.Info">
+            自定义文本
+        </ProgressBar>
+        <div class="mt-1"></div>
+        <ProgressBar Value="60" Color="ControlColor.Success">
+            <Button Color="ControlColor.Warning">带按钮的进度条</Button>
+        </ProgressBar>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<ProgressBar Value=""90"" Color=""ControlColor.Info"">
+    自定义文本
+</ProgressBar>
+<ProgressBar Value=""60"" Color=""ControlColor.Success"">
+     <Button Color=""ControlColor.Warning"">带按钮的进度条</Button>
+</ProgressBar>
+```
+        ")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="花纹样式">
+    <Description>
+        设置 <code>Striped=true</code> 呈现花纹样式的进度条。
+    </Description>
+    <RunTemplate>
+        <ProgressBar Value="90" Striped="true"/>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<ProgressBar Value=""90"" Striped=""true""/>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="自定义模板">
+    <Description>
+        使用 <code>Template</code> 组件定义进度条中要显示的内容，可以用 <code>context</code> 变量获取当前进度条对象。
+    </Description>
+    <RunTemplate>
+        <ProgressBar Value="95" Color="ControlColor.Danger">
+            <Template>
+                @(context.Percentage)%
+            </Template>
+        </ProgressBar>
+        <div class=" mt-1"></div>
+        <ProgressBar Value="60" Color="ControlColor.Primary">
+            <Template>
+                @(context.Value)/@(context.Max)
+            </Template>
+        </ProgressBar>
+        <br />
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+
+<ProgressBar Value=""95"" Color=""ControlColor.Danger"">
+    <Template>
+        @(context.Percentage)%
+    </Template>
+</ProgressBar>
+<ProgressBar Value=""60"" Color=""ControlColor.Primary"">
+    <Template>
+        @(context.Value)/@(context.Max)
+    </Template>
+</ProgressBar>
+```
+        ")
+    </CodeTemplate>
+</PresentationPart>
+
+<ArgumentDescriptionTable Title="属性">
+    <tr>
+        <td>Color</td>
+        <td>ControlColor</td>
+        <td>置进度条的主题颜色。默认是 <code>Primary</code></td>
+    </tr>
+    <tr>
+        <td>Max</td>
+        <td>Decimal</td>
+        <td>设置进度条的最大值，默认是 100。</td>
+    </tr>
+    <tr>
+        <td>Min</td>
+        <td>Decimal</td>
+        <td>设置进度条的最小值，默认是 0，不能小于 0。</td>
+    </tr>
+    <tr>
+        <td>Value</td>
+        <td>Decimal</td>
+        <td>设置进度条当前的值，必须在 <code>Min</code> 和 <code>Max</code> 之间。</td>
+    </tr>
+    <tr>
+        <td>Template</td>
+        <td>RenderFragment&lt;ProgressBar></td>
+        <td>设置进度条自定义模板。</td>
+    </tr>
+    <tr>
+        <td>Striped</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示进度条是否呈现花纹状。</td>
+    </tr>
+    <tr>
+        <td>Height</td>
+        <td>Int?</td>
+        <td>设置进度条的高度。单位是px。</td>
+    </tr>
+    <tr>
+        <td>Percentage</td>
+        <td>Decimal</td>
+        <td>获取进度条的百分比。</td>
+    </tr>
+</ArgumentDescriptionTable>

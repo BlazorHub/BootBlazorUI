@@ -1,0 +1,12 @@
+﻿@inherits BaseComponent
+
+<div class="@GetCssClass() fade @((IsShown)?"show":"hide")" role="alert" @attributes="Attributes" style="@GetStyles()">
+    
+    @ChildContent
+    @if (Closable)
+    {
+        <button type="button" class="close" @onclick="@(()=>Hide())">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    }
+</div>

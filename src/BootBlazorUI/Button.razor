@@ -1,0 +1,5 @@
+﻿@inherits BaseComponent
+
+<button type="@Type.ToString().ToLower()" class="@GetCssClass()" disabled="@Disabled" @attributes="Attributes" style="@GetStyles()" @onclick="OnClick">
+    @ChildContent
+</button>
