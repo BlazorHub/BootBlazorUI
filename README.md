@@ -15,6 +15,8 @@ BootBlazorUI 是基于 Bootstrap 4.x 版本并构建于 ASP.NET CORE 3.1 的 UI 
 # 最新版本（v0.1.0）
 > Install-Package BootBlazorUI
 
+**使用 VS 打开 docs 下的解决方案，即可看到完整文档**
+
 # 先睹为快
 
 ## 按钮（Buttons）
