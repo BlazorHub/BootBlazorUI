@@ -16,7 +16,7 @@
     <TabControl MinHeight="auto" Pills="true">
 
         <TabPage Title="进度">
-            <small>当前版本：<Badge>v0.1.0</Badge></small>
+            <small>当前版本：<Badge>v0.2.0</Badge></small>
             <ul>
                 <li><s>警告消息框（Alert Message）</s></li>
                 <li><s>徽章（Badge）</s></li>
@@ -37,6 +37,17 @@
                 <li>栅格（Grid）</li>
             </ul>
         </TabPage>
+        <TabPage Title="更新日志">
+            @Code.GetCode(@"
+#### 0.2
+* 【新增】按钮组件的 `Disable/Active` 方法和 `OnDisabled/OnActived` 事件
+* 【新增】进度条组件的 `TryUpdateValue` 方法，并增加更新进度条百分比宽度的 js
+* 【新增】`BaseComponent` 的 `Id` 属性，让每个控件都生成一个独立的 `Id` 标识
+* 【优化】不合理的属性
+#### 0.1
+* 初始化项目和基本的组件
+")
+        </TabPage>
         <TabPage Title="支持环境">
             @Code.GetCode(@"
 - .NET CORE 3.1+
@@ -47,7 +58,8 @@
         <TabPage Title="安装与使用">
             @Code.GetCode(@"
 * 使用 Nuget Package Manager 安装包：`> Install-Package BootBlazorUI`；
-* 在 `_Host.cshtml` 使用 `<link href=""_content/BootBlazorUI/bootstrap.min.css"" rel=""stylesheet""/>` 引入 bootstrap 的样式，或你也可以自己引入 bootstrap 的样式；
+* 引入内置的 bootstrap 样式 `<link href=""_content/BootBlazorUI/bootstrap.min.css"" rel=""stylesheet""/>` ，或你也可以自己引入 bootstrap 的样式；
+* 引入所需的脚本：`<script src=""_content/BootBlazorUI/components.js""></script>`；
 * 使用 `@using BootBlazorUI` 引入命名空间，你可以在 `_Import.cshtml`(Mvc/Razor Page) | `_Import.razor`(Blazor) 中引入全局命名空间，或在某个页面中引入命名空间；
 ")
         </TabPage>

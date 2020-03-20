@@ -245,7 +245,7 @@
             }
             else
             {
-                await pb.TryUpdateValueAsync(value += 1);
+                await pb.TryUpdateValue(value += 1);
             }
             StateHasChanged();
         }).Wait();
@@ -296,7 +296,7 @@
 </ArgumentDescriptionTable>
 <ArgumentDescriptionTable Title="方法">
     <tr>
-        <td>TryUpdateValueAsync</td>
+        <td>TryUpdateValue</td>
         <td>Task&lt;bool></td>
         <td>尝试更新进度条的值为指定的值。更新成功返回 <cocde>true</cocde>；否则返回 <code>false</code>。</td>
     </tr>

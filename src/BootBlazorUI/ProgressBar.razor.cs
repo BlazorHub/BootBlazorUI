@@ -108,11 +108,11 @@ namespace BootBlazorUI
         }
 
         /// <summary>
-        /// 以异步的方式尝试更新进度条的值为指定的值。
+        /// 尝试更新进度条的值为指定的值。
         /// </summary>
         /// <param name="value">要更新的值。</param>
         /// <returns>一个尝试更新值的任务，任务包含布尔值，表示更新成功返回 <c>true</c>；否则返回 <c>false</c>。</returns>
-        public async Task<bool> TryUpdateValueAsync(decimal value)
+        public async Task<bool> TryUpdateValue(decimal value)
         {
             if (value < Min || value > Max)
             {

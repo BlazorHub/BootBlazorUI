@@ -48,9 +48,9 @@
     <None Remove="Tables\**" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Remove="wwwroot\BootBlazorUI.js" />
     <EmbeddedResource Remove="wwwroot\bootstrap.min.css" />
     <EmbeddedResource Remove="wwwroot\bootstrap.min.css.map" />
+    <EmbeddedResource Remove="wwwroot\components.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="compilerconfig.json">
