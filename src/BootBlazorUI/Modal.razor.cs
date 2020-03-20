@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 
@@ -9,7 +7,7 @@ namespace BootBlazorUI
     /// <summary>
     /// 表示模态对话框。
     /// </summary>
-    public partial class Modal: ComponentBase
+    partial class Modal
     {
         /// <summary>
         /// 初始化 <see cref="Modal"/> 类的新实例
@@ -66,62 +64,49 @@ namespace BootBlazorUI
         public ControlSize Size { get; set; }
 
         /// <summary>
-        /// 设置其他未定义的属性。
-        /// </summary>
-        [Parameter(CaptureUnmatchedValues = true)]
-        public Dictionary<string, object> AdditianalAttributes { get; set; }
-
-        /// <summary>
         /// 获取一个布尔值，表示模态框是否已经显示。
         /// </summary>
         public bool IsShown { get;private set; }
 
         /// <summary>
-        /// 设置模态框显示之前触发的事件。
+        /// 设置模态框显示时触发的事件。事件参数表示模态框是否已显示。
         /// </summary>
         [Parameter]
-        public EventCallback OnShowing { get; set; }
+        public EventCallback<bool> OnShown { get; set; }
 
         /// <summary>
-        /// 设置模态框隐藏之前触发的事件。
+        /// 设置模态框隐藏时触发的事件。事件参数表示模态框是否已隐藏。
         /// </summary>
         [Parameter]
-        public EventCallback OnHiding { get; set; }
+        public EventCallback<bool> OnHidden { get; set; }
 
-        /// <summary>
-        /// 根据配置构造 css 样式。
-        /// </summary>
-        /// <returns></returns>
-        string BuildModalClass()
+        protected override void BuildCssClass(List<string> classList)
         {
-            var cssList = new List<string>();
-
             if (Centered)
             {
-                cssList.Add("modal-dialog-centered");
+                classList.Add("modal-dialog-centered");
             }
 
             if (Size != ControlSize.Default)
             {
-                cssList.Add($"modal-{Size.ToString().ToLower()}");
+                classList.Add(ComponentsHelper.GetSizeName(Size,"modal-"));
             }
 
             if (Scrollable)
             {
-                cssList.Add("modal-dialog-scrollable");
+                classList.Add("modal-dialog-scrollable");
             }
-
-            return string.Join(" ", cssList);
         }
+
 
         /// <summary>
         /// 显示模态对话框。
         /// </summary>
         public async Task Show()
         {
-            await OnShowing.InvokeAsync(this);
             IsShown = true;
             StateHasChanged();
+            await OnShown.InvokeAsync(IsShown);
         }
 
         /// <summary>
@@ -129,9 +114,9 @@ namespace BootBlazorUI
         /// </summary>
         public async Task Hide()
         {
-            await OnHiding.InvokeAsync(this);
             IsShown = false;
             StateHasChanged();
+            await OnHidden.InvokeAsync(IsShown);
         }
     }
 }

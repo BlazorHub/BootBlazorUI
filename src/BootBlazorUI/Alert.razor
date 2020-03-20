@@ -1,6 +1,6 @@
 ﻿@inherits BaseComponent
 
-<div class="@GetCssClass() fade @((IsShown)?"show":"hide")" role="alert" @attributes="Attributes" style="@GetStyles()">
+<div id="@Id" class="@GetCssClass() fade @((IsShown)?"show":"hide")" role="alert" @attributes="Attributes" style="@GetStyles()">
     
     @ChildContent
     @if (Closable)

@@ -158,11 +158,32 @@
         <td>设置一个布尔值，表示按钮呈现为禁用状态的样式。</td>
     </tr>
 </ArgumentDescriptionTable>
-
+<ArgumentDescriptionTable Title="方法">
+    <tr>
+        <td>Disable</td>
+        <td>Task</td>
+        <td>禁用按钮的状态。</td>
+    </tr>    
+    <tr>
+        <td>Active</td>
+        <td>Task</td>
+        <td>激活按钮的状态。</td>
+    </tr>
+</ArgumentDescriptionTable>
 <ArgumentDescriptionTable Title="事件">
     <tr>
         <td>OnClick</td>
         <td>EventCallBack&lt;MouseEventArgs></td>
         <td>当点击按钮时触发的事件。</td>
+    </tr>
+    <tr>
+        <td>OnDisabled</td>
+        <td>EventCallBack&lt;bool></td>
+        <td>当按钮被禁用时触发的事件。事件参数表示是否被禁用。<code>true</code> 表示禁用状态，否则是 <code>false</code>。</td>
+    </tr>
+    <tr>
+        <td>OnActived</td>
+        <td>EventCallBack&lt;bool></td>
+        <td>当按钮被激活时触发的事件。事件参数表示是否被激活。<code>true</code> 表示禁用状态，否则是 <code>false</code>。</td>
     </tr>
 </ArgumentDescriptionTable>

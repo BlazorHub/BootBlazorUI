@@ -44,25 +44,21 @@ namespace BootBlazorUI
         /// 设置警告消息框显示前触发的事件。
         /// </summary>
         [Parameter]
-        public EventCallback OnShowing { get; set; }
+        public EventCallback<bool> OnShown { get; set; }
 
         /// <summary>
         /// 设置警告消息框隐藏前触发的事件。
         /// </summary>
         [Parameter]
-        public EventCallback OnHiding { get; set; }
+        public EventCallback<bool> OnHidden { get; set; }
 
         /// <summary>
         /// 显示当前警告消息框。
         /// </summary>
         public async Task Show()
         {
-            if (OnShowing.HasDelegate)
-            {
-                await OnShowing.InvokeAsync(this);
-            }
-
             IsShown = true;
+            await OnShown.InvokeAsync(IsShown);
             StateHasChanged();
         }
 
@@ -71,28 +67,19 @@ namespace BootBlazorUI
         /// </summary>
         public async Task Hide()
         {
-            if (OnHiding.HasDelegate)
-            {
-                await OnHiding.InvokeAsync(this);
-            }
-
             IsShown = false;
-            base.StateHasChanged();
+            await OnHidden.InvokeAsync(IsShown);
+            StateHasChanged();
         }
 
         protected override void BuildCssClass(List<string> classList)
         {
             classList.Add("alert");
-            classList.Add($"alert-{Color.ToString().ToLower()}");
+            classList.Add(ComponentsHelper.GetColorName(Color,"alert-"));
 
             if (Closable)
             {
                 classList.Add("alert-dismissible");
-            }
-
-            if (!string.IsNullOrWhiteSpace(CssClass))
-            {
-                classList.Add(CssClass);
             }
         }
     }

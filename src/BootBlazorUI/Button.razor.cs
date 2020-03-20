@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -7,7 +8,7 @@ namespace BootBlazorUI
     /// <summary>
     /// 表示一个按钮。
     /// </summary>
-    public partial class Button
+    partial class Button
     {
         /// <summary>
         /// 初始化 <see cref="Button"/> 类的新实例。
@@ -70,7 +71,18 @@ namespace BootBlazorUI
         /// </summary>
         [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
+        
+        /// <summary>
+        /// 当按钮被禁用时触发的事件。事件参数表示是否被禁用。<c>true</c> 表示禁用状态，否则是 <c>false</c>。
+        /// </summary>
+        [Parameter]
+        public EventCallback<bool> OnDisabled { get; set; }
 
+        /// <summary>
+        /// 当按钮被激活时触发的事件。事件参数表示是否被激活。<c>true</c> 表示禁用状态，否则是 <c>false</c>。
+        /// </summary>
+        [Parameter]
+        public EventCallback<bool> OnActived { get; set; }
 
         protected override void BuildCssClass(List<string> classList)
         {
@@ -84,17 +96,33 @@ namespace BootBlazorUI
             classList.Add(string.Format(" btn{0}-{1}", (Outline ? "-outline" : string.Empty), ComponentsHelper.GetColorName(Color)));
             if (Size != ControlSize.Default)
             {
-                classList.Add($"btn-{ComponentsHelper.GetSizeName(Size)}");
+                classList.Add(ComponentsHelper.GetSizeName(Size, "btn-"));
             }
 
             if (Actived)
             {
                 classList.Add("active");
             }
-
-            classList.Add($"{CssClass}");
         }
 
+        /// <summary>
+        /// 禁用按钮的状态。
+        /// </summary>
+        /// <param name="disabled">是否禁用按钮。</param>
+        public async Task Disable(bool disabled = true)
+        {
+            Disabled = disabled;
+            await OnDisabled.InvokeAsync(disabled);
+        }
+        /// <summary>
+        /// 激活按钮的状态。
+        /// </summary>
+        /// <param name="actived">是否激活按钮。</param>
+        public async Task Active(bool actived = true)
+        {
+            Actived = actived;
+            await OnActived.InvokeAsync(actived);
+        }
 
         /// <summary>
         /// 表示按钮的类型。

@@ -1,18 +1,19 @@
 ﻿@page "/"
 @namespace BootBlazorUI.Docs.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@using  EmbeddedBlazorContent
+@using EmbeddedBlazorContent
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BootBlazorUI.Docs</title>
+    <title>BootBlazorUI 文档</title>
     <base href="~/" />
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
-    <link href="css/site.css" rel="stylesheet" />
-    
+    <link href="_content/BootBlazorUI/bootstrap.min.css" rel="stylesheet"/>
+          <link href="css/site.css" rel="stylesheet" />
+
+    @Html.EmbeddedBlazorContent()
 </head>
 <body>
     <app>
@@ -20,7 +21,6 @@
     </app>
 
     <script src="_framework/blazor.server.js"></script>
-    @*<script src="_content/BootBlazorUI/bootstrap-native.js"></script>
-    <script src="_content/BootBlazorUI/Fyun.Components.js"></script>*@
+    <script src="_content/BootBlazorUI/BootBlazorUI.js"></script>
 </body>
 </html>

@@ -1,17 +1,11 @@
-﻿window.Fyun = {
-	modal: {
-		show: function (id) {
-			
-			//let body = document.querySelector('body');
-			//body.className = 'modal-open';
-			//body.appendChild('<div class="modal-backdrop fade show"></div>');
+﻿window.bootBlazor = {
+    progressBar : {
+        onValueChanged: function (id, percentage) {
+            var ele = document.getElementById(id);
 
-			//let modalObj = document.getElementById(id);
-			//modalObj.style.display = 'block';
-			////$('#' + id).modal('show');
+            var bar = ele.getElementsByClassName('progress-bar')[0];
+            bar.style = 'width:' + percentage + '%';
 
-			BSN.Modal(id).show();
-		}
-	}
+        }
+    }
 }
-

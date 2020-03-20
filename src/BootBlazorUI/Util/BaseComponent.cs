@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Components;
 
 namespace BootBlazorUI
@@ -8,6 +9,14 @@ namespace BootBlazorUI
     /// </summary>
     public abstract class BaseComponent : ComponentBase
     {
+        /// <summary>
+        /// 初始化 <see cref="BaseComponent"/> 类的新实例。
+        /// </summary>
+        protected BaseComponent()
+        {
+            Id = $"{GetType().Name}_{Guid.NewGuid()}";
+        }
+
         /// <summary>
         /// 设置元素或控件的 class 的值。
         /// </summary>
@@ -19,6 +28,12 @@ namespace BootBlazorUI
         /// </summary>
         [Parameter]
         public virtual string Styles { get; set; }
+
+        /// <summary>
+        /// 设置组件的唯一 Id。默认会自动生成一个随机 Id。
+        /// </summary>
+        [Parameter]
+        public virtual string Id { get; set; }
 
         /// <summary>
         /// 设置将该控件或元素中出现的属性进行合并。
