@@ -51,6 +51,11 @@
                         进度条(Progress Bar)
                     </NavLink>
                 </li>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="pagination">
+                        分页(Pagination)
+                    </NavLink>
+                </li>
             </ul>
         </div>
         <div class="col-9">
@@ -59,14 +64,14 @@
     </div>
 
 </div>
-
+@using System.Reflection
 <footer class="fixed-bottom bg-light w-100 text-center pt-1 pb-1 text-muted" style="font-size:13px;">
     <ul class="list-inline" style="margin-bottom:0px">
         <li class="list-inline-item">
             <i class="fa fa-copyright"></i> BootBlazorUI
         </li>
         <li class="list-inline-item">
-            版本 v0.1.0
+            版本 v@(Program.GetVersion())
         </li>
         <li class="list-inline-item">
             Licence MIT

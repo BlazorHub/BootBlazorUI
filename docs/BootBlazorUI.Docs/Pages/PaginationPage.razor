@@ -1,0 +1,178 @@
+﻿@page "/pagination"
+
+<PageTitle Title="分页（Pagination）">
+
+</PageTitle>
+<PresentationPart Title="简单示例">
+    <Description>
+        以100条数据为例。使用 <code>CurrentPage</code> 表示当前页码，<code>PageSize</code> 表示每一页的数据量。
+    </Description>
+    <RunTemplate>
+        <Pagination TotalCount="100" />        
+        <Pagination TotalCount="100" CurrentPage="3" />
+        <Pagination TotalCount="100" CurrentPage="8" PageSize="5" />
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<Pagination TotalCount=""100"" />        
+<Pagination TotalCount=""100"" CurrentPage=""3"" />
+<Pagination TotalCount=""100"" CurrentPage=""8"" PageSize=""5"" />
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="自定义分页文字">
+    <Description>
+        使用 <code>FirstPageText</code>：首页、 <code>PreviousPageText</code>：上一页、<code>NextPageText</code>：下一页、<code>LastPageText</code>：末页来自定义显示的文字。
+    </Description>
+    <RunTemplate>
+        <Pagination FirstPageText="<" LastPageText=">" TotalCount="100" />
+        <Pagination FirstPageText="|<" PreviousPageText="<<" NextPageText=">>" LastPageText=">|" CurrentPage="10" TotalCount="100" />
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<Pagination FirstPageText=""<"" LastPageText="">"" TotalCount=""100"" />
+<Pagination FirstPageText=""|<"" PreviousPageText=""<<"" NextPageText="">>"" LastPageText="">|"" CurrentPage=""10"" TotalCount=""100"" />
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="分页大小">
+    <Description>
+        设置 <code>Size</code> 来设置分页的尺寸大小。
+    </Description>
+    <RunTemplate>
+        <Pagination Size="ControlSize.SM" TotalCount="30" />
+        <Pagination Size="ControlSize.Default" TotalCount="30" />
+        <Pagination Size="ControlSize.LG" TotalCount="30" />
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+<Pagination Size=""ControlSize.SM"" TotalCount=""30"" />
+<Pagination Size=""ControlSize.Default"" TotalCount=""30"" />
+<Pagination Size=""ControlSize.LG"" TotalCount=""30"" />
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="隐藏或禁用">
+    <Description>
+        设置 <code>HideOrDisable</code> 若当前页是第一页或最后一页时，“首页/第一页”或“末页/下一页”隐藏（<code>true</code>）或（<code>false</code>）的方式呈现。
+    </Description>
+    <RunTemplate>
+        <h6>禁用效果</h6>
+        <Pagination TotalCount="100" HideOrDisable="false" />
+        <Pagination TotalCount="100" HideOrDisable="false" CurrentPage="10" />
+        <h6>隐藏效果</h6>
+        <Pagination TotalCount="100" HideOrDisable="true" />
+        <Pagination TotalCount="100" HideOrDisable="true" CurrentPage="10" />        
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<h6>禁用效果</h6>
+<Pagination TotalCount=""100"" HideOrDisable=""false"" />
+<Pagination TotalCount=""100"" HideOrDisable=""false"" CurrentPage=""10"" />
+<h6>隐藏效果</h6>
+<Pagination TotalCount=""100"" HideOrDisable=""true"" />
+<Pagination TotalCount=""100"" HideOrDisable=""true"" CurrentPage=""10"" />    
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="页码改变事件">
+    <Description>
+        设置 <code>OnPageChanged</code> 来触发页码改变事件。事件的参数是新页码。
+    </Description>
+    <RunTemplate>
+        <Pagination TotalCount="100" OnPageChanged="@(page=>_js.InvokeVoidAsync("alert",$"当前第{page}页"))"/>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<Pagination TotalCount=""100"" OnPageChanged=""@(page => _js.InvokeVoidAsync(""alert"", $""当前第{page}页""))""/>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@inject IJSRuntime _js
+
+<ArgumentDescriptionTable Title="属性">
+    <tr>
+        <td>CurrentPage</td>
+        <td>Int32</td>
+        <td>设置当前页码，必须大于 0。默认是 1。</td>
+    </tr>
+    <tr>
+        <td>TotalCount</td>
+        <td>Int32</td>
+        <td>设置数据的总记录数。</td>
+    </tr>
+    <tr>
+        <td>FirstPageText</td>
+        <td>String</td>
+        <td>设置“首页”的文本。</td>
+    </tr>
+    <tr>
+        <td>PreviousPageText</td>
+        <td>String</td>
+        <td>设置“上一页”的文本。</td>
+    </tr>
+    <tr>
+        <td>NextPageText</td>
+        <td>String</td>
+        <td>设置“下一页”的文本。</td>
+    </tr>
+    <tr>
+        <td>LastPageText</td>
+        <td>String</td>
+        <td>设置“最后一页”的文本。</td>
+    </tr>
+    <tr>
+        <td>HideOrDisable</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示当页数在第1页或最后1页时，使用隐藏或禁用的方式呈现“首页/上一页”或“末页/下一页”。<code>true</code> 表示隐藏，否则为 <code>false</code>。默认是 <code>false</code>。</td>
+    </tr>
+    <tr>
+        <td>Size</td>
+        <td>ControlSize</td>
+        <td>设置分页的尺寸。</td>
+    </tr>
+</ArgumentDescriptionTable>
+<ArgumentDescriptionTable Title="方法">
+
+    <tr>
+        <td>NavigateToFirst</td>
+        <td>Task</td>
+        <td>导航到首页。</td>
+    </tr>
+    <tr>
+        <td>NavigateToPrevious</td>
+        <td>Task</td>
+        <td>导航到上一页。</td>
+    </tr>
+    <tr>
+        <td>NavigateToNext</td>
+        <td>Task</td>
+        <td>导航到下一页。</td>
+    </tr>
+    <tr>
+        <td>NavigateToLast</td>
+        <td>Task</td>
+        <td>导航到末页。</td>
+    </tr>
+    <tr>
+        <td>NavigateToPage</td>
+        <td>Task</td>
+        <td>导航到自定义页。</td>
+    </tr>
+</ArgumentDescriptionTable>
+<ArgumentDescriptionTable Title="事件">
+    <tr>
+        <td>OnPageChanged</td>
+        <td>EventCallback&lt;int></td>
+        <td>设置当页码发生改变时触发的事件。</td>
+    </tr>
+</ArgumentDescriptionTable>
