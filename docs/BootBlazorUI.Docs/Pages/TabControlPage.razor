@@ -102,6 +102,36 @@
     </CodeTemplate>
 </PresentationPart>
 
+<PresentationPart Title="OnActived 事件">
+    <RunTemplate>
+        <TabControl>
+            <TabPage Title="选项卡1" OnActived="@(()=>_js.InvokeVoidAsync("alert","激活第二个选项卡"))">
+                第一个选项卡
+            </TabPage>
+            <TabPage Title="选项卡2" OnActived="@(()=>_js.InvokeVoidAsync("alert","激活第二个选项卡"))">
+                第二个选项卡
+            </TabPage>
+        </TabControl>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+@inject IJSRuntime _js
+
+<TabControl>
+    <TabPage Title=""选项卡1"" OnActived=""@(() => _js.InvokeVoidAsync(""alert"", ""激活第二个选项卡""))"">
+        第一个选项卡
+    </TabPage>
+    <TabPage Title=""选项卡2"" OnActived=""@(()=>_js.InvokeVoidAsync(""alert"",""激活第二个选项卡""))"">
+        第二个选项卡
+    </TabPage>
+</TabControl>
+```
+        ")
+    </CodeTemplate>
+</PresentationPart>
+@inject IJSRuntime _js
+
 <ArgumentDescriptionTable Title="属性">
     <tr>
         <td>Pills</td>
@@ -112,5 +142,13 @@
         <td>Title</td>
         <td>String</td>
         <td>设置标签页面标题。</td>
+    </tr>
+</ArgumentDescriptionTable>
+
+<ArgumentDescriptionTable Title="事件">
+    <tr>
+        <td>OnActived</td>
+        <td>EventCallBack</td>
+        <td>设置当标签页被激活时触发的事件。</td>
     </tr>
 </ArgumentDescriptionTable>

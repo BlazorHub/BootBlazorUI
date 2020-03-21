@@ -86,32 +86,22 @@ CollapsePanel panel2 = new CollapsePanel();
 
 <ArgumentDescriptionTable Title="属性">
     <tr>
-        <td>Expanded</td>
-        <td>Boolean</td>
-        <td>设置一个布尔值，表示是否为展开状态。</td>
-    </tr>
-    <tr>
-        <td>Text</td>
+        <td>IsExpanded</td>
         <td>Boolean</td>
         <td>获取一个布尔值，表示面板是否处于展开状态。</td>
-    </tr>
-    <tr>
-        <td>ChildContent</td>
-        <td>RenderFragment</td>
-        <td>设置伸缩面板的内容。</td>
     </tr>
 </ArgumentDescriptionTable>
 
 <ArgumentDescriptionTable Title="事件">
     <tr>
-        <td>OnExpanding</td>
+        <td>OnExpanded</td>
         <td>EventCallback&lt;CollapsePanel></td>
-        <td>设置当面板展开前触发的事件。</td>
+        <td>设置当面板展开时触发的事件。</td>
     </tr>
     <tr>
-        <td>OnCollapsing</td>
+        <td>OnCollapsed</td>
         <td>EventCallback&lt;CollapsePanel></td>
-        <td>设置当面板收缩前触发的事件。</td>
+        <td>设置当面板收缩时触发的事件。</td>
     </tr>
 
 </ArgumentDescriptionTable>

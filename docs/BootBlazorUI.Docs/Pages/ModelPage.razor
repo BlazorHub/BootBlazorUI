@@ -237,7 +237,7 @@ Modal modalScoll = new Modal();
         <Button OnClick="@(()=>modalShowing.Show())">显示之前</Button>
         <Button OnClick="@(()=>modalHiding.Show())">隐藏之前</Button>
 
-        <Modal OnShowing="Showing" @ref="modalShowing">
+        <Modal OnShown="Showing" @ref="modalShowing">
             <BodyTemplate>
                 显示之前会弹出一个对话框
             </BodyTemplate>
@@ -247,7 +247,7 @@ Modal modalScoll = new Modal();
                 </Button>
             </FooterTemplate>
         </Modal>
-        <Modal OnHiding="Hiding" @ref="modalHiding">
+        <Modal OnHidden="Hiding" @ref="modalHiding">
             <BodyTemplate>
                 隐藏之前会弹出一个对话框
             </BodyTemplate>
@@ -281,7 +281,7 @@ Modal modalScoll = new Modal();
 <Button OnClick=""@(()=>modalShowing.Show())"">显示之前</Button>
 <Button OnClick=""@(()=>modalHiding.Show())"">隐藏之前</Button>
 
-<Modal OnShowing=""Showing"" @ref=""modalShowing"">
+<Modal OnShown=""Showing"" @ref=""modalShowing"">
     <BodyTemplate>
         显示之前会弹出一个对话框
     </BodyTemplate>
@@ -291,7 +291,7 @@ Modal modalScoll = new Modal();
         </Button>
     </FooterTemplate>
 </Modal>
-<Modal OnHiding=""Hiding"" @ref=""modalHiding"">
+<Modal OnHidden=""Hiding"" @ref=""modalHiding"">
     <BodyTemplate>
         隐藏之前会弹出一个对话框
     </BodyTemplate>
@@ -373,14 +373,14 @@ Modal modalScoll = new Modal();
 <ArgumentDescriptionTable Title="事件">
 
     <tr>
-        <td>OnShowing</td>
-        <td>EventCallBack</td>
-        <td>设置模态框显示之前触发的事件。</td>
+        <td>OnShown</td>
+        <td>EventCallBack&lt;bool></td>
+        <td>设置模态框显示时触发的事件。事件的参数表示模态框是否已成功显示。</td>
     </tr>
     <tr>
-        <td>OnHiding</td>
-        <td>EventCallBack</td>
-        <td>设置模态框隐藏之前触发的事件。</td>
+        <td>OnHidden</td>
+        <td>EventCallBack&lt;bool></td>
+        <td>设置模态框隐藏时触发的事件。事件的参数表示模态框是否已成功隐藏。</td>
     </tr>
 </ArgumentDescriptionTable>
 

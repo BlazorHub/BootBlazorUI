@@ -9,11 +9,17 @@ BootBlazorUI 是基于 Bootstrap 4.x 版本并构建于 ASP.NET CORE 3.1 的 UI 
 
 # 支持环境
 * .NET CORE 3.1+ SDK
-* Microsoft.AspNetCore 3.1+ 系列
 * .NET Standard 2.0+
 
-# 最新版本（v0.1.0）
+# 最新版本（v0.2.0）
 > Install-Package BootBlazorUI
+
+# 快速上手
+* 使用 Nuget Package Manager 安装包：`> Install-Package BootBlazorUI`；
+* 引入内置的 bootstrap 样式 `<link href=_content/BootBlazorUI/bootstrap.min.css"" rel=""stylesheet/>` ，或你也可以自己引入 bootstrap 的样式；
+* 引入所需的脚本：`<script src="_content/BootBlazorUI/components.js></script>`；
+* 使用 `@using BootBlazorUI` 引入命名空间，你可以在 `_Import.cshtml`(Mvc/Razor Page) | `_Import.razor`(Blazor) 中引入全局命名空间，或在某个页面中引入命名空间；
+
 
 **使用 VS 打开 docs 下的解决方案，即可看到完整文档**
 

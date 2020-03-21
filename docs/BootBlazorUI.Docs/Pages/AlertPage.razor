@@ -136,18 +136,18 @@ Alert alertShowHide = new Alert();
 <ArgumentDescriptionTable Title="事件">
 
     <tr>
-        <td>OnShowing</td>
+        <td>OnShown</td>
         <td>
-            EventCallBack
+            EventCallBack&lt;bool>
         </td>
-        <td>设置显示之前触发的事件。</td>
+        <td>设置显示时触发的事件。</td>
     </tr>
     <tr>
-        <td>OnHiding</td>
+        <td>OnHidden</td>
         <td>
-            EventCallBack
+            EventCallBack&lt;bool>
         </td>
-        <td>设置隐藏之前触发的事件。</td>
+        <td>设置隐藏时触发的事件。</td>
     </tr>
 </ArgumentDescriptionTable>
 <ArgumentDescriptionTable Title="方法">
@@ -155,11 +155,11 @@ Alert alertShowHide = new Alert();
     <tr>
         <td>Show</td>
         <td>Task</td>
-        <td>显示当前警告消息框。</td>
+        <td>显示警告消息框。</td>
     </tr>
     <tr>
         <td>Hide</td>
         <td>Task</td>
-        <td>隐藏当前警告消息框。</td>
+        <td>隐藏警告消息框。</td>
     </tr>
 </ArgumentDescriptionTable>

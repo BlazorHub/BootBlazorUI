@@ -1,5 +1,7 @@
-﻿<div class="modal fade @(IsShown?"show":"hide")" tabindex="-1" role="dialog" style="@(IsShown?"display:block":"")">
-    <div class="modal-dialog @(BuildModalClass())" role="document" @attributes="AdditianalAttributes">
+﻿@inherits BaseComponent
+
+<div id="@Id" class="modal fade @(IsShown?"show":"hide")" tabindex="-1" role="dialog" style="@(IsShown?"display:block":"")">
+    <div class="modal-dialog @(GetCssClass())" role="document" @attributes="Attributes">
         <div class="modal-content">
             @if (HeaderTemplate != null)
             {
