@@ -5,28 +5,28 @@
 </PageTitle>
 
 <PresentationPart Title="简单示例">
-    <Description>@Code.GetCode("> 通过使用 `@ref` 将声明的 `CollapsePanel` 对象和元素进行绑定，之后可以在适合的地方调用 `Expand` 展开面板，调用 `Collapse` 方法收缩面板，或调用 `Toggle` 方法自动切换伸缩状态。")</Description>
+    <Description>@Code.GetCode("> 通过使用 `@ref` 将声明的 `BootCollapse` 对象和元素进行绑定，之后可以在适合的地方调用 `Expand` 展开面板，调用 `Collapse` 方法收缩面板，或调用 `Toggle` 方法自动切换伸缩状态。")</Description>
     <RunTemplate>
-        <Button OnClick="@(()=>collapsePanel.Toggle())">
+        <BootButton OnClick="@(()=>collapsePanel.Toggle())">
             点击呈现内容
-        </Button>
-        <CollapsePanel @ref="collapsePanel" CssClass="mt-3 border p-3">
+        </BootButton>
+        <BootCollapse @ref="collapsePanel" CssClass="mt-3 border p-3">
             这里是伸缩才能看见的内容
-        </CollapsePanel>
+        </BootCollapse>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Button OnClick=""@(() => collapsePanel.Toggle())"">
+<BootButton OnClick=""@(() => collapsePanel.Toggle())"">
 点击呈现内容
-</Button>
-<CollapsePanel @ref=""collapsePanel"" CssClass=""mt-3 border p-3"">
+</BootButton>
+<BootCollapse @ref=""collapsePanel"" CssClass=""mt-3 border p-3"">
 这里是伸缩才能看见的内容
-</CollapsePanel>
+</BootCollapse>
 ```
 ```cs
 @code {
-CollapsePanel collapsePanel = new CollapsePanel();
+BootCollapse collapsePanel = new BootCollapse();
 }
 ```
         ")
@@ -34,54 +34,54 @@ CollapsePanel collapsePanel = new CollapsePanel();
 </PresentationPart>
 
 @code {
-    CollapsePanel collapsePanel = new CollapsePanel();
+    BootCollapse collapsePanel = new BootCollapse();
 }
 
 
 <PresentationPart Title="多个折叠面板">
     <Description></Description>
     <RunTemplate>
-        <Button OnClick="@(()=>panel1.Toggle())">
+        <BootButton OnClick="@(()=>panel1.Toggle())">
             点击第一个伸缩面板
-        </Button>
-        <CollapsePanel @ref="panel1" CssClass="mt-3 border p-3">
+        </BootButton>
+        <BootCollapse @ref="panel1" CssClass="mt-3 border p-3">
             伸缩面板1
-        </CollapsePanel>
-        <Button OnClick="@(()=>panel2.Toggle())">
+        </BootCollapse>
+        <BootButton OnClick="@(()=>panel2.Toggle())">
             点击第二个伸缩面板
-        </Button>
-        <CollapsePanel @ref="panel2" CssClass="mt-3 border p-3">
+        </BootButton>
+        <BootCollapse @ref="panel2" CssClass="mt-3 border p-3">
             伸缩面板2
-        </CollapsePanel>
+        </BootCollapse>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Button Text=""点击第一个伸缩面板"" OnClick=""@(() => panel1.Toggle())"">
+<BootButton Text=""点击第一个伸缩面板"" OnClick=""@(() => panel1.Toggle())"">
 点击第一个伸缩面板
-</Button>
-<CollapsePanel @ref=""panel1"" CssClass=""mt-3 border p-3"">
+</BootButton>
+<BootCollapse @ref=""panel1"" CssClass=""mt-3 border p-3"">
 伸缩面板1
-</CollapsePanel>
-<Button Text=""点击第二个伸缩面板"" OnClick=""@(()=>panel2.Toggle())"">
+</BootCollapse>
+<BootButton Text=""点击第二个伸缩面板"" OnClick=""@(()=>panel2.Toggle())"">
 点击第二个伸缩面板
-</Button>
-<CollapsePanel @ref=""panel2"" CssClass=""mt-3 border p-3"">
+</BootButton>
+<BootCollapse @ref=""panel2"" CssClass=""mt-3 border p-3"">
 伸缩面板2
-</CollapsePanel>
+</BootCollapse>
 ```
 ```cs
 @code{
-CollapsePanel panel1 = new CollapsePanel();
-CollapsePanel panel2 = new CollapsePanel();
+BootCollapse panel1 = new BootCollapse();
+BootCollapse panel2 = new BootCollapse();
 }
 ```
 ")
     </CodeTemplate>
 </PresentationPart>
 @code{
-    CollapsePanel panel1 = new CollapsePanel();
-    CollapsePanel panel2 = new CollapsePanel();
+    BootCollapse panel1 = new BootCollapse();
+    BootCollapse panel2 = new BootCollapse();
 }
 
 <ArgumentDescriptionTable Title="属性">
@@ -95,12 +95,12 @@ CollapsePanel panel2 = new CollapsePanel();
 <ArgumentDescriptionTable Title="事件">
     <tr>
         <td>OnExpanded</td>
-        <td>EventCallback&lt;CollapsePanel></td>
+        <td>EventCallback&lt;BootCollapse></td>
         <td>设置当面板展开时触发的事件。</td>
     </tr>
     <tr>
         <td>OnCollapsed</td>
-        <td>EventCallback&lt;CollapsePanel></td>
+        <td>EventCallback&lt;BootCollapse></td>
         <td>设置当面板收缩时触发的事件。</td>
     </tr>
 

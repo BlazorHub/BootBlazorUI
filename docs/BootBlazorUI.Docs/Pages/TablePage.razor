@@ -24,7 +24,7 @@
         数据源 <code>DataSource</code> 要求是一个泛型的 <code>IReadOnlyList&lt;TItem></code> 集合对象，并在 <code>RowTemplate</code> 中使用 <code>context</code> 对象每一行的对象。
     </Description>
     <RunTemplate>
-        <Table DataSource="Users">
+        <BootTable DataSource="Users">
             <HeadTemplate>
                 <th>Id</th>
                 <th>Name</th>
@@ -40,12 +40,12 @@
                     共有 @Users.Count 条数据
                 </td>
             </FootTemplate>
-        </Table>        
+        </BootTable>        
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Table DataSource=""Users"">
+<BootTable DataSource=""Users"">
     <HeadTemplate>
         <th>Id</th>
         <th>Name</th>
@@ -61,7 +61,7 @@
             共有 @Users.Count 条数据
         </td>
     </FootTemplate>
-</Table>
+</BootTable>
         ```
         ```cs
 @code{
@@ -91,7 +91,7 @@
         设置 <code>RowNumber="true"</code> 可在第一列显示行号。
     </Description>
     <RunTemplate>
-        <Table DataSource="Users" RowNumber="true">
+        <BootTable DataSource="Users" RowNumber="true">
             <HeadTemplate>
                 <th>Id</th>
                 <th>Name</th>
@@ -107,12 +107,12 @@
                     共有 @Users.Count 条数据
                 </td>
             </FootTemplate>
-        </Table>
+        </BootTable>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Table DataSource=""Users""  UseRowNumber=""true"">
+<BootTable DataSource=""Users""  UseRowNumber=""true"">
     <HeadTemplate>
         <th>Id</th>
         <th>Name</th>
@@ -128,7 +128,7 @@
             共有 @Users.Count 条数据
         </td>
     </FootTemplate>
-</Table>
+</BootTable>
 ```
         ")
     </CodeTemplate>
@@ -140,7 +140,7 @@
         设置 <code>Dark="true"</code> 让表格背景呈现深色。
     </Description>
     <RunTemplate>
-        <Table DataSource="Users" Dark="true">
+        <BootTable DataSource="Users" Dark="true">
             <HeadTemplate>
                 <th>Id</th>
                 <th>Name</th>
@@ -156,12 +156,12 @@
                     共有 @Users.Count 条数据
                 </td>
             </FootTemplate>
-        </Table>
+        </BootTable>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Table DataSource=""Users"" Dark=""true"">
+<BootTable DataSource=""Users"" Dark=""true"">
     <HeadTemplate>
         <th>Id</th>
         <th>Name</th>
@@ -177,7 +177,7 @@
             共有 @Users.Count 条数据
         </td>
     </FootTemplate>
-</Table>
+</BootTable>
 ```
         ")
     </CodeTemplate>
@@ -188,7 +188,7 @@
         设置 <code>Stripted="true"</code> 让表格的行有一个间隔颜色进行区分。
     </Description>
     <RunTemplate>
-        <Table DataSource="Users" Striped="true">
+        <BootTable DataSource="Users" Striped="true">
             <HeadTemplate>
                 <th>Id</th>
                 <th>Name</th>
@@ -204,12 +204,12 @@
                     共有 @Users.Count 条数据
                 </td>
             </FootTemplate>
-        </Table>
+        </BootTable>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Table DataSource=""Users"" Striped=""true"">
+<BootTable DataSource=""Users"" Striped=""true"">
     <HeadTemplate>
         <th>Id</th>
         <th>Name</th>
@@ -225,7 +225,7 @@
             共有 @Users.Count 条数据
         </td>
     </FootTemplate>
-</Table>
+</BootTable>
 ```
         ")
     </CodeTemplate>
@@ -236,7 +236,7 @@
         设置 <code>Bordered="true"</code> 使表格的每一个单元格都显示边框。
     </Description>
     <RunTemplate>
-        <Table DataSource="Users" Bordered="true">
+        <BootTable DataSource="Users" Bordered="true">
             <HeadTemplate>
                 <th>Id</th>
                 <th>Name</th>
@@ -252,12 +252,12 @@
                     共有 @Users.Count 条数据
                 </td>
             </FootTemplate>
-        </Table>
+        </BootTable>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Table DataSource=""Users"" Bordered=""true"">
+<BootTable DataSource=""Users"" Bordered=""true"">
     <HeadTemplate>
         <th>Id</th>
         <th>Name</th>
@@ -273,7 +273,7 @@
             共有 @Users.Count 条数据
         </td>
     </FootTemplate>
-</Table>
+</BootTable>
 ```
         ")
     </CodeTemplate>
@@ -284,7 +284,7 @@
         设置 <code>Borderless="true"</code> 使表格的边框全部隐藏。
     </Description>
     <RunTemplate>
-        <Table DataSource="Users" Borderless="true">
+        <BootTable DataSource="Users" Borderless="true">
             <HeadTemplate>
                 <th>Id</th>
                 <th>Name</th>
@@ -300,12 +300,12 @@
                     共有 @Users.Count 条数据
                 </td>
             </FootTemplate>
-        </Table>
+        </BootTable>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Table DataSource=""Users"" Borderless=""true"">
+<BootTable DataSource=""Users"" Borderless=""true"">
     <HeadTemplate>
         <th>Id</th>
         <th>Name</th>
@@ -321,7 +321,7 @@
             共有 @Users.Count 条数据
         </td>
     </FootTemplate>
-</Table>
+</BootTable>
 ```
         ")
     </CodeTemplate>
@@ -332,7 +332,7 @@
         设置 <code>Hover="true"</code> 可让鼠标悬浮行时有让行高亮显示。
     </Description>
     <RunTemplate>
-        <Table DataSource="Users" Hover="true">
+        <BootTable DataSource="Users" Hover="true">
             <HeadTemplate>
                 <th>Id</th>
                 <th>Name</th>
@@ -348,12 +348,12 @@
                     共有 @Users.Count 条数据
                 </td>
             </FootTemplate>
-        </Table>
+        </BootTable>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Table DataSource=""Users"" Hover=""true"">
+<BootTable DataSource=""Users"" Hover=""true"">
     <HeadTemplate>
         <th>Id</th>
         <th>Name</th>
@@ -369,7 +369,7 @@
             共有 @Users.Count 条数据
         </td>
     </FootTemplate>
-</Table>
+</BootTable>
 ```
         ")
     </CodeTemplate>
@@ -380,7 +380,7 @@
         设置 <code>Small="true"</code> 让每一行显示得更紧凑。
     </Description>
     <RunTemplate>
-        <Table DataSource="Users" Small="true">
+        <BootTable DataSource="Users" Small="true">
             <HeadTemplate>
                 <th>Id</th>
                 <th>Name</th>
@@ -396,12 +396,12 @@
                     共有 @Users.Count 条数据
                 </td>
             </FootTemplate>
-        </Table>
+        </BootTable>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Table DataSource=""Users"" Small=""true"">
+<BootTable DataSource=""Users"" Small=""true"">
     <HeadTemplate>
         <th>Id</th>
         <th>Name</th>
@@ -417,7 +417,7 @@
             共有 @Users.Count 条数据
         </td>
     </FootTemplate>
-</Table>
+</BootTable>
 ```
         ")
     </CodeTemplate>
@@ -491,17 +491,17 @@
     </tr>
     <tr>
         <td>TableColor</td>
-        <td>ControlColor?</td>
+        <td>Color?</td>
         <td>设置表格的主题颜色。</td>
     </tr>
     <tr>
         <td>BackgroundColor</td>
-        <td>ControlColor?</td>
+        <td>Color?</td>
         <td>设置表格的背景颜色。</td>
     </tr>
     <tr>
         <td>ForeColor</td>
-        <td>ControlColor?</td>
+        <td>Color?</td>
         <td>设置表格的字体前景色。</td>
     </tr>
 </ArgumentDescriptionTable>

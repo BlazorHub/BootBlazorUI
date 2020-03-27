@@ -9,7 +9,7 @@ namespace BootBlazorUI
     /// <summary>
     /// 表示分页的组件。
     /// </summary>
-    partial class Pagination
+    partial class BootPagination
     {
         /// <summary>
         /// 设置当前页码，必须大于 0。默认是 1。
@@ -65,13 +65,24 @@ namespace BootBlazorUI
         /// 设置分页的尺寸。
         /// </summary>
         [Parameter]
-        public ControlSize Size { get; set; } = ControlSize.Default;
+        public Size Size { get; set; } = Size.Default;
 
         /// <summary>
         /// 设置当页码发生改变时触发的事件。
         /// </summary>
         [Parameter]
         public EventCallback<int> OnPageChanged { get; set; }
+
+        /// <summary>
+        /// 设置一个布尔值，表示是否显示分页的状态标签，例如：“当前 1/4 页 共 233 条记录”，默认是 <c>true</c>。
+        /// </summary>
+        [Parameter]
+        public bool ShowStatusLabel { get; set; } = true;
+        /// <summary>
+        /// 设置一个布尔值，表示是否显示“跳转到”的组件。默认是 <c>true</c>。
+        /// </summary>
+        [Parameter]
+        public bool ShowNavigateTo { get; set; } = true;
 
         /// <summary>
         /// 获取总页数。
@@ -94,9 +105,9 @@ namespace BootBlazorUI
             classList.Add("pagination");
 
 
-            if (Size != ControlSize.Default)
+            if (Size != Size.Default)
             {
-                classList.Add(ComponentsHelper.GetSizeName(Size, "pagination-"));
+                classList.Add(ComponentUtil.GetSizeCssClass(Size, "pagination-"));
             }
         }
 
@@ -105,7 +116,7 @@ namespace BootBlazorUI
         /// </summary>
         public async Task NavigateToFirst()
         {
-            CurrentPage = 1;
+            SetCurrentPage(1);
             await OnPageChanged.InvokeAsync(CurrentPage);
             StateHasChanged();
         }
@@ -149,7 +160,7 @@ namespace BootBlazorUI
         /// </summary>
         public async Task NavigateToLast()
         {
-            CurrentPage = TotalPages;
+            SetCurrentPage(TotalPages);
             await OnPageChanged.InvokeAsync(CurrentPage);
             StateHasChanged();
         }
@@ -160,11 +171,34 @@ namespace BootBlazorUI
         /// <param name="page">要导航的页。</param>
         public async Task NavigateToPage(int page)
         {
-            CurrentPage = page;
+            SetCurrentPage(page);
             await OnPageChanged.InvokeAsync(page);
             StateHasChanged();
         }
 
+        /// <summary>
+        /// 设置当前分页的页码。
+        /// </summary>
+        /// <param name="page">要设置的分页页码。</param>
+        public void SetCurrentPage(int page)
+        {
+            CurrentPage = page;
+        }
 
+        /// <summary>
+        /// 设置每页的呈现的数据。
+        /// </summary>
+        /// <param name="size">每页呈现的数据。</param>
+        public void SetPageSize(int size)
+        {
+            PageSize = size;
+        }
+
+        /// <summary>
+        /// 设置分页的总共记录数量。
+        /// </summary>
+        /// <param name="count">总记录数量。</param>
+        public void SetTotalCount(int count)
+            => TotalCount = count;
     }
 }

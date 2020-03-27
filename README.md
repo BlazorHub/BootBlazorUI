@@ -28,26 +28,26 @@ BootBlazorUI 是基于 Bootstrap 4.x 版本并构建于 ASP.NET CORE 3.1 的 UI 
 ## 按钮（Buttons）
 ![按钮](img/demo-button.png)
 ```html
-<Button Color="ControlColor.Primary">Primary</Button>
-<Button Color="ControlColor.Secondary">Secondary</Button>
-<Button Color="ControlColor.Info">Info</Button>
-<Button Color="ControlColor.Warning">Warning</Button>
-<Button Color="ControlColor.Success">Success</Button>
-<Button Color="ControlColor.Danger">Danger</Button>
-<Button Color="ControlColor.Light">Light</Button>
-<Button Color="ControlColor.Dark">Dark</Button>
+<Button Color="Color.Primary">Primary</Button>
+<Button Color="Color.Secondary">Secondary</Button>
+<Button Color="Color.Info">Info</Button>
+<Button Color="Color.Warning">Warning</Button>
+<Button Color="Color.Success">Success</Button>
+<Button Color="Color.Danger">Danger</Button>
+<Button Color="Color.Light">Light</Button>
+<Button Color="Color.Dark">Dark</Button>
 ```
 ## 进度条（Progress Bar）
 ![进度条](img/demo-progress-bar.png)
 ```html
-<ProgressBar Value="80" Color="ControlColor.Primary" />
-<ProgressBar Value="65" Color="ControlColor.Secondary" />
-<ProgressBar Value="30" Color="ControlColor.Info" />
-<ProgressBar Value="77" Color="ControlColor.Warning" />
-<ProgressBar Value="100" Color="ControlColor.Success" />
-<ProgressBar Value="40" Color="ControlColor.Danger" />
-<ProgressBar Value="92" Color="ControlColor.Light" />
-<ProgressBar Value="50" Color="ControlColor.Dark" />
+<ProgressBar Value="80" Color="Color.Primary" />
+<ProgressBar Value="65" Color="Color.Secondary" />
+<ProgressBar Value="30" Color="Color.Info" />
+<ProgressBar Value="77" Color="Color.Warning" />
+<ProgressBar Value="100" Color="Color.Success" />
+<ProgressBar Value="40" Color="Color.Danger" />
+<ProgressBar Value="92" Color="Color.Light" />
+<ProgressBar Value="50" Color="Color.Dark" />
 ```
 
 ## 对话框
@@ -74,12 +74,12 @@ Modal modal = new Modal();
 ## 徽章
 ![徽章](img/demo-badge.png)
 ```html
-<Badge Color="ControlColor.Primary">Primary</Badge>
-<Badge Color="ControlColor.Secondary">Secondary</Badge>
-<Badge Color="ControlColor.Info">Info</Badge>
-<Badge Color="ControlColor.Success">Success</Badge>
-<Badge Color="ControlColor.Warning">Warning</Badge>
-<Badge Color="ControlColor.Danger">Danger</Badge>
-<Badge Color="ControlColor.Light">Light</Badge>
-<Badge Color="ControlColor.Dark">Dark</Badge>
+<Badge Color="Color.Primary">Primary</Badge>
+<Badge Color="Color.Secondary">Secondary</Badge>
+<Badge Color="Color.Info">Info</Badge>
+<Badge Color="Color.Success">Success</Badge>
+<Badge Color="Color.Warning">Warning</Badge>
+<Badge Color="Color.Danger">Danger</Badge>
+<Badge Color="Color.Light">Light</Badge>
+<Badge Color="Color.Dark">Dark</Badge>
 ```

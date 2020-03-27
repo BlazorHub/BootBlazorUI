@@ -7,7 +7,7 @@ namespace BootBlazorUI
     /// <summary>
     /// 表示表格的部分。
     /// </summary>
-    public partial class Table<TItem>
+    public partial class BootTable<TItem>
     {
         /// <summary>
         /// 设置表格的列头模板。
@@ -90,19 +90,19 @@ namespace BootBlazorUI
         /// 设置表格的主题颜色。
         /// </summary>
         [Parameter]
-        public ControlColor? TableColor { get; set; }
+        public Color? TableColor { get; set; }
 
         /// <summary>
         /// 设置表格的背景颜色。
         /// </summary>
         [Parameter]
-        public ControlColor? BackgroundColor { get; set; }
+        public Color? BackgroundColor { get; set; }
 
         /// <summary>
         /// 设置表格的字体前景色。
         /// </summary>
         [Parameter]
-        public ControlColor? ForeColor { get; set; }
+        public Color? ForeColor { get; set; }
 
         protected override void BuildCssClass(List<string> classList)
         {
@@ -135,18 +135,16 @@ namespace BootBlazorUI
 
             if (TableColor.HasValue)
             {
-                classList.Add(ComponentsHelper.GetColorName(TableColor.Value, "table-"));
+                classList.Add(ComponentUtil.GetColorCssClass(TableColor.Value, "table-"));
             }
             if (BackgroundColor.HasValue)
             {
-                classList.Add(ComponentsHelper.GetColorName(BackgroundColor.Value, "bg-"));
+                classList.Add(ComponentUtil.GetColorCssClass(BackgroundColor.Value, "bg-"));
             }
             if (ForeColor.HasValue)
             {
-                classList.Add(ComponentsHelper.GetColorName(ForeColor.Value, "text-"));
+                classList.Add(ComponentUtil.GetColorCssClass(ForeColor.Value, "text-"));
             }
-
-            classList.Add(CssClass);
         }
     }
 }

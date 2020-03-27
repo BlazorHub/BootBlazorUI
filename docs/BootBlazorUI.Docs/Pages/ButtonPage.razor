@@ -1,6 +1,6 @@
 ﻿@page "/buttons"
 
-<PageTitle Title="Button 按钮">
+<PageTitle Title="BootButton 按钮">
     按钮是一种常用的控件。
 </PageTitle>
 
@@ -10,26 +10,26 @@
         可设置 <code>Color</code> 属性，默认为 <code>Primary</code>。
     </Description>
     <RunTemplate>
-        <Button Color="ControlColor.Primary">Primary</Button>
-        <Button Color="ControlColor.Secondary">Secondary</Button>
-        <Button Color="ControlColor.Info">Info</Button>
-        <Button Color="ControlColor.Warning">Warning</Button>
-        <Button Color="ControlColor.Success">Success</Button>
-        <Button Color="ControlColor.Danger">Danger</Button>
-        <Button Color="ControlColor.Light">Light</Button>
-        <Button Color="ControlColor.Dark">Dark</Button>
+        <BootButton Color="Color.Primary">Primary</BootButton>
+        <BootButton Color="Color.Secondary">Secondary</BootButton>
+        <BootButton Color="Color.Info">Info</BootButton>
+        <BootButton Color="Color.Warning">Warning</BootButton>
+        <BootButton Color="Color.Success">Success</BootButton>
+        <BootButton Color="Color.Danger">Danger</BootButton>
+        <BootButton Color="Color.Light">Light</BootButton>
+        <BootButton Color="Color.Dark">Dark</BootButton>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Button Color=""ControlColor.Primary"">Primary</Button>
-<Button Color=""ControlColor.Secondary"">Secondary</Button>
-<Button Color=""ControlColor.Info"">Info</Button>
-<Button Color=""ControlColor.Warning"">Warning</Button>
-<Button Color=""ControlColor.Success"">Success</Button>
-<Button Color=""ControlColor.Danger"">Danger</Button>
-<Button Color=""ControlColor.Light"">Light</Button>
-<Button Color=""ControlColor.Dark"">Dark</Button>
+<BootButton Color=""Color.Primary"">Primary</BootButton>
+<BootButton Color=""Color.Secondary"">Secondary</BootButton>
+<BootButton Color=""Color.Info"">Info</BootButton>
+<BootButton Color=""Color.Warning"">Warning</BootButton>
+<BootButton Color=""Color.Success"">Success</BootButton>
+<BootButton Color=""Color.Danger"">Danger</BootButton>
+<BootButton Color=""Color.Light"">Light</BootButton>
+<BootButton Color=""Color.Dark"">Dark</BootButton>
 ```
 ")
     </CodeTemplate>
@@ -40,26 +40,26 @@
         设置 <code>Outline</code> 属性为 <code>true</code> 表示启用边框按钮风格。
     </Description>
     <RunTemplate>
-        <Button Color="ControlColor.Primary" Outline="true">Primary</Button>
-        <Button Color="ControlColor.Secondary" Outline="true">Secondary</Button>
-        <Button Color="ControlColor.Info" Outline="true">Info</Button>
-        <Button Color="ControlColor.Warning" Outline="true">Warning</Button>
-        <Button Color="ControlColor.Success" Outline="true">Success</Button>
-        <Button Color="ControlColor.Danger" Outline="true">Danger</Button>
-        <Button Color="ControlColor.Light" Outline="true">Light</Button>
-        <Button Color="ControlColor.Dark" Outline="true">Dark</Button>
+        <BootButton Color="Color.Primary" Outline="true">Primary</BootButton>
+        <BootButton Color="Color.Secondary" Outline="true">Secondary</BootButton>
+        <BootButton Color="Color.Info" Outline="true">Info</BootButton>
+        <BootButton Color="Color.Warning" Outline="true">Warning</BootButton>
+        <BootButton Color="Color.Success" Outline="true">Success</BootButton>
+        <BootButton Color="Color.Danger" Outline="true">Danger</BootButton>
+        <BootButton Color="Color.Light" Outline="true">Light</BootButton>
+        <BootButton Color="Color.Dark" Outline="true">Dark</BootButton>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Button Color=""ControlColor.Primary"" Outline=""true"">Primary</Button>
-<Button Color=""ControlColor.Primary"" Outline=""true"">Secondary</Button>
-<Button Color=""ControlColor.Info"" Outline=""true"">Info</Button>
-<Button Color=""ControlColor.Warning"" Outline=""true"">Warning</Button>
-<Button Color=""ControlColor.Success"" Outline=""true"">Success</Button>
-<Button Color=""ControlColor.Danger"" Outline=""true"">Danger</Button>
-<Button Color=""ControlColor.Light"" Outline=""true"">Light</Button>
-<Button Color=""ControlColor.Dark"" Outline=""true"">Dark</Button>
+<BootButton Color=""Color.Primary"" Outline=""true"">Primary</BootButton>
+<BootButton Color=""Color.Primary"" Outline=""true"">Secondary</BootButton>
+<BootButton Color=""Color.Info"" Outline=""true"">Info</BootButton>
+<BootButton Color=""Color.Warning"" Outline=""true"">Warning</BootButton>
+<BootButton Color=""Color.Success"" Outline=""true"">Success</BootButton>
+<BootButton Color=""Color.Danger"" Outline=""true"">Danger</BootButton>
+<BootButton Color=""Color.Light"" Outline=""true"">Light</BootButton>
+<BootButton Color=""Color.Dark"" Outline=""true"">Dark</BootButton>
 ```
 ")
     </CodeTemplate>
@@ -70,16 +70,16 @@
         设置 <code>Size</code> 改变按钮尺寸，分为 SM、LG 和 Default。
     </Description>
     <RunTemplate>
-        <Button Size="ControlSize.LG">大尺寸</Button>
-        <Button Size="ControlSize.Default">默认尺寸</Button>
-        <Button Size="ControlSize.SM">小尺寸</Button>
+        <BootButton Size="Size.LG">大尺寸</BootButton>
+        <BootButton Size="Size.Default">默认尺寸</BootButton>
+        <BootButton Size="Size.SM">小尺寸</BootButton>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Button Size=""ControlSize.LG"">大尺寸</Button>
-<Button Size=""ControlSize.Default"">默认尺寸</Button>
-<Button Size=""ControlSize.SM"">小尺寸</Button>
+<BootButton Size=""Size.LG"">大尺寸</BootButton>
+<BootButton Size=""Size.Default"">默认尺寸</BootButton>
+<BootButton Size=""Size.SM"">小尺寸</BootButton>
 ```
 ")
     </CodeTemplate>
@@ -95,16 +95,16 @@
         </p>
     </Description>
     <RunTemplate>
-        <Button Disabled="true">禁用</Button>
-        <Button Actived="true">活动</Button>
-        <Button>正常</Button>
+        <BootButton Disabled="true">禁用</BootButton>
+        <BootButton Actived="true">活动</BootButton>
+        <BootButton>正常</BootButton>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Button Disabled=""true"">禁用</Button>
-<Button Actived=""true"">活动</Button>
-<Button>正常</Button>
+<BootButton Disabled=""true"">禁用</BootButton>
+<BootButton Actived=""true"">活动</BootButton>
+<BootButton>正常</BootButton>
 ```
         ")
     </CodeTemplate>
@@ -115,12 +115,12 @@
         可设置 <code>Blocked="true"</code> 属性为块状，并占用整行。
     </Description>
     <RunTemplate>
-        <Button Blocked="true">块状</Button>
+        <BootButton Blocked="true">块状</BootButton>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Button Blocked=""true"">块状</Button>
+<BootButton Blocked=""true"">块状</BootButton>
 ```
         ")
     </CodeTemplate>
@@ -140,7 +140,7 @@
     <tr>
         <td>Type</td>
         <td>ButtonType</td>
-        <td>设置按钮的类型。默认是 <code>Button</code></td>
+        <td>设置按钮的类型。默认是 <code>BootButton</code></td>
     </tr>
     <tr>
         <td>Outline</td>

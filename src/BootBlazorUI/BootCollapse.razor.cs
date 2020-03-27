@@ -9,7 +9,7 @@ namespace BootBlazorUI
     /// <summary>
     /// 表示一个折叠面板。
     /// </summary>
-    partial class CollapsePanel
+    partial class BootCollapse
     {
         /// <summary>
         /// 设置伸缩面板的内容。
@@ -68,9 +68,6 @@ namespace BootBlazorUI
             }
         }
 
-        protected override void OnInitialized()
-        {
-        }
 
         protected override void BuildCssClass(List<string> classList)
         {

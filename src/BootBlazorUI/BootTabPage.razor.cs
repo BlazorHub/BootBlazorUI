@@ -7,13 +7,13 @@ namespace BootBlazorUI
     /// <summary>
     /// 表示标签控件的页面。
     /// </summary>
-    partial class TabPage
+    partial class BootTabPage
     {
         /// <summary>
         /// 标签控件。
         /// </summary>
         [CascadingParameter]
-        private TabControl Parent { get; set; }
+        private BootTabControl Parent { get; set; }
 
         /// <summary>
         /// 设置标签页内容。
@@ -31,7 +31,7 @@ namespace BootBlazorUI
         /// 设置当标签页被激活时触发的事件。
         /// </summary>
         [Parameter]
-        public EventCallback<TabPage> OnActived { get; set; }
+        public EventCallback<BootTabPage> OnActived { get; set; }
 
         protected override void OnInitialized()
         {

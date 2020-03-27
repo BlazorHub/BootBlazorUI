@@ -1,0 +1,110 @@
+﻿@inherits BaseComponent
+
+    <nav class="d-flex justify-content-center">
+        <ul class="@GetCssClass()" @attributes="Attributes">
+            @if (CurrentPage <= 1)
+            {
+                if (!HideOrDisable)
+                {
+                    <li class="page-item disabled"><span class="page-link">@FirstPageText</span></li>
+                    <li class="page-item disabled"><span class="page-link">@PreviousPageText</span></li>
+                }
+            }
+            else
+            {
+                <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToFirst">@FirstPageText</a></li>
+                <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToPrevious">@PreviousPageText</a></li>
+            }
+
+            @{
+                var start = 0;
+                var end = 0;
+                if (CurrentPage <= PageSize / 2 + 1)
+                {
+                    start = 1;
+                    end = PageSize;
+                }
+                else if (CurrentPage > PageSize / 2 + 1)
+                {
+                    start = CurrentPage - PageSize / 2;
+                    end = CurrentPage + PageSize / 2 - 1;
+                }
+                if (end > TotalPages)
+                {
+                    end = TotalPages;
+                }
+                if (end <= PageSize)
+                {
+                    start = 1;
+                }
+            }
+
+            @for (int i = start; i <= end; i++)
+            {
+                int current = i;
+                @if (CurrentPage == current)
+                {
+                    <li class="page-item active"><span class="page-link">@i</span></li>
+                }
+                else
+                {
+                    <li class="page-item" @key="current"><a class="page-link" href="javascript:;" @onclick="@(()=>NavigateToPage(current))">@current</a></li>
+                }
+            }
+
+            @if (CurrentPage >= TotalPages)
+            {
+                if (!HideOrDisable)
+                {
+                    <li class="page-item disabled"><span class="page-link">@NextPageText</span></li>
+                    <li class="page-item disabled"><span class="page-link">@LastPageText</span></li>
+                }
+            }
+            else
+            {
+                <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToNext">@NextPageText</a></li>
+                <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToLast">@LastPageText</a></li>
+            }
+
+            @if (ShowStatusLabel)
+            {
+                <li class="page-item ml-3">
+                    <small>当前 @(CurrentPage)/@(TotalPages)&nbsp;共 @(TotalCount) 条数据。</small>
+                </li>
+            }
+
+            @if (ShowNavigateTo)
+            {
+                <li class="page-item ml-3">
+                    <small>
+                        <EditForm Model="model" class="form-inline">
+                            <span>跳转到</span>
+                            <InputText class="form-control form-control-sm text-center w-25" @bind-Value="model.NavigateTo" />
+                            <BootButton Type="BootButton.ButtonType.Submit" Size="Size.SM" OnClick="GoToPage">Go</BootButton>
+                        </EditForm>
+                    </small>
+                </li>
+            }
+        </ul>
+    </nav>
+@code{
+    NavigateToModel model = new NavigateToModel();
+    class NavigateToModel {
+        [System.ComponentModel.DataAnnotations.Required]
+        public string NavigateTo { get; set; }
+    }
+
+    Task GoToPage()
+    {
+        if(!int.TryParse(model.NavigateTo,out int page))
+        {
+            page = 1;
+        }
+
+        if (page <= 1)
+        {
+            page = 1;
+        }
+        return NavigateToPage(page);
+    }
+}

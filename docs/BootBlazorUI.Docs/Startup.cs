@@ -43,7 +43,7 @@ namespace BootBlazorUI.Docs
             }
 
             app.UseStaticFiles();
-            app.UseEmbeddedBlazorContent(typeof(Modal).Assembly);
+            app.UseEmbeddedBlazorContent(typeof(BootModal).Assembly);
 
             app.UseRouting();
 

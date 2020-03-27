@@ -1,45 +1,45 @@
 ﻿@page "/modal"
 
-<PageTitle Title="模态框 Modal">
+<PageTitle Title="模态框 BootModal">
     模态框又称对话框，可以弹出一个对话框形式的提示，并设置对话框的内容，以便引导用户进行下一步操作。
 </PageTitle>
 
 
 <PresentationPart Title="简单示例">
     <Description>
-        你先要在页面上使用 <code>Modal</code> 组件对模态框的内容进行布局，然后调用 <code>Show</code> 方法让模态框显示。
+        你先要在页面上使用 <code>BootModal</code> 组件对模态框的内容进行布局，然后调用 <code>Show</code> 方法让模态框显示。
     </Description>
     <RunTemplate>
-        <Button OnClick="@(()=>modal.Show())">
+        <BootButton OnClick="@(()=>modal.Show())">
             弹出模态框
-        </Button>
-        <Modal @ref="modal">
-            <HeaderTemplate>
+        </BootButton>
+        <BootModal @ref="modal">
+            <HeadTemplate>
                 对话框
-            </HeaderTemplate>
+            </HeadTemplate>
             <BodyTemplate>
                 显示了一个对话框的内容
             </BodyTemplate>
-        </Modal>
+        </BootModal>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Button OnClick=""@(() => modal.Open())""/>
+<BootButton OnClick=""@(() => modal.Open())""/>
 弹出模态框
-</Button>
+</BootButton>
 
-<Modal @ref=""modal"">
-<HeaderTemplate>
+<BootModal @ref=""modal"">
+<HeadTemplate>
     对话框标题
-</HeaderTemplate>
+</HeadTemplate>
 <BodyTemplate>
     显示了一个对话框的内容
 </BodyTemplate>
-</Modal>
+</BootModal>
 
 @code{
-Modal modal = new Modal();
+BootModal modal = new BootModal();
 }
 ```
         ")
@@ -48,67 +48,67 @@ Modal modal = new Modal();
 
 
 @code{
-    Modal modal = new Modal();
+    BootModal modal = new BootModal();
 }
 
 <PresentationPart Title="尺寸和位置">
     <Description></Description>
     <RunTemplate>
-        <Button Color="ControlColor.Primary" OnClick="@(()=>modalNoraml.Show())">
+        <BootButton Color="Color.Primary" OnClick="@(()=>modalNoraml.Show())">
             正常的
-        </Button>
-        <Button Color="ControlColor.Info" OnClick="@(()=>modalLarge.Show())">
+        </BootButton>
+        <BootButton Color="Color.Info" OnClick="@(()=>modalLarge.Show())">
             大尺寸
-        </Button>
-        <Button Color="ControlColor.Success" OnClick="@(()=>modalSmall.Show())">
+        </BootButton>
+        <BootButton Color="Color.Success" OnClick="@(()=>modalSmall.Show())">
             小尺寸
-        </Button>
-        <Button Color="ControlColor.Warning" OnClick="@(()=>modalCenter.Show())">
+        </BootButton>
+        <BootButton Color="Color.Warning" OnClick="@(()=>modalCenter.Show())">
             屏幕居中位置
-        </Button>
-        <Button Color="ControlColor.Danger" OnClick="@(()=>modalScoll.Show())">
+        </BootButton>
+        <BootButton Color="Color.Danger" OnClick="@(()=>modalScoll.Show())">
             内容带滚动条
-        </Button>
+        </BootButton>
 
-        <Modal @ref="modalNoraml" Size="ControlSize.Default">
-            <HeaderTemplate>
+        <BootModal @ref="modalNoraml" Size="Size.Default">
+            <HeadTemplate>
                 <h5>普通对话框</h5>
-            </HeaderTemplate>
+            </HeadTemplate>
             <BodyTemplate>
                 这是一个普通模态对话框
             </BodyTemplate>
-        </Modal>
-        <Modal @ref="modalLarge" Size="ControlSize.LG">
-            <HeaderTemplate>
+        </BootModal>
+        <BootModal @ref="modalLarge" Size="Size.LG">
+            <HeadTemplate>
                 <h5>大对话框</h5>
-            </HeaderTemplate>
+            </HeadTemplate>
             <BodyTemplate>
                 这是一个大模态对话框
             </BodyTemplate>
-        </Modal>
+        </BootModal>
 
-        <Modal @ref="modalSmall" Size="ControlSize.SM">
-            <HeaderTemplate>
+        <BootModal @ref="modalSmall" Size="Size.SM">
+            <HeadTemplate>
                 <h5>小对话框</h5>
-            </HeaderTemplate>
+            </HeadTemplate>
             <BodyTemplate>
                 这是一个小模态对话框
             </BodyTemplate>
-        </Modal>
+        </BootModal>
 
-        <Modal @ref="modalCenter" Centered="true">
-            <HeaderTemplate>
+        <BootModal @ref="modalCenter" Centered="true">
+            <HeadTemplate>
                 <h5>居中对话框</h5>
-            </HeaderTemplate>
+            </HeadTemplate>
             <BodyTemplate>
                 这是一个居中显示的模态对话框
             </BodyTemplate>
-        </Modal>
+        </BootModal>
 
-        <Modal @ref="modalScoll" Scrollable="true">
-            <HeaderTemplate>
+        <BootModal @ref="modalScoll" Scrollable="true">
+            <HeadTemplate>
                 <h5>滚动条对话框</h5>
-            </HeaderTemplate>
+            </HeadTemplate>
             <BodyTemplate>
                 <h1>Bootstrap</h1>
                 Bootstrap 是全球最受欢迎的前端组件库，用于开发响应式布局、移动设备优先的 WEB 项目。
@@ -128,66 +128,66 @@ Modal modal = new Modal();
                 <h1>重要的全局样式</h1>
                 Bootstrap 使用了一些重要的全局样式和设置，你在使用它们的时候要留意，这些全局样式和设置几乎都是专门针对跨浏览器样式的 标准化（normalization） 为目标的。下面就让我们一起来了解吧。
             </BodyTemplate>
-        </Modal>
+        </BootModal>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Button Color=""ControlColor.Primary"" OnClick=""@(() => modalNoraml.Show())"">
+<BootButton Color=""Color.Primary"" OnClick=""@(() => modalNoraml.Show())"">
 正常的
-</Button>
-<Button Color=""ControlColor.Info"" OnClick=""@(()=>modalLarge.Show())"">
+</BootButton>
+<BootButton Color=""Color.Info"" OnClick=""@(()=>modalLarge.Show())"">
 大尺寸
-</Button>
-<Button Color=""ControlColor.Success"" OnClick=""@(()=>modalSmall.Show())"">
+</BootButton>
+<BootButton Color=""Color.Success"" OnClick=""@(()=>modalSmall.Show())"">
 小尺寸
-</Button>
-<Button Color=""ControlColor.Warning"" OnClick=""@(()=>modalCenter.Show())"">
+</BootButton>
+<BootButton Color=""Color.Warning"" OnClick=""@(()=>modalCenter.Show())"">
 屏幕居中位置
-</Button>
-<Button Color=""ControlColor.Danger"" OnClick=""@(()=>modalScoll.Show())"">
+</BootButton>
+<BootButton Color=""Color.Danger"" OnClick=""@(()=>modalScoll.Show())"">
 内容带滚动条
-</Button>
+</BootButton>
 
-<Modal @ref="" modalNoraml"" Size="" ControlSize.Default"">
-<HeaderTemplate>
+<BootModal @ref="" modalNoraml"" Size="" Size.Default"">
+<HeadTemplate>
     <h5>普通对话框</h5>
-</HeaderTemplate>
+</HeadTemplate>
 <BodyTemplate>
     这是一个普通模态对话框
 </BodyTemplate>
-</Modal>
-<Modal @ref="" modalLarge"" Size="" ControlSize.LG"">
-<HeaderTemplate>
+</BootModal>
+<BootModal @ref="" modalLarge"" Size="" Size.LG"">
+<HeadTemplate>
     <h5>大对话框</h5>
-</HeaderTemplate>
+</HeadTemplate>
 <BodyTemplate>
     这是一个大模态对话框
 </BodyTemplate>
-</Modal>
+</BootModal>
 
-<Modal @ref="" modalSmall"" Size="" ControlSize.SM"">
-<HeaderTemplate>
+<BootModal @ref="" modalSmall"" Size="" Size.SM"">
+<HeadTemplate>
     <h5>小对话框</h5>
-</HeaderTemplate>
+</HeadTemplate>
 <BodyTemplate>
     这是一个小模态对话框
 </BodyTemplate>
-</Modal>
+</BootModal>
 
-<Modal @ref="" modalCenter"" Centered="" true"">
-<HeaderTemplate>
+<BootModal @ref="" modalCenter"" Centered="" true"">
+<HeadTemplate>
     <h5>居中对话框</h5>
-</HeaderTemplate>
+</HeadTemplate>
 <BodyTemplate>
     这是一个居中显示的模态对话框
 </BodyTemplate>
-</Modal>
+</BootModal>
 
-<Modal @ref="" modalScoll"" Scrollable="" true"">
-<HeaderTemplate>
+<BootModal @ref="" modalScoll"" Scrollable="" true"">
+<HeadTemplate>
     <h5>滚动条对话框</h5>
-</HeaderTemplate>
+</HeadTemplate>
 <BodyTemplate>
     <h1>Bootstrap</h1>
     Bootstrap 是全球最受欢迎的前端组件库，用于开发响应式布局、移动设备优先的 WEB 项目。
@@ -207,26 +207,26 @@ Modal modal = new Modal();
     <h1>重要的全局样式</h1>
     Bootstrap 使用了一些重要的全局样式和设置，你在使用它们的时候要留意，这些全局样式和设置几乎都是专门针对跨浏览器样式的 标准化（normalization） 为目标的。下面就让我们一起来了解吧。
 </BodyTemplate>
-</Modal>
+</BootModal>
 ```
 ```cs
 @code{
-Modal modalNoraml = new Modal();
-Modal modalLarge = new Modal();
-Modal modalSmall = new Modal();
-Modal modalCenter = new Modal();
-Modal modalScoll = new Modal();
+BootModal modalNoraml = new BootModal();
+BootModal modalLarge = new BootModal();
+BootModal modalSmall = new BootModal();
+BootModal modalCenter = new BootModal();
+BootModal modalScoll = new BootModal();
 }
 ```
         ")
     </CodeTemplate>
 </PresentationPart>
 @code{
-    Modal modalNoraml = new Modal();
-    Modal modalLarge = new Modal();
-    Modal modalSmall = new Modal();
-    Modal modalCenter = new Modal();
-    Modal modalScoll = new Modal();
+    BootModal modalNoraml = new BootModal();
+    BootModal modalLarge = new BootModal();
+    BootModal modalSmall = new BootModal();
+    BootModal modalCenter = new BootModal();
+    BootModal modalScoll = new BootModal();
 }
 
 
@@ -234,42 +234,42 @@ Modal modalScoll = new Modal();
     <Description>
     </Description>
     <RunTemplate>
-        <Button OnClick="@(()=>modalShowing.Show())">显示之前</Button>
-        <Button OnClick="@(()=>modalHiding.Show())">隐藏之前</Button>
+        <BootButton OnClick="@(()=>modalShowing.Show())">显示之前</BootButton>
+        <BootButton OnClick="@(()=>modalHiding.Show())">隐藏之前</BootButton>
 
-        <Modal OnShown="Showing" @ref="modalShowing">
+        <BootModal OnShown="Showing" @ref="modalShowing">
             <BodyTemplate>
                 显示之前会弹出一个对话框
             </BodyTemplate>
-            <FooterTemplate>
-                <Button Color="ControlColor.Light" OnClick="@(()=>modalShowing.Hide())">
+            <FootTemplate>
+                <BootButton Color="Color.Light" OnClick="@(()=>modalShowing.Hide())">
                     关闭
-                </Button>
-            </FooterTemplate>
-        </Modal>
-        <Modal OnHidden="Hiding" @ref="modalHiding">
+                </BootButton>
+            </FootTemplate>
+        </BootModal>
+        <BootModal OnHidden="Hiding" @ref="modalHiding">
             <BodyTemplate>
                 隐藏之前会弹出一个对话框
             </BodyTemplate>
-            <FooterTemplate>
-                <Button Color="ControlColor.Light" OnClick="@(()=>modalHiding.Hide())">
+            <FootTemplate>
+                <BootButton Color="Color.Light" OnClick="@(()=>modalHiding.Hide())">
                     关闭
-                </Button>
-            </FooterTemplate>
-        </Modal>
+                </BootButton>
+            </FootTemplate>
+        </BootModal>
 
         @inject IJSRuntime _js;
         @code{
-            Modal modalShowing = new Modal();
-            Modal modalHiding = new Modal();
+            BootModal modalShowing = new BootModal();
+            BootModal modalHiding = new BootModal();
 
             async Task Showing()
             {
-                await _js.InvokeVoidAsync("alert", "显示前会执行");
+                await _js.InvokeVoidAsync("BootAlert", "显示前会执行");
             }
             async Task Hiding()
             {
-                await _js.InvokeVoidAsync("alert", "隐藏前会执行");
+                await _js.InvokeVoidAsync("BootAlert", "隐藏前会执行");
             }
         }
 
@@ -278,43 +278,43 @@ Modal modalScoll = new Modal();
         @Code.GetCode(@"
 ```html
 
-<Button OnClick=""@(()=>modalShowing.Show())"">显示之前</Button>
-<Button OnClick=""@(()=>modalHiding.Show())"">隐藏之前</Button>
+<BootButton OnClick=""@(()=>modalShowing.Show())"">显示之前</BootButton>
+<BootButton OnClick=""@(()=>modalHiding.Show())"">隐藏之前</BootButton>
 
-<Modal OnShown=""Showing"" @ref=""modalShowing"">
+<BootModal OnShown=""Showing"" @ref=""modalShowing"">
     <BodyTemplate>
         显示之前会弹出一个对话框
     </BodyTemplate>
-    <FooterTemplate>
-        <Button Color=""ControlColor.Light"" OnClick=""@(()=>modalShowing.Hide())"">
+    <FootTemplate>
+        <BootButton Color=""Color.Light"" OnClick=""@(()=>modalShowing.Hide())"">
             关闭
-        </Button>
-    </FooterTemplate>
-</Modal>
-<Modal OnHidden=""Hiding"" @ref=""modalHiding"">
+        </BootButton>
+    </FootTemplate>
+</BootModal>
+<BootModal OnHidden=""Hiding"" @ref=""modalHiding"">
     <BodyTemplate>
         隐藏之前会弹出一个对话框
     </BodyTemplate>
-    <FooterTemplate>
-        <Button Color=""ControlColor.Light"" OnClick=""@(()=>modalHiding.Hide())"">
+    <FootTemplate>
+        <BootButton Color=""Color.Light"" OnClick=""@(()=>modalHiding.Hide())"">
             关闭
-        </Button>
-    </FooterTemplate>
-</Modal>
+        </BootButton>
+    </FootTemplate>
+</BootModal>
 ```
 
 ```cs
 @code{
-    Modal modalShowing = new Modal();
-    Modal modalHiding = new Modal();
+    BootModal modalShowing = new BootModal();
+    BootModal modalHiding = new BootModal();
 
     async Task Showing()
     {
-        await _js.InvokeVoidAsync(""alert"", ""显示前会执行"");
+        await _js.InvokeVoidAsync(""BootAlert"", ""显示前会执行"");
     }
     async Task Hiding()
     {
-        await _js.InvokeVoidAsync(""alert"", ""隐藏前会执行"");
+        await _js.InvokeVoidAsync(""BootAlert"", ""隐藏前会执行"");
     }
 }
 ```
@@ -325,7 +325,7 @@ Modal modalScoll = new Modal();
 
 <ArgumentDescriptionTable Title="属性">
     <tr>
-        <td>HeaderTemplate</td>
+        <td>HeadTemplate</td>
         <td>RenderFragnent</td>
         <td>设置模态框的头部模板</td>
     </tr>
@@ -335,7 +335,7 @@ Modal modalScoll = new Modal();
         <td>设置模态框的正文模板</td>
     </tr>
     <tr>
-        <td>FooterTemplate</td>
+        <td>FootTemplate</td>
         <td>RenderFragnent</td>
         <td>设置模态框的底部模板</td>
     </tr>
@@ -345,7 +345,7 @@ Modal modalScoll = new Modal();
         <td>
             设置右上角是否有关闭的“X”，点击后可以关闭模态框。默认是 <code>true</code>。
             <p class="text-sm">
-                如果不定义 <code>HeaderTemplate</code> 则无法看见该按钮。
+                如果不定义 <code>HeadTemplate</code> 则无法看见该按钮。
             </p>
         </td>
     </tr>
@@ -361,7 +361,7 @@ Modal modalScoll = new Modal();
     </tr>
     <tr>
         <td>Size</td>
-        <td>ControlSize</td>
+        <td>Size</td>
         <td>设置模态框的尺寸。<code>SM</code> 为小尺寸，<code>LG</code> 为大尺寸，默认是 <code>Default</code>。</td>
     </tr>
     <tr>
