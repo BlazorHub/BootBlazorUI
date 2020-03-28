@@ -1,6 +1,6 @@
 ﻿@page "/modal"
 
-<PageTitle Title="模态框 BootModal">
+<PageTitle Title="模态框(BootModal)">
     模态框又称对话框，可以弹出一个对话框形式的提示，并设置对话框的内容，以便引导用户进行下一步操作。
 </PageTitle>
 
@@ -265,11 +265,11 @@ BootModal modalScoll = new BootModal();
 
             async Task Showing()
             {
-                await _js.InvokeVoidAsync("BootAlert", "显示前会执行");
+                await _js.InvokeVoidAsync("alert", "显示前会执行");
             }
             async Task Hiding()
             {
-                await _js.InvokeVoidAsync("BootAlert", "隐藏前会执行");
+                await _js.InvokeVoidAsync("alert", "隐藏前会执行");
             }
         }
 
@@ -310,11 +310,11 @@ BootModal modalScoll = new BootModal();
 
     async Task Showing()
     {
-        await _js.InvokeVoidAsync(""BootAlert"", ""显示前会执行"");
+        await _js.InvokeVoidAsync(""alert"", ""显示前会执行"");
     }
     async Task Hiding()
     {
-        await _js.InvokeVoidAsync(""BootAlert"", ""隐藏前会执行"");
+        await _js.InvokeVoidAsync(""alert"", ""隐藏前会执行"");
     }
 }
 ```

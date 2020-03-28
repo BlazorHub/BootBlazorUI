@@ -15,7 +15,12 @@
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>Bootstrap Blazor UI Library</PackageTags>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>【新增】分页组件</PackageReleaseNotes>
+    <PackageReleaseNotes>【新增】DataGrid 组件
+【新增】分页组件的“跳转到”、“状态标签”和“分页数字隐藏显示”
+【删除】基本表格组件，由 DataGrid 组件代替
+【更新】`ControlColor` 改为 `Color`
+【更新】`ControlSize` 改为 `Size`
+【修复】若干 Bug</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

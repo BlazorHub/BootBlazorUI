@@ -1,7 +1,7 @@
 ﻿@page "/tabs"
 
-<PageTitle Title="标签控件 BootTabControl">
-
+<PageTitle Title="标签(BootTabControl)">
+    标签组件提供了切换的方式对内容进行呈现，而节约了更多的空间。
 </PageTitle>
 
 <PresentationPart Title="简单示例">
@@ -105,10 +105,10 @@
 <PresentationPart Title="OnActived 事件">
     <RunTemplate>
         <BootTabControl>
-            <BootTabPage Title="选项卡1" OnActived="@(()=>_js.InvokeVoidAsync("BootAlert","激活第二个选项卡"))">
+            <BootTabPage Title="选项卡1" OnActived="@(()=>_js.InvokeVoidAsync("alert","激活第1个选项卡"))">
                 第一个选项卡
             </BootTabPage>
-            <BootTabPage Title="选项卡2" OnActived="@(()=>_js.InvokeVoidAsync("BootAlert","激活第二个选项卡"))">
+            <BootTabPage Title="选项卡2" OnActived="@(()=>_js.InvokeVoidAsync("alert","激活第2个选项卡"))">
                 第二个选项卡
             </BootTabPage>
         </BootTabControl>
@@ -119,10 +119,10 @@
 @inject IJSRuntime _js
 
 <BootTabControl>
-    <BootTabPage Title=""选项卡1"" OnActived=""@(() => _js.InvokeVoidAsync(""BootAlert"", ""激活第二个选项卡""))"">
+    <BootTabPage Title=""选项卡1"" OnActived=""@(() => _js.InvokeVoidAsync(""alert"", ""激活第1个选项卡""))"">
         第一个选项卡
     </BootTabPage>
-    <BootTabPage Title=""选项卡2"" OnActived=""@(()=>_js.InvokeVoidAsync(""BootAlert"",""激活第二个选项卡""))"">
+    <BootTabPage Title=""选项卡2"" OnActived=""@(()=>_js.InvokeVoidAsync(""alert"",""激活第2个选项卡""))"">
         第二个选项卡
     </BootTabPage>
 </BootTabControl>

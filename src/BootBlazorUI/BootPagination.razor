@@ -16,7 +16,8 @@
                 <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToPrevious">@PreviousPageText</a></li>
             }
 
-            @{
+            @if (ShowPageNumber)
+            {
                 var start = 0;
                 var end = 0;
                 if (CurrentPage <= PageSize / 2 + 1)
@@ -37,18 +38,19 @@
                 {
                     start = 1;
                 }
-            }
 
-            @for (int i = start; i <= end; i++)
-            {
-                int current = i;
-                @if (CurrentPage == current)
+
+                for (int i = start; i <= end; i++)
                 {
-                    <li class="page-item active"><span class="page-link">@i</span></li>
-                }
-                else
-                {
-                    <li class="page-item" @key="current"><a class="page-link" href="javascript:;" @onclick="@(()=>NavigateToPage(current))">@current</a></li>
+                    int current = i;
+                    @if (CurrentPage == current)
+                    {
+                        <li class="page-item active"><span class="page-link">@i</span></li>
+                    }
+                    else
+                    {
+                        <li class="page-item" @key="current"><a class="page-link" href="javascript:;" @onclick="@(() => NavigateToPage(current))">@current</a></li>
+                    }
                 }
             }
 
@@ -56,15 +58,17 @@
             {
                 if (!HideOrDisable)
                 {
-                    <li class="page-item disabled"><span class="page-link">@NextPageText</span></li>
-                    <li class="page-item disabled"><span class="page-link">@LastPageText</span></li>
+                        <li class="page-item disabled"><span class="page-link">@NextPageText</span></li>
+                        <li class="page-item disabled"><span class="page-link">@LastPageText</span></li>
                 }
             }
             else
             {
-                <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToNext">@NextPageText</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToLast">@LastPageText</a></li>
+                    <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToNext">@NextPageText</a></li>
+                    <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToLast">@LastPageText</a></li>
             }
+
+
 
             @if (ShowStatusLabel)
             {

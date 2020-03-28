@@ -23,7 +23,7 @@ namespace BootBlazorUI.DataGrid
         public bool RowNumber { get; set; }
 
         /// <summary>
-        /// 设置一个布尔值，表示每一个 tr 是否显示间隔颜色。
+        /// 设置一个布尔值，表示每一行是否显示间隔颜色。
         /// </summary>
         [Parameter]
         public bool Striped { get; set; }
@@ -52,7 +52,7 @@ namespace BootBlazorUI.DataGrid
         [Parameter]
         public bool Hover { get; set; }
         /// <summary>
-        /// 设置一个布尔值，表示使用小尺寸的表格。
+        /// 设置一个布尔值，表示是否使用紧凑行间距。
         /// </summary>
         [Parameter]
         public bool Small { get; set; }
@@ -63,18 +63,6 @@ namespace BootBlazorUI.DataGrid
         /// </summary>
         [Parameter]
         public RenderFragment ChildContent { get; set; }
-
-        /// <summary>
-        /// 设置标题栏的背景颜色。
-        /// </summary>
-        [Parameter]
-        public Color? HeaderColor { get; set; }
-
-        /// <summary>
-        /// 设置标题栏的自定义 css 类。
-        /// </summary>
-        [Parameter]
-        public string HeaderCssClass { get; set; }
 
         /// <summary>
         /// 设置一个布尔值，表示是否显示分页。
@@ -158,9 +146,6 @@ namespace BootBlazorUI.DataGrid
                 classList.Add("table-sm");
             }
         }
-
-        
-
     }
 
    

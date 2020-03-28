@@ -2,85 +2,19 @@
 
 <NavMenu />
 
-<div class="container-fluid mt-2 pb-3">
+
+<div class="container-fluid mt-2 pb-3" style="padding-top:79px">
     <div class="row">
-        <div class="col-3">
-            <ul class="nav nav-pills">
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                        首页
-                    </NavLink>
-                </li>
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="BootAlerts">
-                        警告框(BootAlert)
-                    </NavLink>
-                </li>
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="buttons">
-                        按钮(BootButton)
-                    </NavLink>
-                </li>
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="table">
-                        表格(BootTable)
-                    </NavLink>
-                </li>
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="tabs">
-                        标签页(Tabs)
-                    </NavLink>
-                </li>
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="modal">
-                        模态框(Modals)
-                    </NavLink>
-                </li>
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="badges">
-                        徽章(Badges)
-                    </NavLink>
-                </li>
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="collapse">
-                        折叠面板(Collapse)
-                    </NavLink>
-                </li>
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="progressbar">
-                        进度条(Progress Bar)
-                    </NavLink>
-                </li>
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="pagination">
-                        分页(BootPagination)
-                    </NavLink>
-                </li>
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="datagrid">
-                        数据表格(BootDataGrid)
-                    </NavLink>
-                </li>
-            </ul>
+        <div class="col-2" style="height:@(height)px;overflow-y:scroll">
+            <LeftMenu />
         </div>
-        <div class="col-9">
+        <div class="col-10" style="height:@(height)px;overflow-y:scroll">
             @Body
         </div>
     </div>
-
 </div>
-@using System.Reflection
-<footer class="fixed-bottom bg-light w-100 text-center pt-1 pb-1 text-muted" style="font-size:13px;">
-    <ul class="list-inline" style="margin-bottom:0px">
-        <li class="list-inline-item">
-            <i class="fa fa-copyright"></i> BootBlazorUI
-        </li>
-        <li class="list-inline-item">
-            版本 v@(Program.GetVersion())
-        </li>
-        <li class="list-inline-item">
-            Licence MIT
-        </li>
-        <li class="list-inline-item"><a href="https://gitee.com/mikpro/BootBlazorUI" target="_blank">源码（Gittee）</a></li>
-    </ul>
-</footer>
+
+
+@code{
+    int height = 600;
+}

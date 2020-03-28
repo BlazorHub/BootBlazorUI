@@ -35,7 +35,9 @@ namespace BootBlazorUI.DataGrid
         /// </summary>
         internal Dictionary<int, List<string>> RowStyleList { get; private set; } = new Dictionary<int, List<string>>();
 
-
+        /// <summary>
+        /// 获取行的样式。
+        /// </summary>
         private string GetRowStyle()
         {
             var styleList = new List<string>();
@@ -48,10 +50,10 @@ namespace BootBlazorUI.DataGrid
             return string.Join(";", styleList);
         }
 
-
-
-
-
+        /// <summary>
+        /// 添加列。
+        /// </summary>
+        /// <param name="column">要添加的列。</param>
         internal void AddColumn(BootDataGridColumn column)
         {
             if (column is null)
@@ -60,27 +62,6 @@ namespace BootBlazorUI.DataGrid
             }
             Columns.Add(column);
             StateHasChanged();
-        }
-
-        /// <summary>
-        /// 获取标题栏的 Css 类。
-        /// </summary>
-        /// <returns></returns>
-        private string GetHeaderCssClass()
-        {
-            List<string> cssClassList = new List<string>();
-
-            if (HeaderColor.HasValue)
-            {
-                cssClassList.Add(ComponentUtil.GetColorCssClass(HeaderColor.Value, "bg-"));
-            }
-
-            if (!string.IsNullOrWhiteSpace(HeaderCssClass))
-            {
-                cssClassList.Add(HeaderCssClass);
-            }
-
-            return string.Join(" ", cssClassList);
         }
 
         int GetColSpan()

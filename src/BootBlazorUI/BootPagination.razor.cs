@@ -83,6 +83,11 @@ namespace BootBlazorUI
         /// </summary>
         [Parameter]
         public bool ShowNavigateTo { get; set; } = true;
+        /// <summary>
+        /// 设置一个布尔值，表示是否显示分页数。默认是是 <c>true</c>。
+        /// </summary>
+        [Parameter]
+        public bool ShowPageNumber { get; set; } = true;
 
         /// <summary>
         /// 获取总页数。

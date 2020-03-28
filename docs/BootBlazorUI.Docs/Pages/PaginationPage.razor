@@ -1,7 +1,7 @@
 ﻿@page "/pagination"
 
-<PageTitle Title="分页（BootPagination）">
-
+<PageTitle Title="分页(BootPagination)">
+    分页是最常见的数据组件之一，用户使用其他数据组件来呈现数据，并结合分页组件来使用。
 </PageTitle>
 <PresentationPart Title="简单示例">
     <Description>
@@ -83,18 +83,50 @@
     </CodeTemplate>
 </PresentationPart>
 
+<PresentationPart Title="隐藏“状态标签”和“跳转到”">
+    <Description>
+        设置 <code>ShowNavigateTo="false"</code> 隐藏“跳转到”面板。设置 <code>ShowStatusLabel="false"</code> 隐藏分页状态标签。
+    </Description>
+    <RunTemplate>
+        <BootPagination TotalCount="50" ShowNavigateTo="false"/>
+        <BootPagination TotalCount="50" ShowStatusLabel="false"/>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootPagination TotalCount=""50"" ShowNavigateTo=""false""/>
+<BootPagination TotalCount=""50"" ShowStatusLabel=""false""/>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="隐藏分页数字">
+    <Description>
+        设置 <code>ShowPageNumber="false"</code> 隐藏分页的数字。
+    </Description>
+    <RunTemplate>
+        <BootPagination TotalCount="50" ShowPageNumber="false" />
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootPagination TotalCount=""50"" ShowPageNumber=""false""/>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
 
 <PresentationPart Title="页码改变事件">
     <Description>
         设置 <code>OnPageChanged</code> 来触发页码改变事件。事件的参数是新页码。
     </Description>
     <RunTemplate>
-        <BootPagination TotalCount="100" OnPageChanged="@(page=>_js.InvokeVoidAsync("BootAlert",$"当前第{page}页"))"/>
+        <BootPagination TotalCount="100" OnPageChanged="@(page=>_js.InvokeVoidAsync("alert",$"当前第{page}页"))"/>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<BootPagination TotalCount=""100"" OnPageChanged=""@(page => _js.InvokeVoidAsync(""BootAlert"", $""当前第{page}页""))""/>
+<BootPagination TotalCount=""100"" OnPageChanged=""@(page => _js.InvokeVoidAsync(""alert"", $""当前第{page}页""))""/>
 ```
 ")
     </CodeTemplate>
@@ -151,6 +183,11 @@
         <td>ShowNavigateTo</td>
         <td>Boolean</td>
         <td>设置一个布尔值，表示是否显示“跳转到”的组件。默认是 <code>true</code>。</td>
+    </tr>
+    <tr>
+        <td>ShowPageNumber</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示是否显示分页数。默认是 <code>true</code>。</td>
     </tr>
 </ArgumentDescriptionTable>
 <ArgumentDescriptionTable Title="方法">
