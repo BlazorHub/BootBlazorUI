@@ -25,9 +25,9 @@ BootBlazorUI 更偏向于交互性和实用性，而不仅仅是静态的组件�
 * 使用 `@using BootBlazorUI` 引入命名空间，你可以在 `_Import.cshtml`(Mvc/Razor Page) | `_Import.razor`(Blazor) 中引入全局命名空间，或在某个页面中引入命名空间；
 
 
-**使用 VS 打开 docs 下的解决方案，即可看到完整文档**
 
 # Demo 演示
+### [在线地址](http://101.133.155.72/)
 
 ## 按钮（Buttons）
 ![按钮](img/demo-button.png)
