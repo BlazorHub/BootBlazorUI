@@ -39,7 +39,7 @@ namespace BootBlazorUI
         /// 设置将该控件或元素中出现的属性进行合并。
         /// </summary>
         [Parameter]
-        public virtual Dictionary<string, object> Attributes { get; set; } = new Dictionary<string, object>();
+        public virtual IReadOnlyDictionary<string, object> Attributes { get; set; } = new Dictionary<string, object>();
 
         /// <summary>
         /// 构建组件内置的 class 样式。

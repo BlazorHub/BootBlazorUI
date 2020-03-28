@@ -1,0 +1,479 @@
+﻿@page "/datagrid"
+
+@using BootBlazorUI.DataGrid
+
+<PageTitle Title="数据表格(Data Grid)">
+    数据表格可以将数据源使用数据绑定的形式呈现，并提供了强大的交互功能。先引用命名空间 <code>using BootBlazorUI.DataGrid</code>
+</PageTitle>
+@code{
+    class User
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public DateTime Birthday { get; set; }
+    }
+
+    List<User> user = new List<User>
+{
+        new User{ Id=1001,Name="张三", Birthday=new DateTime(1996,5,7) },
+        new User{ Id=1002,Name="李四",Birthday=new DateTime(1982,6,15) },
+        new User{ Id=1003,Name="王五",Birthday=new DateTime(1992,12,31) },
+        new User{ Id=1004,Name="赵六",Birthday=new DateTime(1988,2,14) }
+    };
+}
+
+<PresentationPart Title="简单示例">
+    <Description>
+        使用 <code>BootDataGrid</code> 对指定的数据源进行数据绑定。设置 <code>DataBind</code> 获取相关数据，这是一个 <code>Func&le;int,object></code> 委托，输入参数是 <code>int</code> 类型的，表示当前调用的分页页码，返回值是一个 <code>object</code>，表示你返回的数据源。
+        <p>示例中采用的数据来自以下代码：</p>
+        @Code.GetCode(@"
+```cs
+class User
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public DateTime Birthday { get; set; }
+}
+
+List<User> user = new List<User>
+{
+    new User{ Id=1001,Name=""张三"", Birthday=new DateTime(1996,5,7) },
+    new User{ Id=1002,Name=""李四"",Birthday=new DateTime(1982,6,15) },
+    new User{ Id=1003,Name=""王五"",Birthday=new DateTime(1992,12,31) },
+    new User{ Id=1004,Name=""赵六"",Birthday=new DateTime(1988,2,14) }
+};
+```
+")
+    </Description>
+    <RunTemplate>
+        <BootDataGrid DataBind="@( _ => user)" >
+            <BootDataGridColumn Title="Id" Field="Id" />
+            <BootDataGridColumn Title="姓名" Field="Name" />
+            <BootDataGridColumn Title="生日" Field="Birthday" />
+        </BootDataGrid>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootDataGrid DataBind=""@(_=> user)"">
+    <BootDataGridColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridColumn Title=""生日"" Field=""Birthday"" />
+</BootDataGrid>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="显示行号">
+    <Description>
+        设置 <code>RowNumber="true"</code> 启用行号。
+    </Description>
+    <RunTemplate>
+        <BootDataGrid DataBind="@( _ => user)" RowNumber="true">
+            <BootDataGridColumn Title="Id" Field="Id" />
+            <BootDataGridColumn Title="姓名" Field="Name" />
+            <BootDataGridColumn Title="生日" Field="Birthday" />
+        </BootDataGrid>
+
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootDataGrid DataBind=""@(_=> user)"" RowNumber=""true"">
+    <BootDataGridColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridColumn Title=""生日"" Field=""Birthday"" />
+</BootDataGrid>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="行间隔">
+    <Description>
+        设置 <code>Striped="true"</code> 可让每行之间有一个间隔颜色。
+    </Description>
+    <RunTemplate>
+        <BootDataGrid DataBind="@( _ => user)" Striped="true">
+            <BootDataGridColumn Title="Id" Field="Id" />
+            <BootDataGridColumn Title="姓名" Field="Name" />
+            <BootDataGridColumn Title="生日" Field="Birthday" />
+        </BootDataGrid>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootDataGrid DataBind=""@(_=> user)"" Striped=""true"">
+    <BootDataGridColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridColumn Title=""生日"" Field=""Birthday"" />
+</BootDataGrid>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="边框设置">
+    <Description>
+        设置 <code>Bordered="true"</code> 让每一个单元格都有边框。设置 <code>Borderless="true"</code> 让所有边框都隐藏。
+    </Description>
+    <RunTemplate>
+        <h6>显示边框</h6>
+        <BootDataGrid DataBind="@( _ => user)" Bordered="true">
+            <BootDataGridColumn Title="Id" Field="Id" />
+            <BootDataGridColumn Title="姓名" Field="Name" />
+            <BootDataGridColumn Title="生日" Field="Birthday" />
+        </BootDataGrid>
+        <h6>隐藏边框</h6>
+        <BootDataGrid DataBind="@( _ => user)" Borderless="true">
+            <BootDataGridColumn Title="Id" Field="Id" />
+            <BootDataGridColumn Title="姓名" Field="Name" />
+            <BootDataGridColumn Title="生日" Field="Birthday" />
+        </BootDataGrid>
+
+        <h6>调皮一下，两个都设置会怎样？</h6>
+        <BootDataGrid DataBind="@( _ => user)" Borderless="true" Bordered="true">
+            <BootDataGridColumn Title="Id" Field="Id" />
+            <BootDataGridColumn Title="姓名" Field="Name" />
+            <BootDataGridColumn Title="生日" Field="Birthday" />
+        </BootDataGrid>
+        <strong>答案是，分不清楚干脆就消失吧！^_^</strong>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootDataGrid DataBind=""@(_=> user)"" Bordered=""true"">
+    <BootDataGridColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridColumn Title=""生日"" Field=""Birthday"" />
+</BootDataGrid>
+        <BootDataGrid DataBind=""@(_=> user)"" Borderless=""true"">
+    <BootDataGridColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridColumn Title=""生日"" Field=""Birthday"" />
+</BootDataGrid>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="悬浮高亮">
+    <Description>
+        设置 <code>Hover="true"</code> 鼠标悬停行会高亮显示。
+    </Description>
+    <RunTemplate>
+        <BootDataGrid DataBind="@( _ => user)" Hover="true">
+            <BootDataGridColumn Title="Id" Field="Id" />
+            <BootDataGridColumn Title="姓名" Field="Name" />
+            <BootDataGridColumn Title="生日" Field="Birthday" />
+        </BootDataGrid>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootDataGrid DataBind=""@(_=> user)"" Hover=""true"">
+    <BootDataGridColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridColumn Title=""生日"" Field=""Birthday"" />
+</BootDataGrid>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="压缩间距">
+    <Description>
+        设置 <code>Small="true"</code> 会压缩单元格的空间。
+    </Description>
+    <RunTemplate>
+        <BootDataGrid DataBind="@( _ => user)" Small="true">
+            <BootDataGridColumn Title="Id" Field="Id" />
+            <BootDataGridColumn Title="姓名" Field="Name" />
+            <BootDataGridColumn Title="生日" Field="Birthday" />
+        </BootDataGrid>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootDataGrid DataBind=""@(_=> user)"" Small=""true"">
+    <BootDataGridColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridColumn Title=""生日"" Field=""Birthday"" />
+</BootDataGrid>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="深色背景">
+    <Description>
+        设置 <code>Dark="true"</code> 使用深色背景。
+    </Description>
+    <RunTemplate>
+        <BootDataGrid DataBind="@( _ => user)" Dark="true">
+            <BootDataGridColumn Title="Id" Field="Id" />
+            <BootDataGridColumn Title="姓名" Field="Name" />
+            <BootDataGridColumn Title="生日" Field="Birthday" />
+        </BootDataGrid>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootDataGrid DataBind=""@(_=> user)"" Dark=""true"">
+    <BootDataGridColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridColumn Title=""生日"" Field=""Birthday"" />
+</BootDataGrid>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="格式化列的值">
+    <Description>
+        使用 <code>Format</code> 可以格式化显示的数据。
+    </Description>
+    <RunTemplate>
+        <BootDataGrid DataBind="@( _ => user)">
+            <BootDataGridColumn Title="Id" Field="Id" />
+            <BootDataGridColumn Title="姓名" Field="Name" />
+            <BootDataGridColumn Title="生日" Field="Birthday" Format="{0:yyyy年MM月dd日}" />
+        </BootDataGrid>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootDataGrid DataBind=""@(_=> user)"">
+    <BootDataGridColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridColumn Title=""生日"" Field=""Birthday"" Format=""{0:yyyy年MM月dd日}""/>
+</BootDataGrid>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="带有分页的数据">
+    <Description>
+        设置 <code>ShowPagination="true"</code> 显示分页条，并设置 <code>DataBind</code> 去调用你自己的分页方法，然后根据需要设置 <code>TotalRecordCount</code> 和 <code>PageSize</code> 属性，分页条会自动计算所需要分页功能。
+    </Description>
+    <RunTemplate>
+        <BootDataGrid DataBind="page => LoadData(page,pageSize)" PageSize="pageSize" ShowPagination="true" TotalRecordCount="totalCount">
+            <BootDataGridColumn Title="Id" Field="Id" />
+            <BootDataGridColumn Title="姓名" Field="Name" />
+            <BootDataGridColumn Title="生日" Field="Birthday" Format="{0:yyyy年MM月dd日}" />
+        </BootDataGrid>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```cs
+@code{
+    List<User> userList;
+
+    int totalCount = 0;
+    int pageSize = 5;
+
+    //模拟数据
+    protected override void OnInitialized()
+{
+userList = new List<User>();
+var random = new Random();
+for (int i = 0; i < 100; i++)
+    {
+        Id = (i + 1),
+                Birthday = new DateTime(random.Next(1980, 1999), random.Next(3, 12), random.Next(1, 30)),
+                Name = random.Next(99999).ToString().PadLeft(5, '0')
+            });
+        }
+    }
+
+    //绑定给 DataBind 使用的方法定义
+    public object LoadData(int page, int size)
+    {
+        totalCount= userList.Count;
+        return userList.Skip((page - 1) * size).Take(size).ToList();
+    }
+}
+```
+```html
+<BootDataGrid  DataBind=""page => LoadData(page,pageSize)"" PageSize=""pageSize"" ShowPagination=""true"" TotalRecordCount=""totalCount"">
+    <BootDataGridColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridColumn Title=""生日"" Field=""Birthday"" Format=""{0:yyyy年MM月dd日}"" />
+</BootDataGrid>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="固定标题栏">
+    <Description>
+        设置 <code>FixHeader="true"</code> 可以固定标题栏。设置 <code>RowFixHeight</code> 固定行高度，单位是 px。
+    </Description>
+    <RunTemplate>
+        <BootDataGrid DataBind="page => LoadData(page,25)" FixHeader="true" FixRowHeight="300" TotalRecordCount="totalCount" ShowPagination="true" PageSize="25">
+            <BootDataGridColumn Title="Id" Field="Id" />
+            <BootDataGridColumn Title="姓名" Field="Name" />
+            <BootDataGridColumn Title="生日" Field="Birthday" />
+        </BootDataGrid>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootDataGrid DataBind=""page => LoadData(page,25)"" FixHeader=""true"" RowFixHeight=""300"" TotalRecordCount=""totalCount"" ShowPagination=""true"" PageSize=""25"">
+    < BootDataGridColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridColumn Title=""生日"" Field=""Birthday"" />
+</BootDataGrid>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart  Title="行点击事件">
+    <Description>
+        当数据行被点击时，会触发 <code>OnRowClick</code> 事件。
+    </Description>
+    <RunTemplate>
+        <BootDataGrid DataBind="page => LoadData(page,int.MaxValue)" FixHeader="true" FixRowHeight="300" OnRowClick="@(e=>_js.InvokeVoidAsync("alert",$"点击了第{e.Index}行"))">
+            <BootDataGridColumn Title="Id" Field="Id" />
+            <BootDataGridColumn Title="姓名" Field="Name" />
+            <BootDataGridColumn Title="生日" Field="Birthday" />
+        </BootDataGrid>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootDataGrid DataBind=""page => LoadData(page,int.MaxValue)"" FixHeader=""true"" FixRowHeight=""300"" OnRowClick=""@(e=>_js.InvokeVoidAsync(""alert"",$""点击了第{e.Index}行""))"">
+    <BootDataGridColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridColumn Title=""生日"" Field=""Birthday"" />
+</BootDataGrid>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@inject IJSRuntime _js
+@code{
+    List<User> userList;
+
+    int totalCount = 0;
+    int pageSize = 5;
+
+
+    protected override void OnInitialized()
+    {
+        userList = new List<User>();
+        var random = new Random();
+        for (int i = 0; i < 100; i++)
+        {
+            userList.Add(new User
+            {
+                Id = (i + 1),
+                Birthday = new DateTime(random.Next(1980, 1999), random.Next(3, 12), random.Next(1, 30)),
+                Name = random.Next(99999).ToString().PadLeft(5, '0')
+            });
+        }
+    }
+
+
+    public object LoadData(int page,int size)
+    {
+        totalCount = userList.Count;
+        return userList.Skip((page - 1) * size).Take(size).ToList();
+    }
+}
+
+<ArgumentDescriptionTable Title="属性">
+    <tr>
+        <td>FixHeader</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示是否要固定标题栏。</td>
+    </tr>
+    <tr>
+        <td>RowNumber</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示是否表格第一列使用行号。</td>
+    </tr>
+    <tr>
+        <td>Striped</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示每一行是否显示间隔颜色。</td>
+    </tr>
+    <tr>
+        <td>Bordered</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示每一个单元格是否显示边框。</td>
+    </tr>
+    <tr>
+        <td>Borderless</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示每一个单元格是否不显示边框。</td>
+    </tr>
+    <tr>
+        <td>Dark</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示表格使用深色背景显示。</td>
+    </tr>
+    <tr>
+        <td>Hover</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示行在鼠标悬浮时是否有颜色高亮。</td>
+    </tr>
+    <tr>
+        <td>Small</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示是否使用紧凑行间距。</td>
+    </tr>
+    <tr>
+        <td>ShowPagination</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示是否显示分页。</td>
+    </tr>
+    <tr>
+        <td>PageSize</td>
+        <td>Int32</td>
+        <td>设置呈现每一次分页的数据量。开启分页后有效。</td>
+    </tr>
+    <tr>
+        <td>TotalRecordCount</td>
+        <td>Int32</td>
+        <td>设置分页所需要的总共的数据量。开启分页后有效。</td>
+    </tr>
+    <tr>
+        <td>FixRowHeight</td>
+        <td>Nullable&lt;Int32></td>
+        <td>设置数据行的固定高度。单位是 px。</td>
+    </tr>
+    <tr>
+        <td>DataBind</td>
+        <td>Func&lt;int, object></td>
+        <td>设置数据绑定的方法。</td>
+    </tr>
+    <tr>
+        <td>IsCompleted</td>
+        <td>Boolean</td>
+        <td>返回一个布尔值，表示数据是否已加载完成。</td>
+    </tr>
+</ArgumentDescriptionTable>
+
+<ArgumentDescriptionTable Title="事件">
+    <tr>
+        <td>OnRowClick</td>
+        <td>EventCallback&lt;BootDataGridSelectedRowEventArgs></td>
+        <td>设置当数据行被点击后触发的事件。</td>
+    </tr>
+</ArgumentDescriptionTable>
+<ArgumentDescriptionTable Title="方法">
+    <tr>
+        <td>ClickRow</td>
+        <td>Task</td>
+        <td>点击指定的行。</td>
+    </tr>
+    <tr>
+        <td>AppendRowCss</td>
+        <td>void</td>
+        <td>向指定行追加指定的 css 类。</td>
+    </tr>
+    <tr>
+        <td>AppendRowStyle</td>
+        <td>void</td>
+        <td>向指定行追加指定的 style 自定义样式。</td>
+    </tr>
+</ArgumentDescriptionTable>

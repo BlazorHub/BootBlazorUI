@@ -1,0 +1,69 @@
+﻿@inherits BaseComponent
+@using System.Collections
+<div class="row table-responsive bootblazor-datagrid">
+    <div class="grid-header" style="@(FixHeader?"position:relative;top:0":string.Empty)">
+        <table class="@GetCssClass()" style="@GetStyles()">
+            <thead>
+                <tr>
+                    @if (RowNumber)
+                    {
+                        <th style="width:20px" class="text-center">
+                            #
+                        </th>
+                    }
+                    @foreach (var item in Columns)
+                    {
+                        <th style="@(item.GetWidthStyleString())">@item.GetTitle()</th>
+                    }
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="grid-row" style="@GetRowStyle()">
+        <table class="@GetCssClass()" style="@GetStyles()">
+            <tbody>
+                @if (IsCompleted)
+                {
+
+                    for (int i = 0; i < DataSource.Count; i++)
+                    {
+                        var item = DataSource[i];
+                        var rowIndex = i;
+                        <tr @key="rowIndex" @onclick="_=>ClickRow(item,rowIndex)" class="@GetRowCssByIndex(rowIndex)">
+                            @if (RowNumber)
+                            {
+                                <td class="text-center" style="width:20px">
+                                    @(i + 1)
+                                </td>
+                            }
+                            @foreach (var col in Columns)
+                            {
+                                <td class="@col.GetCssClass()" style="@(col.GetWidthStyleString())">
+                                    @col.GetValue(item)
+                                </td>
+                            }
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="@GetColSpan()" class="text-center">
+                            数据加载中...
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>        
+    @if (ShowPagination)
+    {
+        <div class="grid-footer border-top bg-light pt-3" style="position:relative;bottom:0">
+            <BootPagination Size="Size.SM" PageSize="PageSize" CurrentPage="CurrentPage" TotalCount="TotalRecordCount" OnPageChanged="LoadPaginationData" />
+        </div>
+    }
+</div>
+
+<CascadingValue Value="this">
+    @ChildContent
+</CascadingValue>

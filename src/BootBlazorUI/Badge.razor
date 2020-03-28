@@ -7,10 +7,10 @@
 
 @code {
     /// <summary>
-    /// 设置徽章的颜色主题。默认是是 <see cref="ControlColor.Primary"/> 主题。
+    /// 设置徽章的颜色主题。默认是是 <see cref="Color.Primary"/> 主题。
     /// </summary>
     [Parameter]
-    public ControlColor Color { get; set; } = ControlColor.Primary;
+    public Color Color { get; set; } = Color.Primary;
 
     /// <summary>
     /// 设置一个布尔值，表示是否使用药丸样式。
@@ -29,7 +29,7 @@
     {
         classList.Add("badge");
 
-        classList.Add($"badge-{ComponentsHelper.GetColorName(Color)}");
+        classList.Add(ComponentUtil.GetColorCssClass(Color,"badge-"));
 
         if (Pills)
         {

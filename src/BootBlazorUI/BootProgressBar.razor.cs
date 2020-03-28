@@ -9,21 +9,21 @@ namespace BootBlazorUI
     /// <summary>
     /// 表示进度条。
     /// </summary>
-    public partial class ProgressBar
+    public partial class BootProgressBar
     {
         /// <summary>
-        /// 初始化 <see cref="ProgressBar"/> 类的新实例。
+        /// 初始化 <see cref="BootProgressBar"/> 类的新实例。
         /// </summary>
-        public ProgressBar()
+        public BootProgressBar()
         {
 
         }
 
         /// <summary>
-        /// 设置进度条的主题颜色。默认是 <see cref="ControlColor.Primary"/> 。
+        /// 设置进度条的主题颜色。默认是 <see cref="Color.Primary"/> 。
         /// </summary>
         [Parameter]
-        public ControlColor Color { get; set; } = ControlColor.Primary;
+        public Color Color { get; set; } = Color.Primary;
 
         /// <summary>
         /// 设置进度条的最大值，默认是 100。
@@ -52,7 +52,7 @@ namespace BootBlazorUI
         /// 设置进度条自定义模板。
         /// </summary>
         [Parameter]
-        public RenderFragment<ProgressBar> Template { get; set; }
+        public RenderFragment<BootProgressBar> Template { get; set; }
         /// <summary>
         /// 设置一个布尔值，表示进度条是否呈现花纹状。
         /// </summary>
@@ -91,7 +91,7 @@ namespace BootBlazorUI
 
         protected override void BuildCssClass(List<string> classList)
         {
-            classList.Add(ComponentsHelper.GetColorName(Color,"bg-"));
+            classList.Add(ComponentUtil.GetColorCssClass(Color,"bg-"));
             classList.Add("progress-bar");
             if (Striped)
             {

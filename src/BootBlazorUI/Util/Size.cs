@@ -3,7 +3,7 @@
     /// <summary>
     /// 控件的尺寸。某些尺寸只有在特定的样式才生效，具体可查看定义。
     /// </summary>
-    public enum ControlSize
+    public enum Size
     {
         /// <summary>
         /// 默认尺寸。
