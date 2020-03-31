@@ -6,41 +6,27 @@
             {
                 if (!HideOrDisable)
                 {
+                    if (ShowFirst)
+                    {
                     <li class="page-item disabled"><span class="page-link">@FirstPageText</span></li>
+                    }
                     <li class="page-item disabled"><span class="page-link">@PreviousPageText</span></li>
                 }
             }
             else
             {
+                if (ShowFirst)
+                {
                 <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToFirst">@FirstPageText</a></li>
+                }
                 <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToPrevious">@PreviousPageText</a></li>
             }
 
             @if (ShowPageNumber)
             {
-                var start = 0;
-                var end = 0;
-                if (CurrentPage <= PageSize / 2 + 1)
-                {
-                    start = 1;
-                    end = PageSize;
-                }
-                else if (CurrentPage > PageSize / 2 + 1)
-                {
-                    start = CurrentPage - PageSize / 2;
-                    end = CurrentPage + PageSize / 2 - 1;
-                }
-                if (end > TotalPages)
-                {
-                    end = TotalPages;
-                }
-                if (end <= PageSize)
-                {
-                    start = 1;
-                }
+                var pageNumberBound = ComputePageNumber();
 
-
-                for (int i = start; i <= end; i++)
+                for (int i = pageNumberBound.start; i <= pageNumberBound.end; i++)
                 {
                     int current = i;
                     @if (CurrentPage == current)
@@ -59,13 +45,19 @@
                 if (!HideOrDisable)
                 {
                         <li class="page-item disabled"><span class="page-link">@NextPageText</span></li>
+                    if (ShowLast)
+                    {
                         <li class="page-item disabled"><span class="page-link">@LastPageText</span></li>
+                    }
                 }
             }
             else
             {
                     <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToNext">@NextPageText</a></li>
+                if (ShowLast)
+                {
                     <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToLast">@LastPageText</a></li>
+                }
             }
 
 
@@ -73,13 +65,22 @@
             @if (ShowStatusLabel)
             {
                 <li class="page-item ml-3">
-                    <small>当前 @(CurrentPage)/@(TotalPages)&nbsp;共 @(TotalCount) 条数据。</small>
+                    @if (StatusLabelTemplate == null)
+                    {
+                    <small> @(CurrentPage)/@(TotalPages) 页&nbsp;&nbsp;每页 @PageSize 条 &nbsp;&nbsp; 共计 @(TotalCount) 条数据</small>
+                    }
+                    else
+                    {
+                        @StatusLabelTemplate
+                    }
                 </li>
             }
 
             @if (ShowNavigateTo)
             {
                 <li class="page-item ml-3">
+                    @if (NavigateToTemplate == null)
+                    {
                     <small>
                         <EditForm Model="model" class="form-inline">
                             <span>跳转到</span>
@@ -87,6 +88,11 @@
                             <BootButton Type="BootButton.ButtonType.Submit" Size="Size.SM" OnClick="GoToPage">Go</BootButton>
                         </EditForm>
                     </small>
+                    }
+                    else
+                    {
+                        @NavigateToTemplate
+                    }
                 </li>
             }
         </ul>

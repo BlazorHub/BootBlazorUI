@@ -39,12 +39,26 @@
                             @foreach (var col in Columns)
                             {
                                 <td class="@col.GetCssClass()" style="@(col.GetWidthStyleString())">
-                                    @col.GetValue(item)
+                                    @{ 
+                                        if(col is BootDataGridFieldColumn fieldColumn)
+                                        {
+                                            var value = item.GetValue(fieldColumn.Field);
+                                            if (!string.IsNullOrWhiteSpace(fieldColumn.Format))
+                                            {
+                                                value = string.Format(fieldColumn.Format,value);
+                                            }
+                                            @value;
+                                        }
+                                        if(col is BootDataGridTemplateColumn templateColumn)
+                                        {
+                                            @templateColumn.ChildContent(item)
+                                        }
+                                    }
                                 </td>
                             }
                         </tr>
                     }
-                }
+                                            }
                 else
                 {
                     <tr>
@@ -55,13 +69,22 @@
                 }
             </tbody>
         </table>
-    </div>        
-    @if (ShowPagination)
-    {
-        <div class="grid-footer border-top bg-light pt-3" style="position:relative;bottom:0">
-            <BootPagination Size="Size.SM" PageSize="PageSize" CurrentPage="CurrentPage" TotalCount="TotalRecordCount" OnPageChanged="LoadPaginationData" />
-        </div>
-    }
+    </div>
+    <div class="grid-footer border-top bg-light pt-3 flex-row align-content-between" style="@(FixFooter?"position:relative;bottom:0":"")">
+
+        @if (ShowPagination)
+                                        {
+                                            if (FootTemplate == null)
+                                            {
+
+                <BootPagination Size="Size.SM" PageSize="PageSize" CurrentPage="CurrentPage" TotalCount="TotalRecordCount" OnPageChanged="LoadPaginationData" PageNumberCount="PageNumberCount" FirstPageText="<" LastPageText=">" PreviousPageText="<<" NextPageText=">>" />
+            }
+            else
+            {
+                @FootTemplate
+            }
+        }
+    </div>
 </div>
 
 <CascadingValue Value="this">

@@ -115,6 +115,23 @@
 ")
     </CodeTemplate>
 </PresentationPart>
+<PresentationPart Title="设置分页数字的个数">
+    <Description>
+        设置 <code>PageNumberCount</code> 自定义需要显示的分页数字的个数，默认是 5 个。
+    </Description>
+    <RunTemplate>
+        <BootPagination TotalCount="50" PageNumberCount="15" />
+        <BootPagination TotalCount="1000" PageNumberCount="3" />
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootPagination TotalCount=""50"" PageNumberCount=""15"" />
+<BootPagination TotalCount=""1000"" PageNumberCount=""3"" />
+```
+")
+    </CodeTemplate>
+</PresentationPart>
 
 <PresentationPart Title="页码改变事件">
     <Description>
@@ -131,6 +148,7 @@
 ")
     </CodeTemplate>
 </PresentationPart>
+
 @inject IJSRuntime _js
 
 <ArgumentDescriptionTable Title="属性">
@@ -189,6 +207,21 @@
         <td>Boolean</td>
         <td>设置一个布尔值，表示是否显示分页数。默认是 <code>true</code>。</td>
     </tr>
+    <tr>
+        <td>PageNumberCount</td>
+        <td>Int32</td>
+        <td>设置分页页码的个数，默认是 5 个。</td>
+    </tr>
+    <tr>
+        <td>StatusLabelTemplate</td>
+        <td>RenderFragment&lt;BootPagination></td>
+        <td>设置分页统计标签的自定义内容模板。</td>
+    </tr>
+    <tr>
+        <td>NavigateToTemplate</td>
+        <td>RenderFragment&lt;BootPagination></td>
+        <td>设置“跳转到”的自定义内容模板。</td>
+    </tr>
 </ArgumentDescriptionTable>
 <ArgumentDescriptionTable Title="方法">
 
@@ -216,6 +249,11 @@
         <td>NavigateToPage</td>
         <td>Task</td>
         <td>导航到自定义页。</td>
+    </tr>
+    <tr>
+        <td>ComputePageNumber</td>
+        <td>Tuple&lt;int, int></td>
+        <td>计算分页数字并返回开始和结束的索引。</td>
     </tr>
 </ArgumentDescriptionTable>
 <ArgumentDescriptionTable Title="事件">

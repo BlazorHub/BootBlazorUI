@@ -7,7 +7,7 @@
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.4</Version>
+    <Version>0.5</Version>
     <Authors>William Chow</Authors>
     <Description>BootBlazorUI 是基于 Bootstrap 4.x 版本并构建于 ASP.NET CORE 3.1 的 UI 库，不依赖于 JQuery 和 Bootstrap.js 实现所有交互，可应用于 Mvc / Razor Page / Blazor 等 Web 应用程序。</Description>
     <PackageProjectUrl>https://gitee.com/mikpro/BootBlazorUI</PackageProjectUrl>
@@ -15,12 +15,8 @@
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>Bootstrap Blazor UI Library</PackageTags>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>【新增】DataGrid 组件
-【新增】分页组件的“跳转到”、“状态标签”和“分页数字隐藏显示”
-【删除】基本表格组件，由 DataGrid 组件代替
-【更新】`ControlColor` 改为 `Color`
-【更新】`ControlSize` 改为 `Size`
-【修复】若干 Bug</PackageReleaseNotes>
+    <PackageReleaseNotes>【新增】分页页码个数配置，显示首页和末页的开关
+【新增】DataGrid 的 TemplateColumn 自定义列类型</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

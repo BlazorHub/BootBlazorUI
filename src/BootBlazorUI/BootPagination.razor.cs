@@ -78,16 +78,45 @@ namespace BootBlazorUI
         /// </summary>
         [Parameter]
         public bool ShowStatusLabel { get; set; } = true;
+
+        /// <summary>
+        /// 设置分页统计标签的自定义内容模板。
+        /// </summary>
+        [Parameter]
+        public RenderFragment<BootPagination> StatusLabelTemplate { get; set; }
+
         /// <summary>
         /// 设置一个布尔值，表示是否显示“跳转到”的组件。默认是 <c>true</c>。
         /// </summary>
         [Parameter]
         public bool ShowNavigateTo { get; set; } = true;
         /// <summary>
+        /// 设置“跳转到”的自定义内容模板。
+        /// </summary>
+        [Parameter]
+        public RenderFragment<BootPagination> NavigateToTemplate { get; set; }
+        /// <summary>
         /// 设置一个布尔值，表示是否显示分页数。默认是是 <c>true</c>。
         /// </summary>
         [Parameter]
         public bool ShowPageNumber { get; set; } = true;
+
+        /// <summary>
+        /// 设置显示页码的个数。默认是 5 个。
+        /// </summary>
+        [Parameter]
+        public int PageNumberCount { get; set; } = 5;
+
+        /// <summary>
+        /// 设置一个布尔值，表示是否显示“首页”的按钮。
+        /// </summary>
+        [Parameter]
+        public bool ShowFirst { get; set; } = true;
+        /// <summary>
+        /// 设置一个布尔值，表示是否显示“末页”的按钮。
+        /// </summary>
+        [Parameter]
+        public bool ShowLast { get; set; } = true;
 
         /// <summary>
         /// 获取总页数。
@@ -205,5 +234,34 @@ namespace BootBlazorUI
         /// <param name="count">总记录数量。</param>
         public void SetTotalCount(int count)
             => TotalCount = count;
+
+        /// <summary>
+        /// 计算分页数字并返回开始和结束的索引。
+        /// </summary>
+        public (int start,int end) ComputePageNumber()
+        {
+            var start = 0;
+            var end = 0;
+            if (CurrentPage <= PageNumberCount / 2)
+            {
+                start = 1;
+                end = PageNumberCount;
+            }
+            else if (CurrentPage > PageNumberCount / 2)
+            {
+                start = CurrentPage - PageNumberCount / 2;
+                end = CurrentPage + PageNumberCount / 2;
+            }
+            if (end > TotalPages)
+            {
+                end = TotalPages;
+                start = end - PageNumberCount;
+            }
+            if (end <= PageNumberCount)
+            {
+                start = 1;
+            }
+            return (start, end);
+        }
     }
 }
