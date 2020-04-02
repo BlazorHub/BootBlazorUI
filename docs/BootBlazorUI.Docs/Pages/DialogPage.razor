@@ -1,0 +1,113 @@
+﻿@page "/dialog"
+
+<PageTitle Title="对话框(Dialog)">
+    正常情况我们需要弹出对话框来提示用户的操作行为，一般有提示框(Alert)，确认框(Confirm)和输入框(Prompt)。该组件集成了 Modal 组件，采用动态渲染的方式显示对话框。
+    
+    <p class="mt-3">前提条件：</p>
+    <ul>
+        <li>
+            在 <code>ConfigureServices</code> 方法添加服务 <code>services.AddDialog()</code>
+        </li>
+        <li>
+            引用命名空间 <code>using BootBlazorUI.Dialog</code>
+        </li>
+        <li>
+            在页面上预先放入对话框容器 <code>DialogContainer</code> 组件
+        </li>
+        <li>
+            调用时，先注入 <code>IDialogService</code> 服务，然后使用该服务调用 <code>ShowXXX</code> 相应的方法。
+        </li>
+    </ul>
+</PageTitle>
+
+@using BootBlazorUI.Dialog
+
+<DialogContainer/>
+
+@inject IDialogService _dialog
+@inject IJSRuntime _js
+
+<PresentationPart Title="简单示例">
+    <Description>
+        通过 <code>IDialogService</code> 手动显示提示框(Alert)、确认框(Confirm)和弹出框(Prompt)。
+    </Description>
+    <RunTemplate>
+        <DialogContainer />
+        <BootButton Color="Color.Success" OnClick="@(_=>_dialog.ShowAlert("这是一个提示框"))">提示框</BootButton>
+        <BootButton Color="Color.Info" OnClick="@(_=>_dialog.ShowConfirm("确定要删除这条数据吗"))">确认框</BootButton>
+        <BootButton Color="Color.Danger" OnClick="@(_=>_dialog.ShowPropmt("请输入一个值"))">弹出框</BootButton>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```cs
+@inject IDialogService _dialog
+```
+```html
+<BootButton Color=""Color.Success"" OnClick=""@(_=>_dialog.ShowAlert(""这是一个提示框""))"">提示框</BootButton>
+<BootButton Color=""Color.Info"" OnClick=""@(_=>_dialog.ShowConfirm(""确定要删除这条数据吗""))"">确认框</BootButton>
+<BootButton Color=""Color.Danger"" OnClick=""@(_=>_dialog.ShowPropmt(""请输入一个值""))"">弹出框</BootButton>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="对话框点击事件">
+    <Description>
+        <code>IDialogSerivce</code> 提供了3个相应对话框的扩展方法，分别是 <code>ShowAlert</code>、<code>ShowConfirm</code> 和 <code>ShowPrompt</code> 方法，并且提供了 <code>onConfirm</code> 和 <code>onCancel</code> 2个委托，分别对应对话框的【确认】和【取消】按钮的事件触发。
+    </Description>
+    <RunTemplate>
+        <BootButton Color="Color.Secondary" OnClick="@(_=>_dialog.ShowAlert("这是一个提示框","注意",confirm=>_js.InvokeVoidAsync("alert",$"点击了确认按钮")))">提示框</BootButton>
+        <BootButton Color="Color.Warning" OnClick="@(_=>_dialog.ShowConfirm("确定要删除这条数据吗","问题",e=>_js.InvokeVoidAsync("alert",$"结果是{e}")))">确认框</BootButton>
+        <BootButton Color="Color.Dark" OnClick="@(_=>_dialog.ShowPropmt("请输入一个值","输入",value=>_js.InvokeVoidAsync("alert",$"输入的是{value}")))">弹出框</BootButton>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootButton Color=""Color.Secondary"" OnClick=""@(_=>_dialog.ShowAlert(""这是一个提示框"",""注意"",confirm=>_js.InvokeVoidAsync(""alert"",$""点击了确认按钮"")))"">提示框</BootButton>
+<BootButton Color=""Color.Warning"" OnClick=""@(_=>_dialog.ShowConfirm(""确定要删除这条数据吗"",""问题"",e=>_js.InvokeVoidAsync(""alert"",$""结果是{e}"")))"">确认框</BootButton>
+<BootButton Color=""Color.Dark"" OnClick=""@(_=>_dialog.ShowPropmt(""请输入一个值"",""输入"",value=>_js.InvokeVoidAsync(""alert"",$""输入的是{value}"")))"">弹出框</BootButton>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="个性化">
+    <Description>
+        你可以调用 <code>Show</code> 方法来个性化这一次弹出的对话框的按钮和文本。
+    </Description>
+    <RunTemplate>
+        <BootButton OnClick="@(_=>_dialog.Show(new DialogOptions
+                               {
+                                    ConfirmText = "我知道了",
+                                    ConfirmColor = Color.Danger,
+                                    ConfirmSize = Size.LG,
+                                    Title = "<h2>点亮你的眼睛</h2>",
+                                    Message = "你确定已经阅读了以上消息了吗？",
+                                    Type = DialogType.Confirm,
+                                    CancelText = "哦！很抱歉，我忘记了",
+                                    CancelSize = Size.SM,
+                                    CancelColor = Color.Dark
+                               }))">
+            赶紧点我看看吧！
+        </BootButton>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootButton OnClick=""@(_=>_dialog.Show(new DialogOptions
+                        {
+                            ConfirmText = ""我知道了"",
+                            ConfirmColor = Color.Danger,
+                            ConfirmSize = Size.LG,
+                            Title = ""<h2>点亮你的眼睛</h2>"",
+                            Message = ""你确定已经阅读了以上消息了吗？"",
+                            Type = DialogType.Confirm,
+                            CancelText = ""哦！很抱歉，我忘记了"",
+                            CancelSize = Size.SM,
+                            CancelColor = Color.Dark
+                        }))"">
+    赶紧点我看看吧！
+</BootButton>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
