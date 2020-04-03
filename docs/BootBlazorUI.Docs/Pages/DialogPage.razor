@@ -75,17 +75,17 @@
         你可以调用 <code>Show</code> 方法来个性化这一次弹出的对话框的按钮和文本。
     </Description>
     <RunTemplate>
-        <BootButton OnClick="@(_=>_dialog.Show(new DialogOptions
+        <BootButton OnClick="@(_=>_dialog.Show(option=>
                                {
-                                    ConfirmText = "我知道了",
-                                    ConfirmColor = Color.Danger,
-                                    ConfirmSize = Size.LG,
-                                    Title = "<h2>点亮你的眼睛</h2>",
-                                    Message = "你确定已经阅读了以上消息了吗？",
-                                    Type = DialogType.Confirm,
-                                    CancelText = "哦！很抱歉，我忘记了",
-                                    CancelSize = Size.SM,
-                                    CancelColor = Color.Dark
+                                   option.ConfirmText = "我知道了";
+                                   option.ConfirmColor = Color.Danger;
+                                   option.ConfirmSize = Size.LG;
+                                   option.Title = "<h2>点亮你的眼睛</h2>";
+                                   option.Message = "你确定已经阅读了以上消息了吗？";
+                                   option.Type = DialogType.Confirm;
+                                   option.CancelText = "哦！很抱歉，我忘记了";
+                                   option.CancelSize = Size.SM;
+                                   option.CancelColor = Color.Dark;
                                }))">
             赶紧点我看看吧！
         </BootButton>
@@ -93,20 +93,38 @@
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<BootButton OnClick=""@(_=>_dialog.Show(new DialogOptions
+<BootButton OnClick=""@(_=>_dialog.Show(option=>
                         {
-                            ConfirmText = ""我知道了"",
-                            ConfirmColor = Color.Danger,
-                            ConfirmSize = Size.LG,
-                            Title = ""<h2>点亮你的眼睛</h2>"",
-                            Message = ""你确定已经阅读了以上消息了吗？"",
-                            Type = DialogType.Confirm,
-                            CancelText = ""哦！很抱歉，我忘记了"",
-                            CancelSize = Size.SM,
-                            CancelColor = Color.Dark
+                            option.ConfirmText = ""我知道了"";
+                            option.ConfirmColor = Color.Danger;
+                            option.ConfirmSize = Size.LG;
+                            option.Title = ""<h2>点亮你的眼睛</h2>"";
+                            option.Message = ""你确定已经阅读了以上消息了吗？"";
+                            option.Type = DialogType.Confirm;
+                            option.CancelText = ""哦！很抱歉，我忘记了"";
+                            option.CancelSize = Size.SM;
+                            option.CancelColor = Color.Dark;
                         }))"">
     赶紧点我看看吧！
 </BootButton>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="全局配置">
+    <RunTemplate>        
+        在 <code>ConfigureServices</code> 中调用 <code>services.AddDialog()</code> 时，可以配置全局的按钮文本、颜色、尺寸。在调用 <code>Show</code> 时，可以使用当时弹出对话框的自定义配置来覆盖全局配置。
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```cs
+public void ConfigureSerivces(IServiceCollection services)
+{
+    services.AddDialog(config => {
+        config.ConfirmColor = Color.Success;
+    })
+}
 ```
 ")
     </CodeTemplate>

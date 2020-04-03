@@ -15,8 +15,10 @@
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>Bootstrap Blazor UI Library</PackageTags>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>【新增】分页页码个数配置，显示首页和末页的开关
-【新增】DataGrid 的 TemplateColumn 自定义列类型</PackageReleaseNotes>
+    <PackageReleaseNotes>【新增】Dialog 对话框组件
+【新增】分页页码个数配置，显示首页和末页的开关
+【新增】DataGrid 的 TemplateColumn 自定义列类型
+【修改】DataGrid 的绑定字段列重命名为 FieldColumn</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

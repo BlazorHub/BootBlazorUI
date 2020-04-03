@@ -148,12 +148,7 @@ namespace BootBlazorUI
         /// <summary>
         /// 导航到首页。
         /// </summary>
-        public async Task NavigateToFirst()
-        {
-            SetCurrentPage(1);
-            await OnPageChanged.InvokeAsync(CurrentPage);
-            StateHasChanged();
-        }
+        public Task NavigateToFirst() => SetCurrentPage(1);
 
         /// <summary>
         /// 导航到上一页。
@@ -168,8 +163,7 @@ namespace BootBlazorUI
             {
                 CurrentPage--;
             }
-            await OnPageChanged.InvokeAsync(CurrentPage);
-            StateHasChanged();
+            await SetCurrentPage(CurrentPage);
         }
 
         /// <summary>
@@ -185,47 +179,39 @@ namespace BootBlazorUI
             {
                 CurrentPage++;
             }
-            await OnPageChanged.InvokeAsync(CurrentPage);
-            StateHasChanged();
+           await SetCurrentPage(CurrentPage);
         }
 
         /// <summary>
         /// 导航到末页。
         /// </summary>
-        public async Task NavigateToLast()
-        {
-            SetCurrentPage(TotalPages);
-            await OnPageChanged.InvokeAsync(CurrentPage);
-            StateHasChanged();
-        }
+        public Task NavigateToLast() => SetCurrentPage(TotalPages);
 
         /// <summary>
         /// 导航到自定义页。
         /// </summary>
         /// <param name="page">要导航的页。</param>
-        public async Task NavigateToPage(int page)
-        {
-            SetCurrentPage(page);
-            await OnPageChanged.InvokeAsync(page);
-            StateHasChanged();
-        }
+        public Task NavigateToPage(int page) => SetCurrentPage(page);
 
         /// <summary>
         /// 设置当前分页的页码。
         /// </summary>
         /// <param name="page">要设置的分页页码。</param>
-        public void SetCurrentPage(int page)
+        public async Task SetCurrentPage(int page)
         {
             CurrentPage = page;
+            await OnPageChanged.InvokeAsync(CurrentPage);
+            StateHasChanged();
         }
 
         /// <summary>
         /// 设置每页的呈现的数据。
         /// </summary>
         /// <param name="size">每页呈现的数据。</param>
-        public void SetPageSize(int size)
+        public async Task SetPageSize(int size)
         {
             PageSize = size;
+            await SetCurrentPage(1);
         }
 
         /// <summary>

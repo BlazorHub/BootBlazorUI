@@ -8,9 +8,13 @@ namespace BootBlazorUI.Dialog
     /// </summary>
     internal class DialogService : IDialogService
     {
-        private readonly DialogOptions _options;
+        private readonly DialogConfiguration _options;
 
-        public DialogService(IOptions<DialogOptions> options)
+        /// <summary>
+        /// 初始化 <see cref="DialogService"/> 类的新实例。
+        /// </summary>
+        /// <param name="options"></param>
+        public DialogService(IOptions<DialogConfiguration> options)
         {
             this._options = options.Value;
         }
@@ -24,9 +28,24 @@ namespace BootBlazorUI.Dialog
             Dialog = null;
         }
 
-        public void Show(DialogOptions options=default)
+        /// <summary>
+        /// 显示对话框。
+        /// </summary>
+        /// <param name="configure">对话框配置。</param>
+        public void Show(Action<DialogOptions> configure=default)
         {
-            Dialog = new Dialog(options ?? _options);
+            var options = new DialogOptions
+            {
+                CancelColor = _options.CancelColor,
+                CancelSize = _options.CancelSize,
+                CancelText = _options.CancelText,
+                ConfirmColor = _options.ConfirmColor,
+                ConfirmSize = _options.ConfirmSize,
+                ConfirmText = _options.ConfirmText,
+            };
+            configure?.Invoke(options);
+
+            Dialog = new Dialog(options);
             Dialog.OnClose += Close;
             OnDialogUpdate?.Invoke();
         }

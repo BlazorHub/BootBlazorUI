@@ -24,36 +24,36 @@ namespace BootBlazorUI.Dialog
         /// <summary>
         /// 获取或设置对话框确定按钮的文本。
         /// </summary>
-        public string ConfirmText { get; set; } = "确定";
+        public string ConfirmText { get; set; }
         /// <summary>
-        /// 获取或设置【确定】按钮的主题颜色。默认是 <see cref="Color.Primary"/> 。
+        /// 获取或设置【确定】按钮的主题颜色。
         /// </summary>
-        public Color ConfirmColor { get; set; } = Color.Primary;
+        public Color ConfirmColor { get; set; } 
         /// <summary>
         /// 获取或设置【确定】按钮的尺寸。
         /// </summary>
-        public Size ConfirmSize { get; set; } = Size.Default;
+        public Size ConfirmSize { get; set; }
 
         /// <summary>
         /// 获取或设置对话框取消按钮的文本。
         /// </summary>
-        public string CancelText { get; set; } = "取消";
+        public string CancelText { get; set; }
         /// <summary>
-        /// 获取或设置【取消】按钮的主题颜色。默认是 <see cref="Color.Light"/> 。
+        /// 获取或设置【取消】按钮的主题颜色。
         /// </summary>
-        public Color CancelColor { get; set; } = Color.Light;
+        public Color CancelColor { get; set; }
         /// <summary>
         /// 获取或设置【取消】按钮的尺寸。
         /// </summary>
-        public Size CancelSize { get; set; } = Size.Default;
+        public Size CancelSize { get; set; }
 
         /// <summary>
-        /// 获取或设置当点击确定按钮后的方法。
+        /// 获取或设置当点击【确定】按钮后的方法。
         /// </summary>
         public Action<object> Confirm { get; set; }
 
         /// <summary>
-        /// 获取或设置点击取消按钮后的方法。
+        /// 获取或设置点击【取消】按钮后的方法。
         /// </summary>
         public Action Cancel { get; set; }
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 
 namespace BootBlazorUI.Dialog
 {
@@ -11,8 +10,8 @@ namespace BootBlazorUI.Dialog
         /// <summary>
         /// 显示指定类型的对话框。
         /// </summary>
-        /// <param name="options">对话框选项。</param>
-        void Show(DialogOptions options=default);
+        /// <param name="configure">对话框选项。</param>
+        void Show(Action<DialogOptions> configure = default);
 
         /// <summary>
         /// 获取对话框。
