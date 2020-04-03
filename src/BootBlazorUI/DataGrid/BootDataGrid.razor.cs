@@ -95,6 +95,23 @@ namespace BootBlazorUI.DataGrid
         public Func<int,object> DataBind { get; set; }
 
         /// <summary>
+        /// 设置分页页码的个数，默认 5 个。
+        /// </summary>
+        [Parameter]
+        public int PageNumberCount { get; set; } = 5;
+
+        /// <summary>
+        /// 设置数据表格底部的模板。
+        /// </summary>
+        [Parameter]
+        public RenderFragment FootTemplate { get; set; }
+        /// <summary>
+        /// 设置一个布尔值，表示是否固定底部。
+        /// </summary>
+        [Parameter]
+        public bool FixFooter { get; set; }
+
+        /// <summary>
         /// 设置当数据行被点击后触发的事件。
         /// </summary>
         [Parameter]

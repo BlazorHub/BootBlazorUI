@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BootBlazorUI.DataGrid
@@ -12,7 +11,7 @@ namespace BootBlazorUI.DataGrid
         /// <summary>
         /// 表示数据表格的列。
         /// </summary>
-        internal ICollection<BootDataGridColumn> Columns { get; private set; } = new HashSet<BootDataGridColumn>();
+        internal ICollection<BootDataGridColumnBase> Columns { get; private set; } = new HashSet<BootDataGridColumnBase>();
 
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace BootBlazorUI.DataGrid
         /// 添加列。
         /// </summary>
         /// <param name="column">要添加的列。</param>
-        internal void AddColumn(BootDataGridColumn column)
+        internal void AddColumn(BootDataGridColumnBase column)
         {
             if (column is null)
             {

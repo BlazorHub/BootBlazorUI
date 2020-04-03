@@ -47,18 +47,18 @@ List<User> user = new List<User>
     </Description>
     <RunTemplate>
         <BootDataGrid DataBind="@( _ => user)" >
-            <BootDataGridColumn Title="Id" Field="Id" />
-            <BootDataGridColumn Title="姓名" Field="Name" />
-            <BootDataGridColumn Title="生日" Field="Birthday" />
+            <BootDataGridFieldColumn Title="Id" Field="Id" />
+            <BootDataGridFieldColumn Title="姓名" Field="Name" />
+            <BootDataGridFieldColumn Title="生日" Field="Birthday" />
         </BootDataGrid>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
 <BootDataGrid DataBind=""@(_=> user)"">
-    <BootDataGridColumn Title=""Id"" Field=""Id"" />
-    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
-    <BootDataGridColumn Title=""生日"" Field=""Birthday"" />
+    <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
 </BootDataGrid>
 ```
 ")
@@ -71,9 +71,9 @@ List<User> user = new List<User>
     </Description>
     <RunTemplate>
         <BootDataGrid DataBind="@( _ => user)" RowNumber="true">
-            <BootDataGridColumn Title="Id" Field="Id" />
-            <BootDataGridColumn Title="姓名" Field="Name" />
-            <BootDataGridColumn Title="生日" Field="Birthday" />
+            <BootDataGridFieldColumn Title="Id" Field="Id" />
+            <BootDataGridFieldColumn Title="姓名" Field="Name" />
+            <BootDataGridFieldColumn Title="生日" Field="Birthday" />
         </BootDataGrid>
 
     </RunTemplate>
@@ -81,9 +81,9 @@ List<User> user = new List<User>
         @Code.GetCode(@"
 ```html
 <BootDataGrid DataBind=""@(_=> user)"" RowNumber=""true"">
-    <BootDataGridColumn Title=""Id"" Field=""Id"" />
-    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
-    <BootDataGridColumn Title=""生日"" Field=""Birthday"" />
+    <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
 </BootDataGrid>
 ```
 ")
@@ -96,18 +96,18 @@ List<User> user = new List<User>
     </Description>
     <RunTemplate>
         <BootDataGrid DataBind="@( _ => user)" Striped="true">
-            <BootDataGridColumn Title="Id" Field="Id" />
-            <BootDataGridColumn Title="姓名" Field="Name" />
-            <BootDataGridColumn Title="生日" Field="Birthday" />
+            <BootDataGridFieldColumn Title="Id" Field="Id" />
+            <BootDataGridFieldColumn Title="姓名" Field="Name" />
+            <BootDataGridFieldColumn Title="生日" Field="Birthday" />
         </BootDataGrid>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
 <BootDataGrid DataBind=""@(_=> user)"" Striped=""true"">
-    <BootDataGridColumn Title=""Id"" Field=""Id"" />
-    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
-    <BootDataGridColumn Title=""生日"" Field=""Birthday"" />
+    <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
 </BootDataGrid>
 ```
 ")
@@ -120,22 +120,22 @@ List<User> user = new List<User>
     <RunTemplate>
         <h6>显示边框</h6>
         <BootDataGrid DataBind="@( _ => user)" Bordered="true">
-            <BootDataGridColumn Title="Id" Field="Id" />
-            <BootDataGridColumn Title="姓名" Field="Name" />
-            <BootDataGridColumn Title="生日" Field="Birthday" />
+            <BootDataGridFieldColumn Title="Id" Field="Id" />
+            <BootDataGridFieldColumn Title="姓名" Field="Name" />
+            <BootDataGridFieldColumn Title="生日" Field="Birthday" />
         </BootDataGrid>
         <h6>隐藏边框</h6>
         <BootDataGrid DataBind="@( _ => user)" Borderless="true">
-            <BootDataGridColumn Title="Id" Field="Id" />
-            <BootDataGridColumn Title="姓名" Field="Name" />
-            <BootDataGridColumn Title="生日" Field="Birthday" />
+            <BootDataGridFieldColumn Title="Id" Field="Id" />
+            <BootDataGridFieldColumn Title="姓名" Field="Name" />
+            <BootDataGridFieldColumn Title="生日" Field="Birthday" />
         </BootDataGrid>
 
         <h6>调皮一下，两个都设置会怎样？</h6>
         <BootDataGrid DataBind="@( _ => user)" Borderless="true" Bordered="true">
-            <BootDataGridColumn Title="Id" Field="Id" />
-            <BootDataGridColumn Title="姓名" Field="Name" />
-            <BootDataGridColumn Title="生日" Field="Birthday" />
+            <BootDataGridFieldColumn Title="Id" Field="Id" />
+            <BootDataGridFieldColumn Title="姓名" Field="Name" />
+            <BootDataGridFieldColumn Title="生日" Field="Birthday" />
         </BootDataGrid>
         <strong>答案是，分不清楚干脆就消失吧！^_^</strong>
     </RunTemplate>
@@ -143,14 +143,14 @@ List<User> user = new List<User>
         @Code.GetCode(@"
 ```html
 <BootDataGrid DataBind=""@(_=> user)"" Bordered=""true"">
-    <BootDataGridColumn Title=""Id"" Field=""Id"" />
-    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
-    <BootDataGridColumn Title=""生日"" Field=""Birthday"" />
+    <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
 </BootDataGrid>
         <BootDataGrid DataBind=""@(_=> user)"" Borderless=""true"">
-    <BootDataGridColumn Title=""Id"" Field=""Id"" />
-    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
-    <BootDataGridColumn Title=""生日"" Field=""Birthday"" />
+    <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
 </BootDataGrid>
 ```
 ")
@@ -162,18 +162,18 @@ List<User> user = new List<User>
     </Description>
     <RunTemplate>
         <BootDataGrid DataBind="@( _ => user)" Hover="true">
-            <BootDataGridColumn Title="Id" Field="Id" />
-            <BootDataGridColumn Title="姓名" Field="Name" />
-            <BootDataGridColumn Title="生日" Field="Birthday" />
+            <BootDataGridFieldColumn Title="Id" Field="Id" />
+            <BootDataGridFieldColumn Title="姓名" Field="Name" />
+            <BootDataGridFieldColumn Title="生日" Field="Birthday" />
         </BootDataGrid>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
 <BootDataGrid DataBind=""@(_=> user)"" Hover=""true"">
-    <BootDataGridColumn Title=""Id"" Field=""Id"" />
-    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
-    <BootDataGridColumn Title=""生日"" Field=""Birthday"" />
+    <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
 </BootDataGrid>
 ```
 ")
@@ -185,18 +185,18 @@ List<User> user = new List<User>
     </Description>
     <RunTemplate>
         <BootDataGrid DataBind="@( _ => user)" Small="true">
-            <BootDataGridColumn Title="Id" Field="Id" />
-            <BootDataGridColumn Title="姓名" Field="Name" />
-            <BootDataGridColumn Title="生日" Field="Birthday" />
+            <BootDataGridFieldColumn Title="Id" Field="Id" />
+            <BootDataGridFieldColumn Title="姓名" Field="Name" />
+            <BootDataGridFieldColumn Title="生日" Field="Birthday" />
         </BootDataGrid>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
 <BootDataGrid DataBind=""@(_=> user)"" Small=""true"">
-    <BootDataGridColumn Title=""Id"" Field=""Id"" />
-    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
-    <BootDataGridColumn Title=""生日"" Field=""Birthday"" />
+    <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
 </BootDataGrid>
 ```
 ")
@@ -208,18 +208,18 @@ List<User> user = new List<User>
     </Description>
     <RunTemplate>
         <BootDataGrid DataBind="@( _ => user)" Dark="true">
-            <BootDataGridColumn Title="Id" Field="Id" />
-            <BootDataGridColumn Title="姓名" Field="Name" />
-            <BootDataGridColumn Title="生日" Field="Birthday" />
+            <BootDataGridFieldColumn Title="Id" Field="Id" />
+            <BootDataGridFieldColumn Title="姓名" Field="Name" />
+            <BootDataGridFieldColumn Title="生日" Field="Birthday" />
         </BootDataGrid>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
 <BootDataGrid DataBind=""@(_=> user)"" Dark=""true"">
-    <BootDataGridColumn Title=""Id"" Field=""Id"" />
-    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
-    <BootDataGridColumn Title=""生日"" Field=""Birthday"" />
+    <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
 </BootDataGrid>
 ```
 ")
@@ -231,18 +231,18 @@ List<User> user = new List<User>
     </Description>
     <RunTemplate>
         <BootDataGrid DataBind="@( _ => user)">
-            <BootDataGridColumn Title="Id" Field="Id" />
-            <BootDataGridColumn Title="姓名" Field="Name" />
-            <BootDataGridColumn Title="生日" Field="Birthday" Format="{0:yyyy年MM月dd日}" />
+            <BootDataGridFieldColumn Title="Id" Field="Id" />
+            <BootDataGridFieldColumn Title="姓名" Field="Name" />
+            <BootDataGridFieldColumn Title="生日" Field="Birthday" Format="{0:yyyy年MM月dd日}" />
         </BootDataGrid>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
 <BootDataGrid DataBind=""@(_=> user)"">
-    <BootDataGridColumn Title=""Id"" Field=""Id"" />
-    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
-    <BootDataGridColumn Title=""生日"" Field=""Birthday"" Format=""{0:yyyy年MM月dd日}""/>
+    <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" Format=""{0:yyyy年MM月dd日}""/>
 </BootDataGrid>
 ```
 ")
@@ -255,9 +255,9 @@ List<User> user = new List<User>
     </Description>
     <RunTemplate>
         <BootDataGrid DataBind="page => LoadData(page,pageSize)" PageSize="pageSize" ShowPagination="true" TotalRecordCount="totalCount">
-            <BootDataGridColumn Title="Id" Field="Id" />
-            <BootDataGridColumn Title="姓名" Field="Name" />
-            <BootDataGridColumn Title="生日" Field="Birthday" Format="{0:yyyy年MM月dd日}" />
+            <BootDataGridFieldColumn Title="Id" Field="Id" />
+            <BootDataGridFieldColumn Title="姓名" Field="Name" />
+            <BootDataGridFieldColumn Title="生日" Field="Birthday" Format="{0:yyyy年MM月dd日}" />
         </BootDataGrid>
     </RunTemplate>
     <CodeTemplate>
@@ -293,9 +293,9 @@ for (int i = 0; i < 100; i++)
 ```
 ```html
 <BootDataGrid  DataBind=""page => LoadData(page,pageSize)"" PageSize=""pageSize"" ShowPagination=""true"" TotalRecordCount=""totalCount"">
-    <BootDataGridColumn Title=""Id"" Field=""Id"" />
-    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
-    <BootDataGridColumn Title=""生日"" Field=""Birthday"" Format=""{0:yyyy年MM月dd日}"" />
+    <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" Format=""{0:yyyy年MM月dd日}"" />
 </BootDataGrid>
 ```
 ")
@@ -308,18 +308,18 @@ for (int i = 0; i < 100; i++)
     </Description>
     <RunTemplate>
         <BootDataGrid DataBind="page => LoadData(page,25)" FixHeader="true" FixRowHeight="300" TotalRecordCount="totalCount" ShowPagination="true" PageSize="25">
-            <BootDataGridColumn Title="Id" Field="Id" />
-            <BootDataGridColumn Title="姓名" Field="Name" />
-            <BootDataGridColumn Title="生日" Field="Birthday" />
+            <BootDataGridFieldColumn Title="Id" Field="Id" />
+            <BootDataGridFieldColumn Title="姓名" Field="Name" />
+            <BootDataGridFieldColumn Title="生日" Field="Birthday" />
         </BootDataGrid>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
 <BootDataGrid DataBind=""page => LoadData(page,25)"" FixHeader=""true"" RowFixHeight=""300"" TotalRecordCount=""totalCount"" ShowPagination=""true"" PageSize=""25"">
-    < BootDataGridColumn Title=""Id"" Field=""Id"" />
-    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
-    <BootDataGridColumn Title=""生日"" Field=""Birthday"" />
+    < BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
 </BootDataGrid>
 ```
 ")
@@ -332,23 +332,40 @@ for (int i = 0; i < 100; i++)
     </Description>
     <RunTemplate>
         <BootDataGrid DataBind="page => LoadData(page,int.MaxValue)" FixHeader="true" FixRowHeight="300" OnRowClick="@(e=>_js.InvokeVoidAsync("alert",$"点击了第{e.Index}行"))">
-            <BootDataGridColumn Title="Id" Field="Id" />
-            <BootDataGridColumn Title="姓名" Field="Name" />
-            <BootDataGridColumn Title="生日" Field="Birthday" />
+            <BootDataGridFieldColumn Title="Id" Field="Id" />
+            <BootDataGridFieldColumn Title="姓名" Field="Name" />
+            <BootDataGridFieldColumn Title="生日" Field="Birthday" />
         </BootDataGrid>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
 <BootDataGrid DataBind=""page => LoadData(page,int.MaxValue)"" FixHeader=""true"" FixRowHeight=""300"" OnRowClick=""@(e=>_js.InvokeVoidAsync(""alert"",$""点击了第{e.Index}行""))"">
-    <BootDataGridColumn Title=""Id"" Field=""Id"" />
-    <BootDataGridColumn Title=""姓名"" Field=""Name"" />
-    <BootDataGridColumn Title=""生日"" Field=""Birthday"" />
+    <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
+    <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
 </BootDataGrid>
 ```
 ")
     </CodeTemplate>
 </PresentationPart>
+
+<PresentationPart Title="自定义列模板">
+    <Description>
+        增加 <code>BootDataGridTemplateColumn</code> 来自定义列的内容。可以使用 <code>context</code> 作为当前行对象，调用 <code>GetValue</code> 方法并传入一个数据源的字段获取值。
+    </Description>
+    <RunTemplate>
+        <BootDataGrid DataBind="page =>user" ShowPagination="false">
+            <BootDataGridTemplateColumn Title="自定义列">
+                <input type="checkbox" value="@(context.GetValue(nameof(User.Id)))" @onchange="@(e=>_js.InvokeVoidAsync("alert",$"选择了Id:{context.GetValue(nameof(User.Id))}的值"))"/> 
+            </BootDataGridTemplateColumn>
+            <BootDataGridFieldColumn Title="姓名" Field="Name" />
+            <BootDataGridFieldColumn Title="生日" Field="Birthday" />
+        </BootDataGrid>
+    </RunTemplate>
+</PresentationPart>
+
+
 @inject IJSRuntime _js
 @code{
     List<User> userList;
@@ -475,5 +492,17 @@ for (int i = 0; i < 100; i++)
         <td>AppendRowStyle</td>
         <td>void</td>
         <td>向指定行追加指定的 style 自定义样式。</td>
+    </tr>
+</ArgumentDescriptionTable>
+<ArgumentDescriptionTable Title="列模板">
+    <tr>
+        <td>BootDataGridFieldColumn</td>
+        <td></td>
+        <td>数据绑定的列模板</td>
+    </tr>
+    <tr>
+        <td>BootDataGridTemplateColumn</td>
+        <td></td>
+        <td>自定义内容的列模板</td>
     </tr>
 </ArgumentDescriptionTable>
