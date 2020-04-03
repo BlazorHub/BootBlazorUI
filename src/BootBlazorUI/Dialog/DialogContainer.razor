@@ -1,0 +1,100 @@
+﻿@inject IDialogService _dialog
+
+@if (_dialog.Dialog != null)
+{
+    <div class="modal @(IsShown ? "show" : "hide")" tabindex="-1" role="dialog" style="@(IsShown ? "display:block" : "")">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                @if (!string.IsNullOrWhiteSpace(Options.Title))
+                {
+                    <div class="modal-header">
+                        <div class="modal-title">
+                            @((MarkupString)Options.Title)
+                        </div>
+                    </div>
+                }
+                <div class="modal-body">
+                    @((MarkupString)Options.Message)
+
+                    @if (Options.Type == DialogType.Prompt)
+                    {
+                        <input type="text" @onchange="TextChanged" class="form-control" />
+                    }
+                </div>
+                <div class="modal-footer">
+                    @if (Options.Type == DialogType.Alert || Options.Type == DialogType.Confirm)
+                    {
+                        ConfirmedValue = true;
+                    }
+
+                    <BootButton Size="Options.ConfirmSize" Color="Options.ConfirmColor" OnClick="Confirm">@Options.ConfirmText</BootButton>
+
+                    @if (Options.Type == DialogType.Confirm || Options.Type == DialogType.Prompt)
+                    {
+                        <BootButton Size="Options.CancelSize" Color="Options.CancelColor" OnClick="Cancel">@Options.CancelText</BootButton>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    if (IsShown)
+    {
+        <div class="modal-backdrop show"></div>
+    }
+}
+
+@implements IDisposable
+
+
+@code{
+    object ConfirmedValue { get; set; }
+
+    void TextChanged(ChangeEventArgs e)
+    {
+        ConfirmedValue = e.Value;
+    }
+
+    DialogOptions Options => _dialog?.Dialog?.Options;
+
+    void IDisposable.Dispose()
+    {
+        _dialog.OnDialogUpdate -= StateHasChanged;
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _dialog.OnDialogUpdate += () => InvokeAsync(StateHasChanged);
+    }
+
+    public bool IsShown => _dialog.Dialog != null;
+
+    /// <summary>
+    /// 关闭对话框
+    /// </summary>
+    void Close()
+    {
+        _dialog.Dialog.OnClose?.Invoke();
+        ConfirmedValue = null;
+    }
+    /// <summary>
+    /// 取消事件。
+    /// </summary>
+    void Cancel()
+    {
+        Options?.Cancel?.Invoke();
+        Close();
+    }
+
+    /// <summary>
+    /// 确定操作。
+    /// </summary>
+    void Confirm()
+    {
+        if (Options.Confirm != null)
+        {
+            Options?.Confirm(ConfirmedValue);
+        }
+        Close();
+    }
+}

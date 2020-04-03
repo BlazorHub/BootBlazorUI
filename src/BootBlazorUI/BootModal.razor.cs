@@ -7,12 +7,12 @@ namespace BootBlazorUI
     /// <summary>
     /// 表示模态对话框。
     /// </summary>
-    partial class Modal
+    partial class BootModal
     {
         /// <summary>
-        /// 初始化 <see cref="Modal"/> 类的新实例
+        /// 初始化 <see cref="BootModal"/> 类的新实例
         /// </summary>
-        public Modal()
+        public BootModal()
         {
 
         }
@@ -21,7 +21,7 @@ namespace BootBlazorUI
         /// 设置模态框的头部模板。
         /// </summary>
         [Parameter]
-        public RenderFragment HeaderTemplate { get; set; }
+        public RenderFragment HeadTemplate { get; set; }
         /// <summary>
         /// 设置模态框的正文模板。
         /// </summary>
@@ -31,12 +31,12 @@ namespace BootBlazorUI
         /// 设置模态框的底部模板。
         /// </summary>
         [Parameter]
-        public RenderFragment FooterTemplate { get; set; }
+        public RenderFragment FootTemplate { get; set; }
 
         /// <summary>
         /// 设置右上角是否有关闭的“X”，点击后可以关闭模态框。默认是 <c>true</c>。
         /// <para>
-        /// 如果不定义 <see cref="HeaderTemplate"/> 则无法看见该按钮。
+        /// 如果不定义 <see cref="HeadTemplate"/> 则无法看见该按钮。
         /// </para>
         /// </summary>
         [Parameter]
@@ -55,13 +55,13 @@ namespace BootBlazorUI
         public bool Scrollable { get; set; }
 
         /// <summary>
-        /// 设置模态框的尺寸。仅 <see cref="ControlSize.SM"/> 和 <see cref="ControlSize.LG"/> 有效。
+        /// 设置模态框的尺寸。仅 <see cref="Size.SM"/> 和 <see cref="Size.LG"/> 有效。
         /// <para>
-        /// 默认为 <see cref="ControlSize.Default"/> 。
+        /// 默认为 <see cref="Size.Default"/> 。
         /// </para>
         /// </summary>
         [Parameter]
-        public ControlSize Size { get; set; }
+        public Size Size { get; set; }
 
         /// <summary>
         /// 获取一个布尔值，表示模态框是否已经显示。
@@ -87,9 +87,9 @@ namespace BootBlazorUI
                 classList.Add("modal-dialog-centered");
             }
 
-            if (Size != ControlSize.Default)
+            if (Size != Size.Default)
             {
-                classList.Add(ComponentsHelper.GetSizeName(Size,"modal-"));
+                classList.Add(ComponentUtil.GetSizeCssClass(Size,"modal-"));
             }
 
             if (Scrollable)

@@ -1,40 +1,40 @@
 ﻿@page "/tabs"
 
-<PageTitle Title="标签控件 TabControl">
-
+<PageTitle Title="标签(BootTabControl)">
+    标签组件提供了切换的方式对内容进行呈现，而节约了更多的空间。
 </PageTitle>
 
 <PresentationPart Title="简单示例">
     <RunTemplate>
-        <TabControl>
-            <TabPage Title="首页">
+        <BootTabControl>
+            <BootTabPage Title="首页">
                 Consequat occaecat ullamco amet non eiusmod nostrud dolore irure incididunt est duis anim sunt officia. Fugiat velit proident aliquip nisi incididunt nostrud exercitation proident est nisi. Irure magna elit commodo anim ex veniam culpa eiusmod id nostrud sit cupidatat in veniam ad. Eiusmod consequat eu adipisicing minim anim aliquip cupidatat culpa excepteur quis. Occaecat sit eu exercitation irure Lorem incididunt nostrud.
-            </TabPage>
-            <TabPage Title="资料">
+            </BootTabPage>
+            <BootTabPage Title="资料">
                 Ad pariatur nostrud pariatur exercitation ipsum ipsum culpa mollit commodo mollit ex. Aute sunt incididunt amet commodo est sint nisi deserunt pariatur do. Aliquip ex eiusmod voluptate exercitation cillum id incididunt elit sunt. Qui minim sit magna Lorem id et dolore velit Lorem amet exercitation duis deserunt. Anim id labore elit adipisicing ut in id occaecat pariatur ut ullamco ea tempor duis.
-            </TabPage>
-            <TabPage Title="联系人">
+            </BootTabPage>
+            <BootTabPage Title="联系人">
                 Est quis nulla laborum officia ad nisi ex nostrud culpa Lorem excepteur aliquip dolor aliqua irure ex. Nulla ut duis ipsum nisi elit fugiat commodo sunt reprehenderit laborum veniam eu veniam. Eiusmod minim exercitation fugiat irure ex labore incididunt do fugiat commodo aliquip sit id deserunt reprehenderit aliquip nostrud. Amet ex cupidatat excepteur aute veniam incididunt mollit cupidatat esse irure officia elit do ipsum ullamco Lorem. Ullamco ut ad minim do mollit labore ipsum laboris ipsum commodo sunt tempor enim incididunt. Commodo quis sunt dolore aliquip aute tempor irure magna enim minim reprehenderit. Ullamco consectetur culpa veniam sint cillum aliqua incididunt velit ullamco sunt ullamco quis quis commodo voluptate. Mollit nulla nostrud adipisicing aliqua cupidatat aliqua pariatur mollit voluptate voluptate consequat non.
-            </TabPage>
-        </TabControl>
+            </BootTabPage>
+        </BootTabControl>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<TabControl>
-    <TabPage Title=""首页"">
+<BootTabControl>
+    <BootTabPage Title=""首页"">
         Consequat occaecat ullamco amet non eiusmod nostrud dolore irure incididunt est duis anim sunt officia.
         Fugiat velit proident aliquip nisi incididunt nostrud exercitation proident est nisi. Irure magna elit commodo
         anim ex veniam culpa eiusmod id nostrud sit cupidatat in veniam ad. Eiusmod consequat eu adipisicing minim anim
         aliquip cupidatat culpa excepteur quis. Occaecat sit eu exercitation irure Lorem incididunt nostrud.
-    </TabPage>
-    <TabPage Title=""资料"">
+    </BootTabPage>
+    <BootTabPage Title=""资料"">
         Ad pariatur nostrud pariatur exercitation ipsum ipsum culpa mollit commodo mollit ex. Aute sunt incididunt
         amet commodo est sint nisi deserunt pariatur do. Aliquip ex eiusmod voluptate exercitation cillum id incididunt
         elit sunt. Qui minim sit magna Lorem id et dolore velit Lorem amet exercitation duis deserunt. Anim id labore elit
         adipisicing ut in id occaecat pariatur ut ullamco ea tempor duis.
-    </TabPage>
-    <TabPage Title=""联系人"">
+    </BootTabPage>
+    <BootTabPage Title=""联系人"">
         Est quis nulla laborum officia ad nisi ex nostrud culpa Lorem excepteur aliquip dolor aliqua irure ex.
         Nulla ut duis ipsum nisi elit fugiat commodo sunt reprehenderit laborum veniam eu veniam.
         Eiusmod minim exercitation fugiat irure ex labore incididunt do fugiat commodo
@@ -44,8 +44,8 @@
         irure magna enim minim reprehenderit. Ullamco consectetur culpa veniam sint cillum aliqua incididunt velit ullamco
         sunt ullamco quis quis commodo voluptate. Mollit nulla nostrud adipisicing aliqua cupidatat aliqua pariatur mollit
         voluptate voluptate consequat non.
-    </TabPage>
-</TabControl>
+    </BootTabPage>
+</BootTabControl>
 ```
 ");
     </CodeTemplate>
@@ -56,36 +56,36 @@
         设置 <code>Pills="true"</code> 让标签页呈现药丸风格的样式。
     </Description>
     <RunTemplate>
-        <TabControl Pills="true">
-            <TabPage Title="首页">
+        <BootTabControl Pills="true">
+            <BootTabPage Title="首页">
                 Consequat occaecat ullamco amet non eiusmod nostrud dolore irure incididunt est duis anim sunt officia. Fugiat velit proident aliquip nisi incididunt nostrud exercitation proident est nisi. Irure magna elit commodo anim ex veniam culpa eiusmod id nostrud sit cupidatat in veniam ad. Eiusmod consequat eu adipisicing minim anim aliquip cupidatat culpa excepteur quis. Occaecat sit eu exercitation irure Lorem incididunt nostrud.
-            </TabPage>
-            <TabPage Title="资料">
+            </BootTabPage>
+            <BootTabPage Title="资料">
                 Ad pariatur nostrud pariatur exercitation ipsum ipsum culpa mollit commodo mollit ex. Aute sunt incididunt amet commodo est sint nisi deserunt pariatur do. Aliquip ex eiusmod voluptate exercitation cillum id incididunt elit sunt. Qui minim sit magna Lorem id et dolore velit Lorem amet exercitation duis deserunt. Anim id labore elit adipisicing ut in id occaecat pariatur ut ullamco ea tempor duis.
-            </TabPage>
-            <TabPage Title="联系人">
+            </BootTabPage>
+            <BootTabPage Title="联系人">
                 Est quis nulla laborum officia ad nisi ex nostrud culpa Lorem excepteur aliquip dolor aliqua irure ex. Nulla ut duis ipsum nisi elit fugiat commodo sunt reprehenderit laborum veniam eu veniam. Eiusmod minim exercitation fugiat irure ex labore incididunt do fugiat commodo aliquip sit id deserunt reprehenderit aliquip nostrud. Amet ex cupidatat excepteur aute veniam incididunt mollit cupidatat esse irure officia elit do ipsum ullamco Lorem. Ullamco ut ad minim do mollit labore ipsum laboris ipsum commodo sunt tempor enim incididunt. Commodo quis sunt dolore aliquip aute tempor irure magna enim minim reprehenderit. Ullamco consectetur culpa veniam sint cillum aliqua incididunt velit ullamco sunt ullamco quis quis commodo voluptate. Mollit nulla nostrud adipisicing aliqua cupidatat aliqua pariatur mollit voluptate voluptate consequat non.
-            </TabPage>
-        </TabControl>
+            </BootTabPage>
+        </BootTabControl>
     </RunTemplate>
     <CodeTemplate>
 
         @Code.GetCode(@"
 ```html
-<TabControl Pills=""true"">
-    <TabPage Title=""首页"">
+<BootTabControl Pills=""true"">
+    <BootTabPage Title=""首页"">
         Consequat occaecat ullamco amet non eiusmod nostrud dolore irure incididunt est duis anim sunt officia.
         Fugiat velit proident aliquip nisi incididunt nostrud exercitation proident est nisi. Irure magna elit commodo
         anim ex veniam culpa eiusmod id nostrud sit cupidatat in veniam ad. Eiusmod consequat eu adipisicing minim anim
         aliquip cupidatat culpa excepteur quis. Occaecat sit eu exercitation irure Lorem incididunt nostrud.
-    </TabPage>
-    <TabPage Title=""资料"">
+    </BootTabPage>
+    <BootTabPage Title=""资料"">
         Ad pariatur nostrud pariatur exercitation ipsum ipsum culpa mollit commodo mollit ex. Aute sunt incididunt
         amet commodo est sint nisi deserunt pariatur do. Aliquip ex eiusmod voluptate exercitation cillum id incididunt
         elit sunt. Qui minim sit magna Lorem id et dolore velit Lorem amet exercitation duis deserunt. Anim id labore elit
         adipisicing ut in id occaecat pariatur ut ullamco ea tempor duis.
-    </TabPage>
-    <TabPage Title=""联系人"">
+    </BootTabPage>
+    <BootTabPage Title=""联系人"">
         Est quis nulla laborum officia ad nisi ex nostrud culpa Lorem excepteur aliquip dolor aliqua irure ex.
         Nulla ut duis ipsum nisi elit fugiat commodo sunt reprehenderit laborum veniam eu veniam.
         Eiusmod minim exercitation fugiat irure ex labore incididunt do fugiat commodo
@@ -95,8 +95,8 @@
         irure magna enim minim reprehenderit. Ullamco consectetur culpa veniam sint cillum aliqua incididunt velit ullamco
         sunt ullamco quis quis commodo voluptate. Mollit nulla nostrud adipisicing aliqua cupidatat aliqua pariatur mollit
         voluptate voluptate consequat non.
-    </TabPage>
-</TabControl>
+    </BootTabPage>
+</BootTabControl>
 ```
 ");
     </CodeTemplate>
@@ -104,28 +104,28 @@
 
 <PresentationPart Title="OnActived 事件">
     <RunTemplate>
-        <TabControl>
-            <TabPage Title="选项卡1" OnActived="@(()=>_js.InvokeVoidAsync("alert","激活第二个选项卡"))">
+        <BootTabControl>
+            <BootTabPage Title="选项卡1" OnActived="@(()=>_js.InvokeVoidAsync("alert","激活第1个选项卡"))">
                 第一个选项卡
-            </TabPage>
-            <TabPage Title="选项卡2" OnActived="@(()=>_js.InvokeVoidAsync("alert","激活第二个选项卡"))">
+            </BootTabPage>
+            <BootTabPage Title="选项卡2" OnActived="@(()=>_js.InvokeVoidAsync("alert","激活第2个选项卡"))">
                 第二个选项卡
-            </TabPage>
-        </TabControl>
+            </BootTabPage>
+        </BootTabControl>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
 @inject IJSRuntime _js
 
-<TabControl>
-    <TabPage Title=""选项卡1"" OnActived=""@(() => _js.InvokeVoidAsync(""alert"", ""激活第二个选项卡""))"">
+<BootTabControl>
+    <BootTabPage Title=""选项卡1"" OnActived=""@(() => _js.InvokeVoidAsync(""alert"", ""激活第1个选项卡""))"">
         第一个选项卡
-    </TabPage>
-    <TabPage Title=""选项卡2"" OnActived=""@(()=>_js.InvokeVoidAsync(""alert"",""激活第二个选项卡""))"">
+    </BootTabPage>
+    <BootTabPage Title=""选项卡2"" OnActived=""@(()=>_js.InvokeVoidAsync(""alert"",""激活第2个选项卡""))"">
         第二个选项卡
-    </TabPage>
-</TabControl>
+    </BootTabPage>
+</BootTabControl>
 ```
         ")
     </CodeTemplate>

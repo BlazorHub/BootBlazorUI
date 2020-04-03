@@ -7,21 +7,21 @@ namespace BootBlazorUI
     /// <summary>
     /// 表示一个警告消息框控件。
     /// </summary>
-    public partial class Alert
+    public partial class BootAlert
     {
         /// <summary>
-        /// 初始化 <see cref="Alert"/> 类的新实例。
+        /// 初始化 <see cref="BootAlert"/> 类的新实例。
         /// </summary>
-        public Alert()
+        public BootAlert()
         {
 
         }
 
         /// <summary>
-        /// 设置消息框的主题颜色。默认是 <see cref="ControlColor.Primary"/>。
+        /// 设置消息框的主题颜色。默认是 <see cref="Color.Primary"/>。
         /// </summary>
         [Parameter]
-        public ControlColor Color { get; set; } = ControlColor.Primary;
+        public Color Color { get; set; } = Color.Primary;
 
         /// <summary>
         /// 设置消息框的任意内容。
@@ -75,7 +75,7 @@ namespace BootBlazorUI
         protected override void BuildCssClass(List<string> classList)
         {
             classList.Add("alert");
-            classList.Add(ComponentsHelper.GetColorName(Color,"alert-"));
+            classList.Add(ComponentUtil.GetColorCssClass(Color,"alert-"));
 
             if (Closable)
             {

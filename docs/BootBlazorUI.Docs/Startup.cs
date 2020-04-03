@@ -28,6 +28,13 @@ namespace BootBlazorUI.Docs
         {
             services.AddRazorPages();
             services.AddServerSideBlazor(options => options.DetailedErrors = true);
+
+
+            services.AddDialog(option=>
+            {
+                option.CancelText = "Cancel";
+                option.ConfirmText = "Confirm";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +50,7 @@ namespace BootBlazorUI.Docs
             }
 
             app.UseStaticFiles();
-            app.UseEmbeddedBlazorContent(typeof(Modal).Assembly);
+            app.UseEmbeddedBlazorContent(typeof(BootModal).Assembly);
 
             app.UseRouting();
 

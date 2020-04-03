@@ -8,12 +8,12 @@ namespace BootBlazorUI
     /// <summary>
     /// 表示一个按钮。
     /// </summary>
-    partial class Button
+    partial class BootButton
     {
         /// <summary>
-        /// 初始化 <see cref="Button"/> 类的新实例。
+        /// 初始化 <see cref="BootButton"/> 类的新实例。
         /// </summary>
-        public Button()
+        public BootButton()
         {
 
         }
@@ -25,16 +25,16 @@ namespace BootBlazorUI
         public bool Blocked { get; set; }
 
         /// <summary>
-        /// 设置按钮的主题配色。默认是 <see cref="ControlColor.Primary"/>。
+        /// 设置按钮的主题配色。默认是 <see cref="Color.Primary"/>。
         /// </summary>
         [Parameter]
-        public ControlColor Color { get; set; } = ControlColor.Primary;
+        public Color Color { get; set; } = Color.Primary;
 
         /// <summary>
         /// 设置按钮的尺寸。
         /// </summary>
         [Parameter]
-        public ControlSize Size { get; set; } = ControlSize.Default;
+        public Size Size { get; set; } = Size.Default;
 
         /// <summary>
         /// 设置按钮的类型。默认是 <see cref="ButtonType.Button"/>
@@ -93,10 +93,10 @@ namespace BootBlazorUI
                 classList.Add("btn-block");
             }
 
-            classList.Add(string.Format(" btn{0}-{1}", (Outline ? "-outline" : string.Empty), ComponentsHelper.GetColorName(Color)));
-            if (Size != ControlSize.Default)
+            classList.Add(string.Format(" btn{0}-{1}", (Outline ? "-outline" : string.Empty), ComponentUtil.GetColorCssClass(Color)));
+            if (Size != Size.Default)
             {
-                classList.Add(ComponentsHelper.GetSizeName(Size, "btn-"));
+                classList.Add(ComponentUtil.GetSizeCssClass(Size, "btn-"));
             }
 
             if (Actived)
