@@ -125,16 +125,135 @@
         ")
     </CodeTemplate>
 </PresentationPart>
+<PresentationPart Title="点击事件">
+    <Description>
+        设置 <code>OnClick</code> 事件来触发点击按钮要处理的内容。
+    </Description>
+    <RunTemplate>
+        <BootButton OnClick="Click">点我一下试试看</BootButton>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootButton OnClick=""Click"">点我一下试试看</BootButton>
+```
+```cs
+@code{
+    async Task Click()
+    {
+      await _js.InvokeVoidAsync(""alert"", $""点击了按钮"");
+    }
+}
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@code{
+    async Task Click()
+    {
+      await _js.InvokeVoidAsync("alert", $"点击了按钮");
+    }
+}
+
+<PresentationPart  Title="表单提交">
+    <Description>
+        把按钮放在 <code>BootEditForm</code> 中，并提供 <code>OnValidSubmit</code> 事件，表单验证合法后会提交事件。当表单在提交时会将按钮呈现为 <code>OnSubmitTemplate</code> 或 <code>OnSubmitText</code> 的内容。
+    </Description>
+    <RunTemplate>
+
+        <BootEditForm Model="this">
+            <DataAnnotationsValidator />
+            <div class="form-group">
+                <InputText @bind-Value="Email" class="form-control" placeholder="默认设置" />
+                <ValidationMessage For="@(()=>Email)" />
+            </div>
+            <BootButton ValidSubmitDelay="1000" OnValidSubmit="Submit">
+                提交
+            </BootButton>
+        </BootEditForm>
+
+        <BootEditForm Model="this">
+            <DataAnnotationsValidator />
+            <div class="form-group">
+                <InputText @bind-Value="Email" class="form-control" placeholder="自定义提交中" />
+                <ValidationMessage For="@(()=>Email)" />
+            </div>
+            <BootButton ValidSubmitDelay="5000" OnValidSubmit="Submit">
+                <NonSubmitTemplate>
+                    保存功能
+                </NonSubmitTemplate>
+                <OnSubmitTemplate>
+                   <i class="fa fa-spinner fa-spin"></i> 正在提交...
+                </OnSubmitTemplate>
+            </BootButton>
+        </BootEditForm>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootEditForm Model=""this"">
+    <DataAnnotationsValidator />
+    <div class=""form-group"">
+        <InputText @bind-Value=""Email"" class=""form-control"" placeholder=""默认设置"" />
+        <ValidationMessage For=""@(()=>Email)"" />
+    </div>
+    <BootButton ValidSubmitDelay=""1000"" OnValidSubmit=""Submit"">
+        提交
+    </BootButton>
+</BootEditForm>
+
+<BootEditForm Model=""this"">
+    <DataAnnotationsValidator />
+    <div class=""form-group"">
+        <InputText @bind-Value=""Email"" class=""form-control"" placeholder=""自定义提交中"" />
+        <ValidationMessage For=""@(()=>Email)"" />
+    </div>
+    <BootButton ValidSubmitDelay=""5000"" OnValidSubmit=""Submit"">
+        <NonSubmitTemplate>
+            保存功能
+        </NonSubmitTemplate>
+        <OnSubmitTemplate>
+            <i class=""fa fa-spinner fa-spin""></i> 正在提交...
+        </OnSubmitTemplate>
+    </BootButton>
+</BootEditForm>
+```
+```cs
+@code{
+
+    [System.ComponentModel.DataAnnotations.Required]
+    public string Email { get; set; }
+
+    async Task Submit()
+    {
+        await _js.InvokeVoidAsync(""alert"", ""表单提交啦"");
+    }
+}
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@inject IJSRuntime _js
+@code{
+
+    [System.ComponentModel.DataAnnotations.Required]
+    public string Email { get; set; }
+
+    async Task Submit()
+    {
+        await _js.InvokeVoidAsync("alert", "表单提交啦");
+    }
+}
 
 <ArgumentDescriptionTable Title="属性">
     <tr>
         <td>Color</td>
-        <td>ConctrolColor</td>
+        <td>Color</td>
         <td>设置按钮的主题配色。默认是 <code>Primary</code></td>
     </tr>
     <tr>
         <td>Size</td>
-        <td>ConctrolSize</td>
+        <td>Size</td>
         <td>设置按钮的尺寸。仅 <code>SM</code> <code>LG</code> 有效，不设置为 <code>Default</code></td>
     </tr>
     <tr>
@@ -157,6 +276,26 @@
         <td>Boolean</td>
         <td>设置一个布尔值，表示按钮呈现为禁用状态的样式。</td>
     </tr>
+    <tr>
+        <td>IsSubmitting</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示当前按钮是否处于表单提交中的状态。</td>
+    </tr>
+    <tr>
+        <td>NonSubmitTemplate</td>
+        <td>RenderFragment</td>
+        <td>设置表单未提交时的自定义模板。当设置 <code>OnSubmitTemplate</code> 时，才设置该属性。</td>
+    </tr>
+    <tr>
+        <td>OnSubmitTemplate</td>
+        <td>RenderFragment</td>
+        <td>设置表单提交时的自定义模板。</td>
+    </tr>
+    <tr>
+        <td>OnSubmitText</td>
+        <td>String</td>
+        <td>设置表单提交时的文本。优先呈现 <code>OnSubmitTemplate</code> 的内容。</td>
+    </tr>
 </ArgumentDescriptionTable>
 <ArgumentDescriptionTable Title="方法">
     <tr>
@@ -176,6 +315,17 @@
         <td>EventCallBack&lt;MouseEventArgs></td>
         <td>当点击按钮时触发的事件。</td>
     </tr>
+    <tr>
+        <td>OnValidSubmit</td>
+        <td>EventCallBack&lt;EditContext></td>
+        <td>设置当表单验证合法时触发的事件。</td>
+    </tr>
+    <tr>
+        <td>OnInvalidSubmit</td>
+        <td>EventCallBack&lt;EditContext></td>
+        <td>设置当表单验证不合法时触发的事件。</td>
+    </tr>
+
     <tr>
         <td>OnDisabled</td>
         <td>EventCallBack&lt;bool></td>
