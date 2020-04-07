@@ -1,0 +1,166 @@
+﻿@page "/forms"
+
+<PageTitle Title="表单(BootForm)">
+    
+</PageTitle>
+@code{
+    class FormViewModel
+    {
+        public string Name { get; set; }
+        public DateTime Birthday { get; set; }
+        public int Age { get; set; }
+    }
+
+    FormViewModel model = new FormViewModel();
+}
+
+<PresentationPart Title="文本框(BootInputText)">
+    <Description>
+        <code>BootInputText</code> 可以用于绑定任何数据类型的模型，比 <code>InputText</code> 更具有兼容性。
+    </Description>
+    <RunTemplate>
+        <EditForm Model="model">
+            <ValidationSummary/>
+            <BootAlert Color="Color.Info">
+                输入内容，然后焦点离开会发生什么。
+            </BootAlert>
+            <div class="form-inline">
+                <BootInputText @bind-Value="model.Name" Placeholder="姓名" />
+                <BootInputText @bind-Value="model.Age" Placeholder="年龄" />
+                <BootInputText @bind-Value="model.Birthday" Placeholder="生日" />
+            </div>
+            <p>
+                姓名：@model.Name
+            </p>
+            <p>
+                年龄：@model.Age
+            </p>
+            <p>
+                生日：@model.Birthday
+            </p>
+        </EditForm>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```cs
+@code{
+    class FormViewModel
+    {
+        public string Name { get; set; }
+        public DateTime Birthday { get; set; }
+        public int Age { get; set; }
+    }
+
+    FormViewModel model = new FormViewModel();
+}
+```
+```html
+<EditForm Model=""model"">
+    <ValidationSummary/>
+    <BootAlert Color=""Color.Info"">
+        输入内容，然后焦点离开会发生什么。
+    </BootAlert>
+    <div class=""form-inline"">
+        <BootInputText @bind-Value=""model.Name"" Placeholder=""姓名"" />
+        <BootInputText @bind-Value=""model.Age"" Placeholder=""年龄"" />
+        <BootInputText @bind-Value=""model.Birthday"" Placeholder=""生日"" />
+    </div>
+    <p>
+        姓名：@model.Name
+    </p>
+    <p>
+        年龄：@model.Age
+    </p>
+    <p>
+        生日：@model.Birthday
+    </p>
+</EditForm>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="下拉框(BootInputSelect)">
+    <Description>
+        使用 <code>BootInputSelect</code> 可以呈现下拉框，并设置 <code>SelectItems</code> 属性创建下拉框选项。或者你可以设置 <code>SelectItemsProvider</code> 通过 Lambda 表达式委托创建下拉项的数据源。
+    </Description>
+    <RunTemplate>
+        <EditForm Model="this">
+            <BootInputSelect SelectItems="yearItem" @bind-Value="SelectedYear" />
+            <p>
+    选择年份：@SelectedYear
+</p>
+            <BootInputSelect @bind-Value="SelectedHeight" SelectItemsProvider="@(() => new List<BootInputSelectItem>
+                                                    {
+                                                        new BootInputSelectItem{ Text = "张三", Value = 1.75f },
+                                                        new BootInputSelectItem{ Text = "李四", Value = 1.88f, Selected = true },
+                                                        new BootInputSelectItem{ Text = "王五", Value = 1.67f }
+                                                    })"/>
+            <p>
+                选择身高：@SelectedHeight
+            </p>
+        </EditForm>
+        
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootInputSelect SelectItems=""yearItem"" @bind-Value=""SelectedYear"" />
+<p>
+选择年份：@SelectedYear
+</p>
+<BootInputSelect @bind-Value=""SelectedHeight"" SelectItemsProvider=""@(() => new List<BootInputSelectItem>
+                                        {
+                                            new BootInputSelectItem{ Text = ""张三"", Value = 1.75f },
+                                            new BootInputSelectItem{ Text = ""李四"", Value = 1.88f, Selected = true },
+                                            new BootInputSelectItem{ Text = ""王五"", Value = 1.67f }
+                                        })""/>
+<p>
+    选择身高：@SelectedHeight
+</p>
+```
+```cs
+@code{ 
+
+    int SelectedYear { get; set; }
+    float SelectedHeight { get; set; }
+
+    List<BootInputSelectItem> yearItem = new List<BootInputSelectItem>();
+
+    protected override void OnInitialized()
+    {
+        for (int i = 1980; i <= DateTime.Now.Year; i++)
+        {
+            yearItem.Add(new BootInputSelectItem
+            {
+                Value = i,
+                Text = i.ToString(),
+                Selected = i == 2018
+            });
+        }
+    }
+}
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@code{ 
+
+    int SelectedYear { get; set; }
+    float SelectedHeight { get; set; }
+
+    List<BootInputSelectItem> yearItem = new List<BootInputSelectItem>();
+
+    protected override void OnInitialized()
+    {
+        for (int i = 1980; i <= DateTime.Now.Year; i++)
+        {
+            yearItem.Add(new BootInputSelectItem
+            {
+                Value = i,
+                Text = i.ToString(),
+                Selected = i == 2018
+            });
+        }
+    }
+}

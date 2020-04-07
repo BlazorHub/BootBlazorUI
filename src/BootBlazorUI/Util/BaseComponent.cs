@@ -15,7 +15,6 @@ namespace BootBlazorUI
         protected BaseComponent()
         {
             Id = $"{GetType().Name}_{Guid.NewGuid()}";
-            InitializeSequenceNumber();
         }
 
         /// <summary>
