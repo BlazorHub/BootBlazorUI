@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Rendering;
@@ -18,8 +19,6 @@ namespace BootBlazorUI.Forms
         /// </summary>
         protected BootInputBase()
         {
-            Id = $"{GetType().FullName}_{Guid.NewGuid()}";
-            Name = $"{GetType().Name}";
         }
 
         /// <summary>
@@ -29,7 +28,7 @@ namespace BootBlazorUI.Forms
         public virtual string Styles { get; set; }
 
         /// <summary>
-        /// 设置组件的唯一 Id。默认会自动生成一个随机 Id。
+        /// 设置组件的唯一 Id。
         /// </summary>
         [Parameter]
         public virtual string Id { get; set; }
@@ -41,10 +40,29 @@ namespace BootBlazorUI.Forms
         public string Name { get; set; }
 
         /// <summary>
+        /// 设置组件的水印提示字符串。
+        /// </summary>
+        [Parameter]
+        public string Placeholder { get; set; }
+
+
+        /// <summary>
         /// 设置一个布尔值，表示是否为只读状态。
         /// </summary>
         [Parameter]
         public bool ReadOnly { get; set; }
+
+        /// <summary>
+        /// 设置一个布尔值，表示是否为禁用状态。
+        /// </summary>
+        [Parameter]
+        public bool Disabled { get; set; }
+
+        /// <summary>
+        /// 设置当字段无法被转换的错误信息。
+        /// </summary>
+        [Parameter]
+        public string ParsingErrorMessage { get; set; } = "字段 {0} 的数据类型不正确。";
 
         /// <summary>
         /// 构建组件内置的 class 样式。
@@ -67,6 +85,7 @@ namespace BootBlazorUI.Forms
             {
                 classList.Add(CssClass);
             }
+
             BuildCssClass(classList);
             return string.Join(" ", classList);
         }
@@ -83,15 +102,12 @@ namespace BootBlazorUI.Forms
                 styleList.Add(Styles);
             }
             BuildStyles(styleList);
-            return string.Join(";", styleList);
+            if (styleList.Any())
+            {
+                return string.Join(";", styleList);
+            }
+            return null;
         }
-
-
-        /// <summary>
-        /// 设置当字段无法被转换的错误信息。
-        /// </summary>
-        [Parameter] 
-        public string ParsingErrorMessage { get; set; } = "字段 {0} 的数据类型不正确。";
 
         /// <summary>
         /// 定义组件的元素名称。
@@ -114,34 +130,32 @@ namespace BootBlazorUI.Forms
         {
             var sequence = 0;
             builder.OpenElement(0, OpenElement());
-
+            builder.AddMultipleAttributes(sequence++, AdditionalAttributes);
             builder.AddAttribute(sequence++, "id", Id);
             builder.AddAttribute(sequence++, "name", Name);
-            builder.AddMultipleAttributes(sequence++, AdditionalAttributes);
-            builder.AddAttribute(sequence++, "bind", CurrentValue);
-            builder.AddAttribute(sequence++, "onchange", EventCallback.Factory.CreateBinder<string>(this, value => CurrentValueAsString = value, CurrentValueAsString));
+            BuildValueBindingAttribute(builder, sequence);
+            builder.AddAttribute(sequence++, "onchange", BuildChangeEventCallback());
             builder.AddAttribute(sequence++, "class", GetCssClass());
             builder.AddAttribute(sequence++, "style", GetStyles());
-
-            if (ReadOnly)
-            {
-                builder.AddAttribute(sequence++, "readonly", ReadOnly);
-            }
+            builder.AddAttribute(sequence++, "placeholder", Placeholder);
+            builder.AddAttribute(sequence++, "readonly", ReadOnly);
+            builder.AddAttribute(sequence++, "disabled", Disabled);
 
             BuildInputRenderTree(builder, sequence);
+
             builder.CloseElement();
         }
 
-        /// <summary>
-        /// 格式化指定值成字符串。
-        /// </summary>
-        /// <param name="value">要格式化的值。</param>
-        /// <returns>格式化后的字符串。</returns>
-        protected override string FormatValueAsString(TValue value)
-        {
-            return value?.ToString();
-        }
+        protected virtual void BuildValueBindingAttribute(RenderTreeBuilder builder,int sequence)
+            =>
+            builder.AddAttribute(sequence++, "value", BindConverter.FormatValue(CurrentValue));
 
+        /// <summary>
+        /// 构造 <see cref="EventCallback{TValue}"/> 的双向绑定事件。
+        /// </summary>
+        /// <returns></returns>
+        protected virtual EventCallback<ChangeEventArgs> BuildChangeEventCallback()
+            => EventCallback.Factory.CreateBinder(this, value => CurrentValueAsString = value, CurrentValueAsString);
 
         /// <summary>
         /// 尝试转换指定值为字符串。
@@ -161,5 +175,6 @@ namespace BootBlazorUI.Forms
             validationErrorMessage = string.Format(ParsingErrorMessage, FieldIdentifier.FieldName);
             return false;
         }
+
     }
 }

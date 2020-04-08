@@ -1,26 +1,27 @@
 ﻿@page "/forms"
 
 <PageTitle Title="表单(BootForm)">
-    
+
 </PageTitle>
 @code{
     class FormViewModel
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = "张三";
         public DateTime Birthday { get; set; }
-        public int Age { get; set; }
+        public int Age { get; set; } = 18;
+        public string Description { get; set; } = "我是一个很好的学生，我今年高三，准备参加高考，所以现在需要进行刻苦的复习。我已经模拟了3次考试，每一次的成绩都不是很理想，我的梦想是上清华大学，但按照目前的成绩来看，似乎希望很渺茫。我必须加倍刻苦认真的复习，争取在高考的时候能考上我理想的大学，考不上，那就准备复读吧！";
     }
 
     FormViewModel model = new FormViewModel();
 }
 
-<PresentationPart Title="文本框(BootInputText)">
+<PresentationPart Title="文本框">
     <Description>
         <code>BootInputText</code> 可以用于绑定任何数据类型的模型，比 <code>InputText</code> 更具有兼容性。
     </Description>
     <RunTemplate>
         <EditForm Model="model">
-            <ValidationSummary/>
+            <ValidationSummary />
             <BootAlert Color="Color.Info">
                 输入内容，然后焦点离开会发生什么。
             </BootAlert>
@@ -62,8 +63,8 @@
     </BootAlert>
     <div class=""form-inline"">
         <BootInputText @bind-Value=""model.Name"" Placeholder=""姓名"" />
-        <BootInputText @bind-Value=""model.Age"" Placeholder=""年龄"" />
-        <BootInputText @bind-Value=""model.Birthday"" Placeholder=""生日"" />
+        <BootInputText @bind-Value=""model.Age"" Placeholder=""年龄""  />
+        < BootInputText @bind-Value=""model.Birthday"" Placeholder=""生日""  />
     </div>
     <p>
         姓名：@model.Name
@@ -80,33 +81,35 @@
     </CodeTemplate>
 </PresentationPart>
 
-<PresentationPart Title="下拉框(BootInputSelect)">
+<PresentationPart Title="下拉框">
     <Description>
         使用 <code>BootInputSelect</code> 可以呈现下拉框，并设置 <code>SelectItems</code> 属性创建下拉框选项。或者你可以设置 <code>SelectItemsProvider</code> 通过 Lambda 表达式委托创建下拉项的数据源。
     </Description>
     <RunTemplate>
         <EditForm Model="this">
-            <BootInputSelect SelectItems="yearItem" @bind-Value="SelectedYear" />
-            <p>
-    选择年份：@SelectedYear
-</p>
-            <BootInputSelect @bind-Value="SelectedHeight" SelectItemsProvider="@(() => new List<BootInputSelectItem>
+            <div class="form-inline">
+                <BootInputSelect SelectItems="yearItem" @bind-Value="SelectedYear" />
+                <p>
+                    选择年份：@SelectedYear
+                </p>
+                <BootInputSelect @bind-Value="SelectedHeight" SelectItemsProvider="@(() => new List<BootInputSelectItem>
                                                     {
                                                         new BootInputSelectItem{ Text = "张三", Value = 1.75f },
                                                         new BootInputSelectItem{ Text = "李四", Value = 1.88f, Selected = true },
                                                         new BootInputSelectItem{ Text = "王五", Value = 1.67f }
-                                                    })"/>
-            <p>
-                选择身高：@SelectedHeight
-            </p>
+                                                    })" />
+                <p>
+                    选择身高：@SelectedHeight
+                </p>
+            </div>
         </EditForm>
-        
+
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<BootInputSelect SelectItems=""yearItem"" @bind-Value=""SelectedYear"" />
-<p>
+<BootInputSelect SelectItems=""yearItem"" @bind-Value=""SelectedYear""  Size=""Size.LG"" />
+< p>
 选择年份：@SelectedYear
 </p>
 <BootInputSelect @bind-Value=""SelectedHeight"" SelectItemsProvider=""@(() => new List<BootInputSelectItem>
@@ -120,7 +123,29 @@
 </p>
 ```
 ```cs
-@code{ 
+@code{
+
+                    int SelectedYear { get; set; }
+                    float SelectedHeight { get; set; }
+
+                    List<BootInputSelectItem> yearItem = new List<BootInputSelectItem>();
+
+    protected override void OnInitialized()
+    {
+        for (int i = 1980; i <= DateTime.Now.Year; i++)
+            {
+                Value = i,
+                        Text = i.ToString(),
+                        Selected = i == 2018
+                    });
+                }
+            }
+        }
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@code{
 
     int SelectedYear { get; set; }
     float SelectedHeight { get; set; }
@@ -140,27 +165,184 @@
         }
     }
 }
+
+<PresentationPart Title="多行文本框">
+    <Description>
+        使用 <code>BootInputTextArea</code> 表示多行文本框，并设置 <code>Rows</code> 定义文本框的最小行数。
+    </Description>
+    <RunTemplate>
+        <EditForm Model="model">
+            <BootInputTextArea @bind-Value="@model.Description" />
+            <BootInputTextArea @bind-Value="@model.Description" Rows="8" Placeholder="显示了 8 行" />
+        </EditForm>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<EditForm Model=""model"">
+    <BootInputTextArea @bind-Value=""@model.Description"" />
+    <BootInputTextArea @bind-Value=""@model.Description"" Rows=""8"" Placeholder=""显示了 8 行""/>
+</EditForm>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="只读状态">
+    <Description>
+        设置 <code>ReadOnly="true"</code> 将控件设为只读状态。设置 <code>ReadOnlyAsText="true"</code> 设置只读状态的控件采用文本显示。但是 <code>select</code> 控件不支持 <code>readonly</code> 属性，更多资料<a href="https://www.w3.org/TR/html4/interact/forms.html#h-17.12" target="_blank">点击这里</a>查看详情。
+    </Description>
+    <RunTemplate>
+        <h6>只读状态</h6>
+        <EditForm Model="model">
+            <BootInputText @bind-Value="model.Name" ReadOnly="true" />
+            <BootInputTextArea @bind-Value="model.Description" ReadOnly="true" />
+        </EditForm>
+        <h6>只读文本</h6>
+        <EditForm Model="model">
+            <BootInputText @bind-Value="model.Name" ReadOnly="true" ReadOnlyAsText="true" />
+            <BootInputTextArea @bind-Value="model.Description" ReadOnly="true" ReadOnlyAsText="true" />
+        </EditForm>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<h6>只读状态</h6>
+<EditForm Model=""model"">
+    <BootInputText @bind-Value=""model.Name"" ReadOnly=""true"" />
+    <BootInputTextArea @bind-Value=""model.Description"" ReadOnly=""true"" />
+</EditForm>
+<h6>只读文本</h6>
+<EditForm Model=""model"">
+    <BootInputText @bind-Value=""model.Name"" ReadOnly=""true"" ReadOnlyAsText=""true"" />
+    <BootInputTextArea @bind-Value=""model.Description"" ReadOnly=""true"" ReadOnlyAsText=""true"" />
+</EditForm>
+```
+")
+</CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="禁用状态">
+    <Description>
+        设置 <code>Disabled="true"</code> 使控件呈现禁用状态。
+    </Description>
+    <RunTemplate>
+        <EditForm Model="model">
+            <BootInputText @bind-Value="model.Name" Disabled="true" />
+            <BootInputSelect SelectItemsProvider="@(()=>new List<BootInputSelectItem> { 
+                                                        new BootInputSelectItem{ Value=0, Text="0", Selected=true},
+                                                        new BootInputSelectItem{ Value=18, Text="18"},
+                                                    })" @bind-Value="model.Age" Disabled="true" />
+            <BootInputTextArea @bind-Value="model.Description" Disabled="true" />
+        </EditForm>
+    </RunTemplate>
+</PresentationPart>
+<PresentationPart Title="尺寸">
+    <Description>
+        设置 <code>Size</code> 属性改变控件的大小。默认是 Default。
+    </Description>
+    <RunTemplate>
+        <EditForm Model="this">
+            <BootInputText @bind-Value="Emtpy" Placeholder="默认" />
+            <BootInputText @bind-Value="Emtpy" Placeholder="Size.LG" Size="Size.LG" />
+            <BootInputText @bind-Value="Emtpy" Placeholder="Size.SM" Size="Size.SM" />
+        </EditForm>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<EditForm Model=""this"">
+    <BootInputText @bind-Value=""Emtpy"" Placeholder=""默认"" />
+    <BootInputText @bind-Value=""Emtpy"" Placeholder=""Size.LG"" Size=""Size.LG"" />
+    <BootInputText @bind-Value=""Emtpy"" Placeholder=""Size.SM"" Size=""Size.SM"" />
+</EditForm>
 ```
 ")
     </CodeTemplate>
 </PresentationPart>
 @code{ 
+    string Emtpy { get; set; }
+}
 
-    int SelectedYear { get; set; }
-    float SelectedHeight { get; set; }
+<PresentationPart Title="复选框">
+    <Description>
+        复选框使用 <code>BootInputCheckbox</code> 组件表示，并可以设置 <code>Label</code> 在复选框后面追加文字，设置了 <code>Id</code> 时，点击文字也可以使复选框选中。
+    </Description>
+    <RunTemplate>
+        <EditForm Model="this">
+            <BootInputCheckbox @bind-Value="Check" Id="check" Label="是否选中此项" />           <p>
+                选择的值：@Check
+            </p>
+            <BootInputCheckbox @bind-Value="Check" Disabled="true" Label="禁用状态" />
+        </EditForm>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<EditForm Model=""this"">
+    <BootInputCheckbox @bind-Value=""Check"" Id=""check"" Label=""是否选中此项"" />
+    <br />
+    <BootInputCheckbox @bind-Value=""Check"" Disabled=""true"" Label=""禁用状态"" />
+</EditForm>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@code{
+    public bool Check { get; set; }
+}
 
-    List<BootInputSelectItem> yearItem = new List<BootInputSelectItem>();
+<PresentationPart Title="单选框">
+    <Description>
+        复选框使用 <code>BootInputRadio</code> 组件表示，并可以设置 <code>Label</code> 在单选框后面追加文字，设置了 <code>Id</code> 时，点击文字也可以使单选框选中。必须设置 <code>Name</code> 属性才可以让一组单选框具有互斥性。并且 <code>bind-Value</code> 的值和 <code>SelectedValue</code> 的值相等时，会选中该单选框。
+    </Description>
+    <RunTemplate>
+        <EditForm Model="this">
+            <BootInputRadio SelectedValue="@("是")" @bind-Value="Radio" Id="yes" Label="是" Name="check" />
+            <BootInputRadio SelectedValue="@("否")" @bind-Value="Radio" Id="no" Label="否" Name="check" />
 
-    protected override void OnInitialized()
-    {
-        for (int i = 1980; i <= DateTime.Now.Year; i++)
-        {
-            yearItem.Add(new BootInputSelectItem
+            &nbsp;&nbsp; 选择的值：@Radio
+            <br />
+            分数：
+            @for (int i = 1; i <= 5; i++)
             {
-                Value = i,
-                Text = i.ToString(),
-                Selected = i == 2018
-            });
-        }
+                <BootInputRadio @bind-Value="Rate" SelectedValue="i" Label="@(i.ToString())" />
+            }
+            &nbsp;&nbsp;
+            你选择了：@Rate 分
+            <br />
+            <BootInputRadio @bind-Value="Radio" Disabled="true" Label="禁用状态" />
+        </EditForm>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<EditForm Model=""this"">
+    <BootInputRadio SelectedValue=""@(""是"")"" @bind-Value=""Radio"" Id=""yes"" Label=""是"" Name=""check"" />
+    <BootInputRadio SelectedValue=""@(""否"")"" @bind-Value=""Radio"" Id=""no"" Label=""否"" Name=""check"" />
+
+    &nbsp;&nbsp; 选择的值：@Radio
+    <br />
+    分数：
+    @for (int i = 1; i <= 5; i++)
+    {
+        <BootInputRadio @bind-Value=""Rate"" SelectedValue=""i"" Label=""@(i.ToString())"" />
     }
+    &nbsp;&nbsp;
+    你选择了：@Rate 分
+    <br />
+    <BootInputRadio @bind-Value=""Radio"" Disabled=""true"" Label=""禁用状态"" />
+</EditForm>
+```
+```cs
+@code{
+    public string Radio { get; set; } = ""是"";
+    int Rate { get; set; } = 1;
+}
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@code{
+    public string Radio { get; set; } = "是";
+    int Rate { get; set; } = 1;
 }
