@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using BootBlazorUI.Dialog;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BootBlazorUI
 {
+    /// <summary>
+    /// 依赖注入的扩展。
+    /// </summary>
     public static class DependencyInjectionExtensions
     {
         /// <summary>

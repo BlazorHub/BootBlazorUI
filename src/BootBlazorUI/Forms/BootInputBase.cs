@@ -62,7 +62,7 @@ namespace BootBlazorUI.Forms
         /// 设置当字段无法被转换的错误信息。
         /// </summary>
         [Parameter]
-        public string ParsingErrorMessage { get; set; } = "字段 {0} 的数据类型不正确。";
+        public string ParsingErrorMessage { get; set; } = "字段 {0} 不是一个有效的值。";
 
         /// <summary>
         /// 构建组件内置的 class 样式。
@@ -146,6 +146,11 @@ namespace BootBlazorUI.Forms
             builder.CloseElement();
         }
 
+        /// <summary>
+        /// 构造值绑定的特性，默认使用 <see cref="BindConverter"/> 类型。
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="sequence"></param>
         protected virtual void BuildValueBindingAttribute(RenderTreeBuilder builder,int sequence)
             =>
             builder.AddAttribute(sequence++, "value", BindConverter.FormatValue(CurrentValue));

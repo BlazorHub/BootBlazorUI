@@ -167,25 +167,29 @@
                 <InputText @bind-Value="Email" class="form-control" placeholder="默认设置" />
                 <ValidationMessage For="@(()=>Email)" />
             </div>
-            <BootButton ValidSubmitDelay="1000" OnValidSubmit="Submit">
-                提交
-            </BootButton>
+            <div class="form-group">
+                <BootButton ValidSubmitDelay="1000" OnValidSubmit="Submit">
+                    提交
+                </BootButton>
+            </div>
         </BootEditForm>
-
+        <br />
         <BootEditForm Model="this">
             <DataAnnotationsValidator />
             <div class="form-group">
                 <InputText @bind-Value="Email" class="form-control" placeholder="自定义提交中" />
                 <ValidationMessage For="@(()=>Email)" />
             </div>
-            <BootButton ValidSubmitDelay="5000" OnValidSubmit="Submit">
-                <NonSubmitTemplate>
-                    保存功能
-                </NonSubmitTemplate>
-                <OnSubmitTemplate>
-                   <i class="fa fa-spinner fa-spin"></i> 正在提交...
-                </OnSubmitTemplate>
-            </BootButton>
+            <div class="form-group">
+                <BootButton ValidSubmitDelay="5000" OnValidSubmit="Submit">
+                    <NonSubmitTemplate>
+                        保存功能
+                    </NonSubmitTemplate>
+                    <OnSubmitTemplate>
+                        <i class="fa fa-spinner fa-spin"></i> 正在提交...
+                    </OnSubmitTemplate>
+                </BootButton>
+            </div>
         </BootEditForm>
     </RunTemplate>
     <CodeTemplate>
@@ -295,6 +299,11 @@
         <td>OnSubmitText</td>
         <td>String</td>
         <td>设置表单提交时的文本。优先呈现 <code>OnSubmitTemplate</code> 的内容。</td>
+    </tr>
+    <tr>
+        <td>ValidSubmitDelay</td>
+        <td>Int32</td>
+        <td>设置当合法表单提交时的延迟时间，单位是毫秒。</td>
     </tr>
 </ArgumentDescriptionTable>
 <ArgumentDescriptionTable Title="方法">
