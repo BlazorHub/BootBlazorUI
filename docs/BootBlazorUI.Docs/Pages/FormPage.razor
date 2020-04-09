@@ -1,0 +1,601 @@
+﻿@page "/forms"
+
+<PageTitle Title="表单(BootForm)">
+    表单作为最常用的控件，比 <code>Microsoft.AspNetCore.Components.Forms</code> 自带的表单组件更具备兼容性和实用性，融合了 Bootstrap 自带的样式，并且使用 <code>BootEditForm</code> 和 <code>BootButton</code> 结合，更提高了交互性。当然它们都支持双向绑定，原生的组件使用几乎一致。<br /> 目前已有以下组件：
+    <ul>
+        <li>BootInputText：文本框</li>
+        <li>BootInputTextArea：多行文本框</li>
+        <li>BootInputCheckbox：复选框</li>
+        <li>BootInputRadio：单选框</li>
+        <li>BootInputSelect：下拉框</li>
+        <li>BootInputDate：日期选择框</li>
+    </ul>
+</PageTitle>
+@inject IJSRuntime _js
+@code{
+    class FormViewModel
+    {
+        public string Name { get; set; } = "张三";
+        public DateTime Birthday { get; set; } = DateTime.Now;
+        public int Age { get; set; } = 18;
+        public string Description { get; set; } = "我是一个很好的学生，我今年高三，准备参加高考，所以现在需要进行刻苦的复习。我已经模拟了3次考试，每一次的成绩都不是很理想，我的梦想是上清华大学，但按照目前的成绩来看，似乎希望很渺茫。我必须加倍刻苦认真的复习，争取在高考的时候能考上我理想的大学，考不上，那就准备复读吧！";
+    }
+
+    FormViewModel model = new FormViewModel();
+}
+
+<PresentationPart Title="文本框">
+    <Description>
+        使用 <code>BootInputText</code> 表示文本框，并可以用于绑定任何数据类型，比 <code>InputText</code> 更具有兼容性。
+    </Description>
+    <RunTemplate>
+        <EditForm Model="model">
+            <ValidationSummary />
+            <div class="row">
+                <div class="col">
+                    <BootInputText @bind-Value="model.Name" Placeholder="姓名" />
+                    姓名：@model.Name
+                </div>
+                <div class="col">
+                    <BootInputText @bind-Value="model.Age" Placeholder="年龄" />
+                    年龄：@model.Age
+                </div>
+                <div class="col">
+                    <BootInputText @bind-Value="model.Birthday" Placeholder="生日" />
+                    生日：@model.Birthday
+                </div>
+            </div>
+        </EditForm>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```cs
+@code{
+    class FormViewModel
+    {
+        public string Name { get; set; }
+        public DateTime Birthday { get; set; }
+        public int Age { get; set; }
+    }
+
+    FormViewModel model = new FormViewModel();
+}
+```
+```html
+<EditForm Model=""model"">
+    <ValidationSummary />
+    <div class=""row"">
+        <div class=""col"">
+            <BootInputText @bind-Value=""model.Name"" Placeholder=""姓名"" />
+            姓名：@model.Name
+        </div>
+        <div class=""col"">
+            <BootInputText @bind-Value=""model.Age"" Placeholder=""年龄"" />
+            年龄：@model.Age
+        </div>
+        <div class=""col"">
+            <BootInputText @bind-Value=""model.Birthday"" Placeholder=""生日"" />
+            生日：@model.Birthday
+        </div>
+    </div>
+</EditForm>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="下拉框">
+    <Description>
+        使用 <code>BootInputSelect</code> 可以呈现下拉框，并设置 <code>SelectItems</code> 属性创建下拉框选项。或者你可以设置 <code>SelectItemsProvider</code> 通过 Lambda 表达式委托创建下拉项的数据源。
+    </Description>
+    <RunTemplate>
+        <EditForm Model="this">
+            <div class="row">
+                <div class="col">
+                    <BootInputSelect SelectItems="yearItem" @bind-Value="SelectedYear" />
+                    选择年份：@SelectedYear
+                </div>
+                <div class="col">
+                    <BootInputSelect @bind-Value="SelectedHeight" SelectItemsProvider="@(() => new List<BootInputSelectItem>
+                                                    {
+                                                        new BootInputSelectItem{ Text = "张三", Value = 1.75f },
+                                                        new BootInputSelectItem{ Text = "李四", Value = 1.88f, Selected = true },
+                                                        new BootInputSelectItem{ Text = "王五", Value = 1.67f }
+                                                    })" />
+
+                    选择身高：@SelectedHeight
+                </div>
+            </div>
+        </EditForm>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<EditForm Model=""this"">
+    <div class=""row"">
+        <div class=""col"">
+            <BootInputSelect SelectItems=""yearItem"" @bind-Value=""SelectedYear"" />
+            选择年份：@SelectedYear
+        </div>
+        <div class=""col"">
+            <BootInputSelect @bind-Value=""SelectedHeight"" SelectItemsProvider=""@(() => new List<BootInputSelectItem>
+                                            {
+                                                new BootInputSelectItem{ Text = ""张三"", Value = 1.75f },
+                                                new BootInputSelectItem{ Text = ""李四"", Value = 1.88f, Selected = true },
+                                                new BootInputSelectItem{ Text = ""王五"", Value = 1.67f }
+                                            })"" />
+
+            选择身高：@SelectedHeight
+        </div>
+    </div>
+</EditForm>
+```
+```cs
+@code{
+
+    int SelectedYear { get; set; } = 2015;
+    float SelectedHeight { get; set; } = 1.88f;
+
+    List<BootInputSelectItem> yearItem = new List<BootInputSelectItem>();
+
+    protected override void OnInitialized()
+    {
+        for (int i = 1980; i <= DateTime.Now.Year; i++)
+        {
+            yearItem.Add(new BootInputSelectItem
+            {
+                Value = i,
+                Text = i.ToString()
+            });
+        }
+    }
+}
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@code{
+
+    int SelectedYear { get; set; } = 2015;
+    float SelectedHeight { get; set; } = 1.88f;
+
+    List<BootInputSelectItem> yearItem = new List<BootInputSelectItem>();
+
+    protected override void OnInitialized()
+    {
+        for (int i = 1980; i <= DateTime.Now.Year; i++)
+        {
+            yearItem.Add(new BootInputSelectItem
+            {
+                Value = i,
+                Text = i.ToString()
+            });
+        }
+    }
+}
+
+<PresentationPart Title="多行文本框">
+    <Description>
+        使用 <code>BootInputTextArea</code> 表示多行文本框，并设置 <code>Rows</code> 定义文本框的最小行数。
+    </Description>
+    <RunTemplate>
+        <EditForm Model="model">
+            <div class="row">
+                <div class="col">
+                    <BootInputTextArea @bind-Value="@model.Description" />
+                </div>
+                <div class="col">
+                    <BootInputTextArea @bind-Value="@model.Description" Rows="8" Placeholder="显示了 8 行" />
+                </div>
+            </div>
+        </EditForm>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<EditForm Model=""model"">
+    <div class=""row"">
+        <div class=""col"">
+            <BootInputTextArea @bind-Value=""@model.Description"" />
+        </div>
+        <div class=""col"">
+            <BootInputTextArea @bind-Value=""@model.Description"" Rows=""8"" Placeholder=""显示了 8 行"" />
+        </div>
+    </div>
+</EditForm>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="只读状态">
+    <Description>
+        设置 <code>ReadOnly="true"</code> 将控件设为只读状态。设置 <code>ReadOnlyAsText="true"</code> 设置只读状态的控件采用文本显示。但是 <code>select</code> 控件不支持 <code>readonly</code> 属性，更多资料<a href="https://www.w3.org/TR/html4/interact/forms.html#h-17.12" target="_blank">点击这里</a>查看详情。
+    </Description>
+    <RunTemplate>
+        <div class="row">
+            <div class="col">
+                <EditForm Model="model">
+                    <h5>只读状态</h5>
+                    <BootInputText @bind-Value="model.Name" ReadOnly="true" />
+                    <br />
+                    <BootInputTextArea @bind-Value="model.Description" ReadOnly="true" />
+                </EditForm>
+            </div>
+            <div class="col">
+                <EditForm Model="model">
+                    <h5>只读文本</h5>
+                    <BootInputText @bind-Value="model.Name" ReadOnly="true" ReadOnlyAsText="true" />
+                    <br />
+                    <BootInputTextArea @bind-Value="model.Description" ReadOnly="true" ReadOnlyAsText="true" />
+                </EditForm>
+            </div>
+        </div>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<div class=""row"">
+    <div class=""col"">
+        <EditForm Model=""model"">
+            <h5>只读状态</h5>
+            <BootInputText @bind-Value=""model.Name"" ReadOnly=""true"" />
+            <br />
+            <BootInputTextArea @bind-Value=""model.Description"" ReadOnly=""true"" />
+        </EditForm>
+    </div>
+    <div class=""col"">
+        <EditForm Model=""model"">
+            <h5>只读文本</h5>
+            <BootInputText @bind-Value=""model.Name"" ReadOnly=""true"" ReadOnlyAsText=""true"" />
+            <br />
+            <BootInputTextArea @bind-Value=""model.Description"" ReadOnly=""true"" ReadOnlyAsText=""true"" />
+        </EditForm>
+    </div>
+</div>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="禁用状态">
+    <Description>
+        设置 <code>Disabled="true"</code> 使控件呈现禁用状态。
+    </Description>
+    <RunTemplate>
+        <EditForm Model="model">
+            <div class="row">
+                <div class="col">
+                    <BootInputText @bind-Value="model.Name" Disabled="true" />
+                </div>                
+                <div class="col">
+                    <BootInputSelect SelectItemsProvider="@(()=>new List<BootInputSelectItem> {
+                                                        new BootInputSelectItem{ Value=0, Text="0", Selected=true},
+                                                        new BootInputSelectItem{ Value=18, Text="18"},
+                                                    })" @bind-Value="model.Age" Disabled="true" />
+                </div>                
+                <div class="col">
+                    <BootInputTextArea @bind-Value="model.Description" Disabled="true" />
+                </div>
+            </div>
+        </EditForm>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<EditForm Model=""model"">
+    <div class=""row"">
+        <div class=""col"">
+            <BootInputText @bind-Value=""model.Name"" Disabled=""true"" />
+        </div>                
+        <div class=""col"">
+            <BootInputSelect SelectItemsProvider=""@(()=>new List<BootInputSelectItem> {
+                                                new BootInputSelectItem{ Value=0, Text=""0"", Selected=true},
+                                                new BootInputSelectItem{ Value=18, Text=""18""},
+                                            })"" @bind-Value=""model.Age"" Disabled=""true"" />
+        </div>                
+        <div class=""col"">
+            <BootInputTextArea @bind-Value=""model.Description"" Disabled=""true"" />
+        </div>
+    </div>
+</EditForm>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="尺寸">
+    <Description>
+        设置 <code>Size</code> 属性改变控件的大小。默认是 Default。
+    </Description>
+    <RunTemplate>
+        <EditForm Model="this">
+            <BootInputText @bind-Value="Emtpy" Placeholder="默认" />
+            <br />
+            <BootInputText @bind-Value="Emtpy" Placeholder="Size.LG" Size="Size.LG" />
+            <br />
+            <BootInputText @bind-Value="Emtpy" Placeholder="Size.SM" Size="Size.SM" />
+        </EditForm>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<EditForm Model=""this"">
+    <BootInputText @bind-Value=""Emtpy"" Placeholder=""默认"" />
+    <BootInputText @bind-Value=""Emtpy"" Placeholder=""Size.LG"" Size=""Size.LG"" />
+    <BootInputText @bind-Value=""Emtpy"" Placeholder=""Size.SM"" Size=""Size.SM"" />
+</EditForm>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@code{
+    string Emtpy { get; set; }
+}
+
+<PresentationPart Title="复选框">
+    <Description>
+        复选框使用 <code>BootInputCheckbox</code> 组件表示，并可以设置 <code>Label</code> 在复选框后面追加文字，设置了 <code>Id</code> 时，点击文字也可以使复选框选中。
+    </Description>
+    <RunTemplate>
+        <EditForm Model="this">
+            <BootInputCheckbox @bind-Value="Check" Id="check" Label="是否选中此项" />
+            <br />
+            选择的值：@Check
+            <br />
+            <BootInputCheckbox @bind-Value="Check" Disabled="true" Label="禁用状态" />
+        </EditForm>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<EditForm Model=""this"">
+    <BootInputCheckbox @bind-Value=""Check"" Id=""check"" Label=""是否选中此项"" />
+    <br />
+    选择的值：@Check
+    <br />
+    <BootInputCheckbox @bind-Value=""Check"" Disabled=""true"" Label=""禁用状态"" />
+</EditForm>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@code{
+    public bool Check { get; set; }
+}
+
+<PresentationPart Title="单选框">
+    <Description>
+        单选框使用 <code>BootInputRadio</code> 组件表示，并可以设置 <code>Label</code> 在单选框后面追加文字，设置了 <code>Id</code> 时，点击文字也可以使单选框选中。必须设置 <code>Name</code> 属性才可以让一组单选框具有互斥性。并且 <code>bind-Value</code> 的值和 <code>SelectedValue</code> 的值相等时，会选中该单选框。
+    </Description>
+    <RunTemplate>
+        <EditForm Model="this">
+            <BootInputRadio SelectedValue="@("是")" @bind-Value="Radio" Id="yes" Label="是" Name="check" />
+            <BootInputRadio SelectedValue="@("否")" @bind-Value="Radio" Id="no" Label="否" Name="check" />
+
+            &nbsp;&nbsp; 选择的值：@Radio
+            <br />
+            分数：
+            @for (int i = 1; i <= 5; i++)
+            {
+                <BootInputRadio @bind-Value="Rate" SelectedValue="i" Label="@(i.ToString())" />
+            }
+            &nbsp;&nbsp;
+            你选择了：@Rate 分
+            <br />
+            <BootInputRadio @bind-Value="Radio" Disabled="true" Label="禁用状态" />
+        </EditForm>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<EditForm Model=""this"">
+    <BootInputRadio SelectedValue=""@(""是"")"" @bind-Value=""Radio"" Id=""yes"" Label=""是"" Name=""check"" />
+    <BootInputRadio SelectedValue=""@(""否"")"" @bind-Value=""Radio"" Id=""no"" Label=""否"" Name=""check"" />
+
+    &nbsp;&nbsp; 选择的值：@Radio
+    <br />
+    分数：
+    @for (int i = 1; i <= 5; i++)
+    {
+        <BootInputRadio @bind-Value=""Rate"" SelectedValue=""i"" Label=""@(i.ToString())"" />
+    }
+    &nbsp;&nbsp;
+    你选择了：@Rate 分
+    <br />
+    <BootInputRadio @bind-Value=""Radio"" Disabled=""true"" Label=""禁用状态"" />
+</EditForm>
+```
+```cs
+@code{
+    public string Radio { get; set; } = ""是"";
+    int Rate { get; set; } = 1;
+}
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@code{
+    public string Radio { get; set; } = "是";
+    int Rate { get; set; } = 1;
+}
+
+<PresentationPart Title="日期">
+    <Description>
+        使用 <code>BootInputDate</code> 组件可以呈现浏览器识别的日期控件。仅支持 <code>DateTime</code> 和 <code>DateTimeOffset</code> 类型。
+    </Description>
+    <RunTemplate>
+        <EditForm Model="this">
+            <ValidationSummary />
+            <BootInputDate @bind-Value="Today" />
+            你选择的是：@Today
+        </EditForm>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<EditForm Model=""this"">
+    <ValidationSummary/>
+    <BootInputDate @bind-Value=""Today""/>
+    你选择的是：@Today
+</EditForm>
+```
+```cs
+@code{
+    DateTime Today { get; set; }
+}
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+@code{
+    DateTime Today { get; set; }
+}
+
+<PresentationPart Title="表单验证">
+    <Description>
+        使用 <code>BootEditForm</code> 来代替 <code>EditForm</code> 表单验证和提交，并使用 <code>BootButton</code> 的 <code>OnValidSubmit</code> 事件触发表单验证合法后的提交操作，在表单提交时，按钮会呈现一个“提交中”文字并禁用按钮状态。
+    </Description>
+    <RunTemplate>
+        <BootEditForm Model="userModel">
+            <DataAnnotationsValidator/>
+            <div class="form-group">
+                <label>姓名</label>
+                <BootInputText @bind-Value="userModel.Name" />
+                <ValidationMessage For="()=>userModel.Name" />
+            </div>
+            <div class="form-group">
+                <label>年龄</label>
+                <BootInputText @bind-Value="userModel.Age" />
+                <ValidationMessage For="()=>userModel.Age" />
+            </div>
+            <div class="form-group">
+                <label>生日</label>
+                <BootInputDate @bind-Value="userModel.Birthday" />
+                <ValidationMessage For="()=>userModel.Birthday" />
+            </div>
+            <div class="form-group">
+                <BootButton ValidSubmitDelay="5000" OnValidSubmit="@(_=>_js.InvokeVoidAsync("alert","表单已提交"))">
+                    默认提交
+                </BootButton>
+            </div>
+        </BootEditForm>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+<BootEditForm Model=""userModel"">
+    <DataAnnotationsValidator/>
+    <div class=""form-group"">
+        <label>姓名</label>
+        <BootInputText @bind-Value=""userModel.Name"" />
+        <ValidationMessage For=""()=>userModel.Name"" />
+    </div>
+    <div class=""form-group"">
+        <label>年龄</label>
+        <BootInputText @bind-Value=""userModel.Age"" />
+        <ValidationMessage For=""()=>userModel.Age"" />
+    </div>
+    <div class=""form-group"">
+        <label>生日</label>
+        <BootInputDate @bind-Value=""userModel.Birthday"" />
+        <ValidationMessage For=""()=>userModel.Birthday"" />
+    </div>
+    <div class=""form-group"">
+        <BootButton ValidSubmitDelay=""5000"" OnValidSubmit=""@(_=>_js.InvokeVoidAsync(""alert"",""表单已提交""))"">
+            默认提交
+        </BootButton>
+
+        <BootButton Color=""Color.Success"" ValidSubmitDelay=""5000"" OnValidSubmit=""@(_=>_js.InvokeVoidAsync(""alert"",""表单已提交""))"">
+            <OnSubmitTemplate>
+                表单正在提交，请稍后...
+            </OnSubmitTemplate>
+            <NonSubmitTemplate>
+                确认
+            </NonSubmitTemplate>
+        </BootButton>
+    </div>
+</BootEditForm>
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="自定义提交时的按钮内容">
+    <Description>
+        设置 <code>BootButton</code> 的 <code>OnSubmitTemplate</code> 可以自定义按钮在表单提交时呈现的内容。而与之对应的则必须设置 <code>NonSubmitTemplate</code> 非提交状态时的内容。
+    </Description>
+    <RunTemplate>
+        <BootEditForm Model="userModel">
+            <DataAnnotationsValidator />
+            <div class="form-group">
+                <label>姓名</label>
+                <BootInputText @bind-Value="userModel.Name" />
+                <ValidationMessage For="()=>userModel.Name" />
+            </div>
+            <div class="form-group">
+                <label>年龄</label>
+                <BootInputText @bind-Value="userModel.Age" />
+                <ValidationMessage For="()=>userModel.Age" />
+            </div>
+            <div class="form-group">
+                <label>生日</label>
+                <BootInputDate @bind-Value="userModel.Birthday" />
+                <ValidationMessage For="()=>userModel.Birthday" />
+            </div>
+            <div class="form-group">
+                <BootButton Color="Color.Success" ValidSubmitDelay="5000" OnValidSubmit="@(_=>_js.InvokeVoidAsync("alert","表单已提交"))">
+                    <OnSubmitTemplate>
+                        表单正在提交，请稍后...
+                    </OnSubmitTemplate>
+                    <NonSubmitTemplate>
+                        确认
+                    </NonSubmitTemplate>
+                </BootButton>
+            </div>
+        </BootEditForm>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootEditForm Model=""userModel"">
+    <DataAnnotationsValidator />
+    <div class=""form-group"">
+        <label>姓名</label>
+        <BootInputText @bind-Value=""userModel.Name"" />
+        <ValidationMessage For=""()=>userModel.Name"" />
+    </div>
+    <div class=""form-group"">
+        <label>年龄</label>
+        <BootInputText @bind-Value=""userModel.Age"" />
+        <ValidationMessage For=""()=>userModel.Age"" />
+    </div>
+    <div class=""form-group"">
+        <label>生日</label>
+        <BootInputDate @bind-Value=""userModel.Birthday"" />
+        <ValidationMessage For=""()=>userModel.Birthday"" />
+    </div>
+    <div class=""form-group"">
+        <BootButton Color=""Color.Success"" ValidSubmitDelay=""5000"" OnValidSubmit=""@(_=>_js.InvokeVoidAsync(""alert"",""表单已提交""))"">
+            <OnSubmitTemplate>
+                表单正在提交，请稍后...
+            </OnSubmitTemplate>
+            <NonSubmitTemplate>
+                确认
+            </NonSubmitTemplate>
+        </BootButton>
+    </div>
+</BootEditForm>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@code{
+    class UserViewModel
+    {
+        [System.ComponentModel.DataAnnotations.Required]
+        public string Name { get; set; }
+        [System.ComponentModel.DataAnnotations.Range(18, 45)]
+        public int Age { get; set; }
+
+        public DateTime Birthday { get; set; }
+    }
+
+    UserViewModel userModel = new UserViewModel();
+}
