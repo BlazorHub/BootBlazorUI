@@ -12,3 +12,15 @@ html, body,pre {
     padding: 5px 10px 5px 10px;
     border-radius: 5px;
 }
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
