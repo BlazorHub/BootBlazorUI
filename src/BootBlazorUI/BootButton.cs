@@ -12,7 +12,7 @@ namespace BootBlazorUI
     /// <summary>
     /// 呈现 button 的按钮元素。可配合 <see cref="BootEditForm"/> 组件可实现表单验证和提交的交互模式。
     /// </summary>
-    public class BootButton:BootComponentBase
+    public class BootButton : BootComponentBase
     {
         private readonly Func<Task> _handleSubmitDelegate;
 
@@ -178,7 +178,14 @@ namespace BootBlazorUI
             {
                 if (OnSubmitTemplate == null)
                 {
-                    builder.AddContent(8, (MarkupString)OnSubmitText);
+                    builder.AddContent(8, content=>
+                    {
+                        content.OpenComponent<BootSpinner>(12);
+                        content.AddAttribute(13, nameof(Size), Size.SM);
+                        content.AddAttribute(14, nameof(AdditionalCssClass), "mr-1");
+                        content.CloseComponent();
+                        content.AddContent(15, OnSubmitText);
+                    });
                 }
                 else
                 {
