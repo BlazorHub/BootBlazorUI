@@ -15,7 +15,6 @@
 * 组件分为基础组件和集成组件。集成组件是将多个基础组件组合起来，形成更为强大的组件，并且更注重交互性和实用性；
 ")
 </PageTitle>
-
     <BootTabControl MinHeight="auto" Pills="true">
 
         <BootTabControlPage Title="进度">
@@ -43,6 +42,15 @@
         </BootTabControlPage>
         <BootTabControlPage Title="更新日志">
             @Code.GetCode(@"
+#### 0.7
+*【新增】AdditionalCssClass 属性，用于追加组件默认样式以外的其他 class 类名称
+*【新增】AdditionalStyle 属性，用于追加组件默认样式以为的其他 style 样式
+*【新增】OverrideCssClass 属性，用于覆盖组件的 class 类名称
+*【新增】OverrideStyle 属性，用于覆盖组件的 style 样式
+*【新增】BootSpinner 组件
+*【修复】BootBadge 组件命名错误
+*【优化】BaseComponent 重命名为 BootComponentBase
+*【优化】BootButton 默认提交时的文本增加 BootSpinner 组件
 #### 0.6
 * 【新增】表单组件，包括单行文本框、多行文本框、单选按钮、多选按钮、日期选择、下拉框等组件
 * 【新增】表单验证组件，可以结合 BootButton 对提交的表单形成交互性
