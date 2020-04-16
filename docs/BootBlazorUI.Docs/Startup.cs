@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace BootBlazorUI.Docs
+namespace BootBlazorUI.BlazorServerSide
 {
     public class Startup
     {

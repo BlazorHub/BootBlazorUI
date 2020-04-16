@@ -1,7 +1,8 @@
 ﻿@inherits BootComponentBase
 
 
-    <nav class="d-flex justify-content-center">
+<section class="d-flex flex-row flex-fill @(ComponentUtil.GetFlexAlignCssClass(Alignment,"justify-content-")) align-items-center">
+    <div class="d-flex flex-row align-items-center mr-1">
         <ul class="@BuildCssClassString()" @attributes="AdditionalAttributes" style="@BuildStylesString()">
             @if (CurrentPage <= 1)
             {
@@ -9,7 +10,7 @@
                 {
                     if (ShowFirst)
                     {
-                    <li class="page-item disabled"><span class="page-link">@FirstPageText</span></li>
+                        <li class="page-item disabled"><span class="page-link">@FirstPageText</span></li>
                     }
                     <li class="page-item disabled"><span class="page-link">@PreviousPageText</span></li>
                 }
@@ -18,7 +19,7 @@
             {
                 if (ShowFirst)
                 {
-                <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToFirst">@FirstPageText</a></li>
+                    <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToFirst">@FirstPageText</a></li>
                 }
                 <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToPrevious">@PreviousPageText</a></li>
             }
@@ -45,7 +46,7 @@
             {
                 if (!HideOrDisable)
                 {
-                        <li class="page-item disabled"><span class="page-link">@NextPageText</span></li>
+                    <li class="page-item disabled"><span class="page-link">@NextPageText</span></li>
                     if (ShowLast)
                     {
                         <li class="page-item disabled"><span class="page-link">@LastPageText</span></li>
@@ -54,60 +55,74 @@
             }
             else
             {
-                    <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToNext">@NextPageText</a></li>
+                <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToNext">@NextPageText</a></li>
                 if (ShowLast)
                 {
                     <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToLast">@LastPageText</a></li>
                 }
             }
-
-
-
-            @if (ShowStatusLabel)
-            {
-                <li class="page-item ml-3">
-                    @if (StatusLabelTemplate == null)
-                    {
-                    <small> @(CurrentPage)/@(TotalPages) 页&nbsp;&nbsp;每页 @PageSize 条 &nbsp;&nbsp; 共计 @(TotalCount) 条数据</small>
-                    }
-                    else
-                    {
-                        @StatusLabelTemplate
-                    }
-                </li>
-            }
-
-            @if (ShowNavigateTo)
-            {
-                <li class="page-item ml-3">
-                    @if (NavigateToTemplate == null)
-                    {
-                    <small>
-                        <EditForm Model="model" class="form-inline">
-                            <span>跳转到</span>
-                            <InputText class="form-control form-control-sm text-center w-25" @bind-Value="model.NavigateTo" />
-                            <BootButton Type="BootButton.ButtonType.Submit" Size="Size.SM" OnClick="GoToPage">Go</BootButton>
-                        </EditForm>
-                    </small>
-                    }
-                    else
-                    {
-                        @NavigateToTemplate
-                    }
-                </li>
-            }
         </ul>
-    </nav>
+    </div>
+
+        <div class="d-flex flex-row flex-row align-items-center ml-1">
+            <ul class="list-inline d-flex flex-row align-items-center">
+                <li class="list-inline-item">
+                    @if (ShowPageSizeStakeholder)
+                    {
+                        <select class="form-control form-control-sm d-inline" style="min-width:100px" @onchange="e => SelectPageSize(e.Value.ToString())">
+                            @foreach (var item in PageSizeStakeholders)
+                            {
+                                <option value="@item" selected="@(PageSize == item)">@(item) /页</option>
+                            }
+                        </select>
+                    }
+                    else
+                    {
+                        @PageSize
+                    }
+                </li>
+                @if (ShowTotalCount)
+                {
+                    <li class="list-inline-item">
+                        共 @(TotalCount) 条
+                    </li>
+                }
+
+
+                @if (ShowNavigateTo)
+                {
+                    <EditForm Model="model" class="form-inline">
+                        <li class="list-inline-item">
+                            <div class="input-group input-group-sm">
+                                <BootInputText Placeholder="跳转到" class="text-center" Styles="width:80px" @bind-Value="model.NavigateTo" />
+                                <div class="input-group-append">
+                                    <BootButton Type="BootButton.ButtonType.Submit" OnClick="GoToPage">
+                                        <OnSubmitTemplate>
+                                            <BootSpinner Size="Size.SM" />
+                                        </OnSubmitTemplate>
+                                        <NonSubmitTemplate>
+                                            GO
+                                        </NonSubmitTemplate>
+                                    </BootButton>
+                                </div>
+                            </div>
+                        </li>
+                    </EditForm>
+                }
+            </ul>
+        </div>
+</section>
 @code{
     NavigateToModel model = new NavigateToModel();
-    class NavigateToModel {
+    class NavigateToModel
+    {
         [System.ComponentModel.DataAnnotations.Required]
         public string NavigateTo { get; set; }
     }
 
     Task GoToPage()
     {
-        if(!int.TryParse(model.NavigateTo,out int page))
+        if (!int.TryParse(model.NavigateTo, out int page))
         {
             page = 1;
         }

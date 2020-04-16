@@ -7,7 +7,7 @@ using Markdig.Extensions;
 using Markdig.SyntaxHighlighting;
 using Microsoft.AspNetCore.Components;
 
-namespace BootBlazorUI.Docs
+namespace BootBlazorUI.BlazorServerSide
 {
     public static class Code
     {

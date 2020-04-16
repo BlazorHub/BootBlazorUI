@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using EmbeddedBlazorContent;
 
-namespace BootBlazorUI.Docs
+namespace BootBlazorUI.BlazorServerSide
 {
     public class Program
     {

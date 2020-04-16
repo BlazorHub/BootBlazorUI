@@ -20,5 +20,13 @@
         /// <param name="prefix">前缀。</param>
         internal static string GetSizeCssClass(Size size, string prefix = default)
             => $"{prefix}{size.ToString().ToLower()}";
+
+        /// <summary>
+        /// 获取 flex 对齐方式。
+        /// </summary>
+        /// <param name="flex">Flex布局</param>
+        /// <param name="prefix">前缀。</param>
+        internal static string GetFlexAlignCssClass(Flex flex,string prefix=default)
+            => $"{prefix}{flex.ToString().ToLower()}";
     }
 }
