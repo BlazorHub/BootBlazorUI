@@ -1,20 +1,4 @@
-﻿.bootblazor-datagrid {
-}
-
-    .bootblazor-datagrid table {
-        margin-bottom: 0;
-    }
-
-    .bootblazor-datagrid .grid-header {
-    }
-
-    .bootblazor-datagrid .grid-row {
-    }
-
-    .bootblazor-datagrid .grid-footer {
-    }
-
-.bootblazor-pointer {
+﻿.bootblazor-pointer {
     cursor: pointer
 }
 .spinner-border-lg, .spinner-grow-lg {

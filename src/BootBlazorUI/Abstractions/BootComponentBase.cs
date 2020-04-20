@@ -51,7 +51,7 @@ namespace BootBlazorUI
         /// <summary>
         /// 设置将该控件或元素中出现的属性进行合并。
         /// </summary>
-        [Parameter]
+        [Parameter(CaptureUnmatchedValues =true)]
         public virtual IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; } = new Dictionary<string, object>();
 
         /// <summary>

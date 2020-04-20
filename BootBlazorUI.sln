@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D9E63D6B-FA6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{D806EFA2-9103-4362-B912-4C42C961726D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BootBlazorUI.Mvc", "demo\BootBlazorUI.Mvc\BootBlazorUI.Mvc.csproj", "{6A52D87A-F207-4203-85EE-F529EC0F005A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BootBlazorUI.Mvc", "demo\BootBlazorUI.Mvc\BootBlazorUI.Mvc.csproj", "{6A52D87A-F207-4203-85EE-F529EC0F005A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

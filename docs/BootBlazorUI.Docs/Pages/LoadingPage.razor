@@ -1,0 +1,38 @@
+﻿@*@page "/loading"
+
+<PageTitle Title="加载面板(Loading)">
+
+</PageTitle>
+
+<PresentationPart Title="简单示例">
+    <Description>
+        点击按钮则显示一个带有 Loading 提示的遮罩层，5秒后自动隐藏。
+    </Description>
+    <CodeTemplate>
+
+    </CodeTemplate>
+    <RunTemplate>
+            <BootButton OnClick="e=>Show()">显示遮罩层</BootButton>
+            <BootLoading @ref="loading"/>
+    </RunTemplate>
+</PresentationPart>
+@code{
+    BootLoading loading;
+    System.Threading.Timer timer;
+
+    async Task Show()
+    {
+        await loading.Show();
+        timer = new System.Threading.Timer(async (state)=>
+        {
+            await InvokeAsync(async () =>
+            {
+                if (loading.Display)
+                {
+                    await loading.Hide();
+                    timer.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);
+                }
+            });
+        }, null, dueTime: 5000, period: 1000);
+    }
+}*@

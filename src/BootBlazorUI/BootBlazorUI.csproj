@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <OutputType>Library</OutputType>
     <RazorLangVersion>3.0</RazorLangVersion>
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
@@ -16,7 +16,9 @@
     <PackageTags>Bootstrap Blazor UI Library</PackageTags>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>【新增】分页组件 CurrentPage PageSize 以及 TotalCount 支持双向绑定功能
-【优化】分页组件的布局和参数</PackageReleaseNotes>
+【新增】BootButton 可取消与表单的级联 EditContent 参数，使按钮可选择被表单关联
+【优化】分页组件的布局和参数
+【优化】BootDataGrid 组件，去掉自带的分页组件和参数调整</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

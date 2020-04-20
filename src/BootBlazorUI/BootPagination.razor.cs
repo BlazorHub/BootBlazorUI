@@ -16,53 +16,25 @@ namespace BootBlazorUI
         /// 设置当前页码，必须大于 0。默认是 1。
         /// </summary>
         [Parameter] public int CurrentPage { get; set; } = 1;
-        /// <summary>
-        /// 设置分页的数据量。默认是 10。
-        /// </summary>
-        [Parameter] public int PageSize { get; set; } = 10;
 
         /// <summary>
-        /// 设置每页呈现数据量的候选选项。默认是 10 20 30 50。
+        /// 设置每一页呈现的数据量。默认使用 <see cref="PageSizeStakeholders"/> 的第1个元素。
+        /// <para>
+        /// 在使用双向绑定支持时，建议只获取而不修改，以免造成与 <see cref="PageSizeStakeholders"/> 值不匹配的问题。
+        /// </para>
         /// </summary>
-        [Parameter] public int[] PageSizeStakeholders { get; set; } = new[] { 10, 20, 30, 50 };
+
+        [Parameter] public int PageSize { get; set; }
 
         /// <summary>
-        /// 设置一个布尔值，表示是否显示每页呈现数据量的选项。默认是 <c>true</c>。
+        /// 设置每页呈现数据量的候选选项。默认是 10 20 30。
         /// </summary>
-        [Parameter] public bool ShowPageSizeStakeholder { get; set; } = true;
+        [Parameter] public int[] PageSizeStakeholders { get; set; } = new[] { 10, 20, 30 };
 
         /// <summary>
         /// 设置数据的总记录数。
         /// </summary>
         [Parameter] public int TotalCount { get; set; }
-
-        /// <summary>
-        /// 设置“首页”的文本。
-        /// </summary>
-        [Parameter] public string FirstPageText { get; set; } = "首页";
-
-        /// <summary>
-        /// 设置“上一页”的文本。
-        /// </summary>
-        [Parameter] public string PreviousPageText { get; set; } = "上一页";
-
-        /// <summary>
-        /// 设置“下一页”的文本。
-        /// </summary>
-        [Parameter] public string NextPageText { get; set; } = "下一页";
-
-        /// <summary>
-        /// 设置“最后一页”的文本。
-        /// </summary>
-        [Parameter] public string LastPageText { get; set; } = "末页";
-
-        /// <summary>
-        /// 设置一个布尔值，表示当页数在第1页或最后1页时，使用隐藏或禁用的方式呈现“首页/上一页”或“末页/下一页”。
-        /// <para>
-        /// <c>true</c> 表示隐藏，否则为 <c>false</c>。默认是 <c>false</c>。
-        /// </para>
-        /// </summary>
-        [Parameter] public bool HideOrDisable { get; set; }
 
         /// <summary>
         /// 设置分页的尺寸。
@@ -78,50 +50,24 @@ namespace BootBlazorUI
         /// 设置一个布尔值，表示是否显示“跳转到”的组件。默认是 <c>true</c>。
         /// </summary> 
         [Parameter] public bool ShowNavigateTo { get; set; } = true;
-        /// <summary>
-        /// 设置一个布尔值，表示是否显示分页数。默认是是 <c>true</c>。
-        /// </summary>
-        [Parameter] public bool ShowPageNumber { get; set; } = true;
 
         /// <summary>
-        /// 设置显示页码的个数。默认是 5 个。
+        /// 设置显示页码的个数，范围是5-21的奇数。默认是 7 个。
         /// </summary>
-        [Parameter] public int PageNumberCount { get; set; } = 5;
-
-        /// <summary>
-        /// 设置一个布尔值，表示是否显示“首页”的按钮。
-        /// </summary>
-        [Parameter] public bool ShowFirst { get; set; } = true;
-        /// <summary>
-        /// 设置一个布尔值，表示是否显示“末页”的按钮。
-        /// </summary>
-        [Parameter] public bool ShowLast { get; set; } = true;
-        /// <summary>
-        /// 设置基于 Flex 布局的对齐方式。默认是 <see cref="Flex.Between"/> 两端显示。
-        /// </summary>
-        [Parameter] public Flex Alignment { get; set; } = Flex.Between;
+        [Parameter] public int PageNumberCount { get; set; } = 7;
         #endregion
         #region 事件
 
         /// <summary>
-        /// 设置当当前页码变更后触发的事件。
+        /// 设置当页码发生变更后触发的事件。
         /// </summary>
         [Parameter] public EventCallback<int> CurrentPageChanged { get; set; }
         /// <summary>
-        /// 设置当每页呈现的数据量变更后触发的事件。
+        /// 设置当每页呈现的数据量发生变更后触发的事件。
         /// </summary>
         [Parameter] public EventCallback<int> PageSizeChanged { get; set; }
-
         /// <summary>
-        /// 设置当页码发生变化时的事件。
-        /// </summary>
-        [Parameter] public EventCallback<int> OnPageChanged { get; set; }
-        /// <summary>
-        /// 设置当从下拉菜单选择一项“呈现数据量”时触发的事件。
-        /// </summary>
-        [Parameter] public EventCallback<int> OnPageSizeSelected { get; set; }
-        /// <summary>
-        /// 设置当总记录数发生改变时触发的事件。
+        /// 设置当总记录数发生变更后触发的事件。
         /// </summary>
         [Parameter] public EventCallback<int> TotalCountChanged { get; set; }
         #endregion
@@ -139,10 +85,12 @@ namespace BootBlazorUI
                 throw new ArgumentException("不能小于1", nameof(CurrentPage));
             }
 
-            if(PageSizeStakeholders==null || PageSizeStakeholders.Length == 0)
+            if (PageSizeStakeholders == null || PageSizeStakeholders.Length == 0)
             {
                 throw new ArgumentException("至少要有1个元素", nameof(PageSizeStakeholders));
             }
+
+            PageSize = PageSizeStakeholders[0];
 
             base.OnInitialized();
         }
@@ -212,13 +160,8 @@ namespace BootBlazorUI
         /// <param name="page">要设置的分页页码。</param>
         public async Task ChangeCurrentPage(int page)
         {
-            if (CurrentPage != page)
-            {
-                CurrentPage = page;
-                await CurrentPageChanged.InvokeAsync(CurrentPage);
-                await OnPageChanged.InvokeAsync(CurrentPage);
-                StateHasChanged();
-            }
+            CurrentPage = page;
+            await CurrentPageChanged.InvokeAsync(page);
         }
 
         /// <summary>
@@ -227,12 +170,9 @@ namespace BootBlazorUI
         /// <param name="size">每页呈现的数据。</param>
         public async Task ChangePageSize(int size)
         {
-            if (size != PageSize)
-            {
-                PageSize = size;
-                await PageSizeChanged.InvokeAsync(size);
-                await ChangeCurrentPage(1);
-            }
+            await NavigateToFirst();
+            PageSize = size;
+            await PageSizeChanged.InvokeAsync(size);
         }
 
         /// <summary>
@@ -241,16 +181,12 @@ namespace BootBlazorUI
         /// <param name="selectedItem">选择的项。</param>
         public async Task SelectPageSize(object selectedItem)
         {
-            if(!int.TryParse(selectedItem.ToString(),out int size))
+            if (!int.TryParse(selectedItem.ToString(), out int size))
             {
                 size = PageSizeStakeholders[0];
             }
 
-            if (size != PageSize)
-            {
-                await OnPageSizeSelected.InvokeAsync(size);
-                await ChangePageSize(size);
-            }
+            await ChangePageSize(size);
         }
 
         /// <summary>
@@ -259,11 +195,9 @@ namespace BootBlazorUI
         /// <param name="count">要变更的总记录数。</param>
         public async Task ChangeTotalCount(int count)
         {
-            if (TotalCount != count)
-            {
-                await TotalCountChanged.InvokeAsync(count);
-                TotalCount = count;
-            }
+            await NavigateToFirst();
+            TotalCount = count;
+            await TotalCountChanged.InvokeAsync(count);
         }
 
         /// <summary>
@@ -273,25 +207,31 @@ namespace BootBlazorUI
         {
             var start = 0;
             var end = 0;
-            if (CurrentPage <= PageNumberCount / 2)
+
+            var middle = PageNumberCount / 2;
+            if (CurrentPage <= middle)
             {
                 start = 1;
                 end = PageNumberCount;
             }
-            else if (CurrentPage > PageNumberCount / 2)
+            else if (CurrentPage > middle)
             {
-                start = CurrentPage - PageNumberCount / 2;
-                end = CurrentPage + PageNumberCount / 2;
+                start = CurrentPage - middle;
+                end = CurrentPage + middle;
             }
             if (end > TotalPages)
             {
                 end = TotalPages;
-                start = end - PageNumberCount;
+                if (start + end != PageNumberCount-2)
+                {
+                    start = end - PageNumberCount + 2-1;
+                }
             }
             if (end <= PageNumberCount)
             {
                 start = 1;
             }
+
             return (start, end);
         }
         #endregion
