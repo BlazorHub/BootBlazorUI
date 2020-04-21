@@ -1,15 +1,7 @@
-﻿@*@inherits BootComponentBase
+﻿@inherits BootComponentBase
 
 <div class="@BuildCssClassString()" style="@BuildStylesString()">
-    <div class="d-flex flex-row justify-content-center flex-fill align-items-center">
-        @if (ChildContent == null)
-        {
-            <BootSpinner Size="Size.SM" AdditionalCssClass="mr-1" />
-            @Text
-        }
-        else
-        {
-            @ChildContent
-        }
+    <div class="d-flex flex-row justify-content-center flex-fill @ComponentUtil.GetFlexAlignCssClass(HorizontalAlign, "align-items-") @(ComponentUtil.GetReverseColorCssClass(Color, "text-"))">
+        @ChildContent
     </div>
-</div>*@
+</div>

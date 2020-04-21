@@ -9,7 +9,7 @@ namespace BootBlazorUI
     /// <summary>
     /// 表示 Boot 组件的基类。这是一个抽象类。
     /// </summary>
-    public abstract class BootComponentBase : ComponentBase, ICssBuilder, IStyleBuilder
+    public abstract class BootComponentBase : ComponentBase
     {
         /// <summary>
         /// 初始化 <see cref="BootComponentBase"/> 类的新实例。

@@ -53,7 +53,6 @@ namespace BootBlazorUI.DataGrid
                     AddRowCss(index, bgColorCss);
                     AddRowCss(index, textColorCss);
                 }
-
             }
         }
 

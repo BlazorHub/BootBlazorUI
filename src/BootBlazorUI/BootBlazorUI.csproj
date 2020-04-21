@@ -17,6 +17,7 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>【新增】分页组件 CurrentPage PageSize 以及 TotalCount 支持双向绑定功能
 【新增】BootButton 可取消与表单的级联 EditContent 参数，使按钮可选择被表单关联
+【新增】BootLoading 遮罩层加载面板
 【优化】分页组件的布局和参数
 【优化】BootDataGrid 组件，去掉自带的分页组件和参数调整</PackageReleaseNotes>
   </PropertyGroup>
@@ -55,7 +56,6 @@
     <EmbeddedResource Remove="wwwroot\bootstrap.min.css" />
     <EmbeddedResource Remove="wwwroot\bootstrap.min.css.map" />
     <EmbeddedResource Remove="wwwroot\components.css" />
-    <EmbeddedResource Remove="wwwroot\components.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="compilerconfig.json">

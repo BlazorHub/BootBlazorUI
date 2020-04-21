@@ -103,7 +103,7 @@ namespace BootBlazorUI.DataGrid
         public bool IsCompleted => !(DataSource is null);
 
 
-        protected override async Task OnInitializedAsync()
+        protected override void OnInitialized()
         {
             if (DataSource == null)
             {

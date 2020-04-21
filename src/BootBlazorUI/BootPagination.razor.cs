@@ -7,10 +7,18 @@ using Microsoft.AspNetCore.Components;
 namespace BootBlazorUI
 {
     /// <summary>
-    /// 表示分页的组件。
+    /// 呈现 nav 元素，包含带有分页的组件。
     /// </summary>
     partial class BootPagination
     {
+        /// <summary>
+        /// 初始化 <see cref="BootPagination"/> 类的新实例。
+        /// </summary>
+        public BootPagination()
+        {
+
+        }
+
         #region 参数
         /// <summary>
         /// 设置当前页码，必须大于 0。默认是 1。
