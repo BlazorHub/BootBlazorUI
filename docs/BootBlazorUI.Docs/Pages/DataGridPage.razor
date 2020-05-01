@@ -24,7 +24,7 @@
 
 <PresentationPart Title="简单示例">
     <Description>
-        设置 <code>DataSourceProvider</code> 获取相关数据，数据源要求实现了 <code>IEnumerable</code> 接口。
+        设置 <code>DataSourceProvider</code> 参数并提供获取数据源的方法，这是一个委托，要求返回实现了 <code>IEnumerable</code> 接口的结果。
         <p>示例中采用的数据来自以下代码：</p>
         @Code.GetCode(@"
 ```cs
