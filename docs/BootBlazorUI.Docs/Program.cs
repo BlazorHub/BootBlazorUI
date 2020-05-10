@@ -19,7 +19,7 @@ namespace BootBlazorUI.Docs
             CreateHostBuilder(args).Build().Run();
         }
 
-        public static string GetVersion(bool full = false,int? preview=2)
+        public static string GetVersion(bool full = false,int? preview=3)
         {
             var version = typeof(BootComponentBase).Assembly.GetName().Version;
             if (version == null)
