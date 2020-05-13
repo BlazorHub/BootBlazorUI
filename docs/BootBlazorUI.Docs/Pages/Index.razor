@@ -44,8 +44,12 @@ PM> Install-Package BootBlazorUI --Version {Program.GetVersion()}
 ")
 </PageTitle>
 <PageTitle Title="更新日志">
-    <small>当前版本：<BootBadge>v@(Program.GetVersion())</BootBadge></small>
+    <h4>当前版本：<BootBadge>v@(Program.GetVersion())</BootBadge></h4>
     @Code.GetCode(@"
+### 1.0-preview3
+主要优化了 BootTabControl 的实现方式
+* 【新增】UseCode 和 OnSwitch 事件用于通过代码来切换选项卡
+* 【优化】BootTabControl 的实现方式
 ### 1.0-preview2
 > 主要是对 BootDataGrid 组件进行优化，使其能由外部灵活控制
 
