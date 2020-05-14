@@ -1,34 +1,34 @@
-﻿@page "/alerts"
+﻿@page "/alert"
 
-    <PageTitle Title="警告消息框 Alert">
+    <PageTitle Title="警告消息框(BootAlert)">
         使用少量可用的灵活警报消息为典型的用户操作提供上下文反馈消息。
     </PageTitle>
 
 <PresentationPart Title="简单示例">
     <Description>
-        @Code.GetCode("设置 `Text` 来填充警告消息框的内容，并可以设置 `Color` 来以根据需要展现不同的主题。若不设置 `Color` 时，警告框的主题颜色为 `ControlColor.Primary` 样式。")
+        @Code.GetCode("设置 `Text` 来填充警告消息框的内容，并可以设置 `Color` 来以根据需要展现不同的主题。若不设置 `Color` 时，警告框的主题颜色为 `Color.Primary` 样式。")
     </Description>
     <RunTemplate>
-        <Alert Color="ControlColor.Primary">这是 Primary 警告消息框</Alert>
-        <Alert Color="ControlColor.Secondary">这是 Secondary 警告消息框</Alert>
-        <Alert Color="ControlColor.Info">这是 Info 警告消息框</Alert>
-        <Alert Color="ControlColor.Warning">这是 Warning 警告消息框</Alert>
-        <Alert Color="ControlColor.Success">这是 Success 警告消息框</Alert>
-        <Alert Color="ControlColor.Danger">这是 Danger 警告消息框</Alert>
-        <Alert Color="ControlColor.Light">这是 Light 警告消息框</Alert>
-        <Alert Color="ControlColor.Dark">这是 Dark 警告消息框</Alert>
+        <BootAlert Color="Color.Primary">这是 Primary 警告消息框</BootAlert>
+        <BootAlert Color="Color.Secondary">这是 Secondary 警告消息框</BootAlert>
+        <BootAlert Color="Color.Info">这是 Info 警告消息框</BootAlert>
+        <BootAlert Color="Color.Warning">这是 Warning 警告消息框</BootAlert>
+        <BootAlert Color="Color.Success">这是 Success 警告消息框</BootAlert>
+        <BootAlert Color="Color.Danger">这是 Danger 警告消息框</BootAlert>
+        <BootAlert Color="Color.Light">这是 Light 警告消息框</BootAlert>
+        <BootAlert Color="Color.Dark">这是 Dark 警告消息框</BootAlert>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Alert Color=""ControlColor.Primary"">这是 Primary 警告消息框</Alert>
-<Alert Color=""ControlColor.Secondary"">这是 Secondary 警告消息框</Alert>
-<Alert Color=""ControlColor.Info"">这是 Info 警告消息框</Alert>
-<Alert Color=""ControlColor.Warning"">这是 Warning 警告消息框</Alert>
-<Alert Color=""ControlColor.Success"">这是 Success 警告消息框</Alert>
-<Alert Color=""ControlColor.Danger"">这是 Danger 警告消息框</Alert>
-<Alert Color=""ControlColor.Light"">这是 Light 警告消息框</Alert>
-<Alert Color=""ControlColor.Dark"">这是 Dark 警告消息框</Alert>
+<BootAlert Color=""Color.Primary"">这是 Primary 警告消息框</BootAlert>
+<BootAlert Color=""Color.Secondary"">这是 Secondary 警告消息框</BootAlert>
+<BootAlert Color=""Color.Info"">这是 Info 警告消息框</BootAlert>
+<BootAlert Color=""Color.Warning"">这是 Warning 警告消息框</BootAlert>
+<BootAlert Color=""Color.Success"">这是 Success 警告消息框</BootAlert>
+<BootAlert Color=""Color.Danger"">这是 Danger 警告消息框</BootAlert>
+<BootAlert Color=""Color.Light"">这是 Light 警告消息框</BootAlert>
+<BootAlert Color=""Color.Dark"">这是 Dark 警告消息框</BootAlert>
 ```
 ")
     </CodeTemplate>
@@ -36,10 +36,10 @@
 
 <PresentationPart Title="自定义文本">
     <Description>
-        可以在 <code>Alert</code> 标记之间定义任意内容。
+        可以在 <code>BootAlert</code> 标记之间定义任意内容。
     </Description>
     <RunTemplate>
-        <Alert Color="ControlColor.Success">
+        <BootAlert Color="Color.Success">
             <h4>干得漂亮！</h4>
             <hr />
             <p>
@@ -47,12 +47,12 @@
             </p>
             <hr />
             当你需要的时候，一定要使用边距工具来保持整洁。
-        </Alert>
+        </BootAlert>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Alert Color=""ControlColor.Success"">
+<BootAlert Color=""Color.Success"">
 <h4>干得漂亮！</h4>
 <hr />
 <p>
@@ -60,27 +60,27 @@
 </p>
 <hr />
 当你需要的时候，一定要使用边距工具来保持整洁。
-</Alert>
+</BootAlert>
 ```
 ")
     </CodeTemplate>
 </PresentationPart>
 <PresentationPart Title="关闭按钮">
     <Description>
-        @Code.GetCode("设置 `Closable` 为 `true` 时，则会在右侧显示一个“X”，点击后可关闭消息框。关闭后，只能通过代码才能将其再次显示。")
+        @Code.GetCode("设置 `Dismisable` 为 `true` 时，则会在右侧显示一个“X”，点击后可关闭消息框。关闭后，只能通过代码才能将其再次显示。")
     </Description>
     <RunTemplate>
-        <Alert Color="ControlColor.Danger" Closable="true">
+        <BootAlert Color="Color.Danger" Dismisable="true">
             对不起，您填写的信息有误"
-        </Alert>
+        </BootAlert>
     </RunTemplate>
     <CodeTemplate>
 
         @Code.GetCode(@"
 ```html
-<Alert Color=""ControlColor.Danger"" Closable=""true"">
+<BootAlert Color=""Color.Danger"" Dismisable=""true"">
 对不起，您填写的信息有误
-</Alert>
+</BootAlert>
 ```
 ")
     </CodeTemplate>
@@ -88,23 +88,23 @@
 
 <PresentationPart Title="通过代码控制">
     <Description>
-        @Code.GetCode("先在 `code` 代码块中声明一个 `Alert` 对象，将该对象通过 `@ref` 绑定到 `Alert` 元素中，调用 `Show()` 显示，调用 `Hide()` 隐藏。")
+        @Code.GetCode("先在 `code` 代码块中声明一个 `BootAlert` 对象，将该对象通过 `@ref` 绑定到 `BootAlert` 元素中，调用 `Show()` 显示，调用 `Hide()` 隐藏。")
     </Description>
     <RunTemplate>
-        <Button Color="ControlColor.Success" OnClick="@(()=>alertShowHide.Show())">显示</Button>
-        <Button Color="ControlColor.Danger" OnClick="@(()=>alertShowHide.Hide())">隐藏</Button>
-        <Alert CssClass="mt-3" Color="ControlColor.Info" @ref="alertShowHide">我是一个可爱的对话框</Alert>
+        <BootButton Color="Color.Success" OnClick="@(()=>alertShowHide.Show())">显示</BootButton>
+        <BootButton Color="Color.Danger" OnClick="@(()=>alertShowHide.Hide())">隐藏</BootButton>
+        <BootAlert AdditionalCssClass="mt-3" Color="Color.Info" @ref="alertShowHide">我是一个可爱的对话框</BootAlert>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Button Color=""ControlColor.Success"" OnClick=""@(() => alertShowHide.Show())"">显示</Button>
-<Button Color=""ControlColor.Danger"" OnClick=""@(()=>alertShowHide.Hide())"">隐藏</Button>
-<Alert CssClass=""mt-3"" Color=""ControlColor.Info"" @ref=""alertShowHide"">我是一个可爱的对话框</Alert>
+<BootButton Color=""Color.Success"" OnClick=""@(() => alertShowHide.Show())"">显示</BootButton>
+<BootButton Color=""Color.Danger"" OnClick=""@(()=>alertShowHide.Hide())"">隐藏</BootButton>
+<BootAlert AdditionalCssClass=""mt-3"" Color=""Color.Info"" @ref=""alertShowHide"">我是一个可爱的对话框</BootAlert>
 ```
 ```cs
 @code{
-Alert alertShowHide = new Alert();
+BootAlert alertShowHide = new BootAlert();
 }
 ```
         ")
@@ -112,16 +112,16 @@ Alert alertShowHide = new Alert();
     </CodeTemplate>
 </PresentationPart>
 @code{
-    Alert alertShowHide = new Alert();
+    BootAlert alertShowHide = new BootAlert();
 }
 <ArgumentDescriptionTable Title="属性">
     <tr>
         <td>Color</td>
-        <td>ControlColor</td>
+        <td>Color</td>
         <td>设置消息框的主题颜色。默认是 <code>Primary</code>。</td>
     </tr>
     <tr>
-        <td>Closable</td>
+        <td>Dismisable</td>
         <td>Boolean</td>
         <td>
             设置一个布尔值，表示是否在右侧显示一个关闭的“X”按钮，点击后则会隐藏该警告框。

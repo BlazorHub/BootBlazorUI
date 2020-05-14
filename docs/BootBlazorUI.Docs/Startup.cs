@@ -1,11 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using EmbeddedBlazorContent;
-using BootBlazorUI;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +22,9 @@ namespace BootBlazorUI.Docs
         {
             services.AddRazorPages();
             services.AddServerSideBlazor(options => options.DetailedErrors = true);
+
+
+            services.AddDialog();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +40,7 @@ namespace BootBlazorUI.Docs
             }
 
             app.UseStaticFiles();
-            app.UseEmbeddedBlazorContent(typeof(Modal).Assembly);
+            app.UseEmbeddedBlazorContent(typeof(BootModal).Assembly);
 
             app.UseRouting();
 

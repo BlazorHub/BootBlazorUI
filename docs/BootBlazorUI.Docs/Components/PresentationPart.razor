@@ -6,14 +6,14 @@
         @Description
     </blockquote>
     }
-    <TabControl>
-        <TabPage Title="运行效果">
+    <BootTabControl>
+        <BootTabControlPage Title="运行效果">
             @RunTemplate
-        </TabPage>
-        <TabPage Title="示例代码">
+        </BootTabControlPage>
+        <BootTabControlPage Title="示例代码" MaxHeight="400">
             @CodeTemplate
-        </TabPage>
-    </TabControl>
+        </BootTabControlPage>
+    </BootTabControl>
 </section>
 
 @code{
@@ -23,6 +23,6 @@
     public RenderFragment Description { get; set; }
     [Parameter]
     public RenderFragment RunTemplate { get; set; }
-     [Parameter]
+    [Parameter]
     public RenderFragment CodeTemplate { get; set; }
 }

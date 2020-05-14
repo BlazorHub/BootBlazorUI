@@ -1,6 +1,6 @@
 ﻿@page "/buttons"
 
-<PageTitle Title="Button 按钮">
+<PageTitle Title="按钮(BootButton)">
     按钮是一种常用的控件。
 </PageTitle>
 
@@ -10,26 +10,26 @@
         可设置 <code>Color</code> 属性，默认为 <code>Primary</code>。
     </Description>
     <RunTemplate>
-        <Button Color="ControlColor.Primary">Primary</Button>
-        <Button Color="ControlColor.Secondary">Secondary</Button>
-        <Button Color="ControlColor.Info">Info</Button>
-        <Button Color="ControlColor.Warning">Warning</Button>
-        <Button Color="ControlColor.Success">Success</Button>
-        <Button Color="ControlColor.Danger">Danger</Button>
-        <Button Color="ControlColor.Light">Light</Button>
-        <Button Color="ControlColor.Dark">Dark</Button>
+        <BootButton Color="Color.Primary">Primary</BootButton>
+        <BootButton Color="Color.Secondary">Secondary</BootButton>
+        <BootButton Color="Color.Info">Info</BootButton>
+        <BootButton Color="Color.Warning">Warning</BootButton>
+        <BootButton Color="Color.Success">Success</BootButton>
+        <BootButton Color="Color.Danger">Danger</BootButton>
+        <BootButton Color="Color.Light">Light</BootButton>
+        <BootButton Color="Color.Dark">Dark</BootButton>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Button Color=""ControlColor.Primary"">Primary</Button>
-<Button Color=""ControlColor.Secondary"">Secondary</Button>
-<Button Color=""ControlColor.Info"">Info</Button>
-<Button Color=""ControlColor.Warning"">Warning</Button>
-<Button Color=""ControlColor.Success"">Success</Button>
-<Button Color=""ControlColor.Danger"">Danger</Button>
-<Button Color=""ControlColor.Light"">Light</Button>
-<Button Color=""ControlColor.Dark"">Dark</Button>
+<BootButton Color=""Color.Primary"">Primary</BootButton>
+<BootButton Color=""Color.Secondary"">Secondary</BootButton>
+<BootButton Color=""Color.Info"">Info</BootButton>
+<BootButton Color=""Color.Warning"">Warning</BootButton>
+<BootButton Color=""Color.Success"">Success</BootButton>
+<BootButton Color=""Color.Danger"">Danger</BootButton>
+<BootButton Color=""Color.Light"">Light</BootButton>
+<BootButton Color=""Color.Dark"">Dark</BootButton>
 ```
 ")
     </CodeTemplate>
@@ -40,26 +40,26 @@
         设置 <code>Outline</code> 属性为 <code>true</code> 表示启用边框按钮风格。
     </Description>
     <RunTemplate>
-        <Button Color="ControlColor.Primary" Outline="true">Primary</Button>
-        <Button Color="ControlColor.Secondary" Outline="true">Secondary</Button>
-        <Button Color="ControlColor.Info" Outline="true">Info</Button>
-        <Button Color="ControlColor.Warning" Outline="true">Warning</Button>
-        <Button Color="ControlColor.Success" Outline="true">Success</Button>
-        <Button Color="ControlColor.Danger" Outline="true">Danger</Button>
-        <Button Color="ControlColor.Light" Outline="true">Light</Button>
-        <Button Color="ControlColor.Dark" Outline="true">Dark</Button>
+        <BootButton Color="Color.Primary" Outline="true">Primary</BootButton>
+        <BootButton Color="Color.Secondary" Outline="true">Secondary</BootButton>
+        <BootButton Color="Color.Info" Outline="true">Info</BootButton>
+        <BootButton Color="Color.Warning" Outline="true">Warning</BootButton>
+        <BootButton Color="Color.Success" Outline="true">Success</BootButton>
+        <BootButton Color="Color.Danger" Outline="true">Danger</BootButton>
+        <BootButton Color="Color.Light" Outline="true">Light</BootButton>
+        <BootButton Color="Color.Dark" Outline="true">Dark</BootButton>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Button Color=""ControlColor.Primary"" Outline=""true"">Primary</Button>
-<Button Color=""ControlColor.Primary"" Outline=""true"">Secondary</Button>
-<Button Color=""ControlColor.Info"" Outline=""true"">Info</Button>
-<Button Color=""ControlColor.Warning"" Outline=""true"">Warning</Button>
-<Button Color=""ControlColor.Success"" Outline=""true"">Success</Button>
-<Button Color=""ControlColor.Danger"" Outline=""true"">Danger</Button>
-<Button Color=""ControlColor.Light"" Outline=""true"">Light</Button>
-<Button Color=""ControlColor.Dark"" Outline=""true"">Dark</Button>
+<BootButton Color=""Color.Primary"" Outline=""true"">Primary</BootButton>
+<BootButton Color=""Color.Primary"" Outline=""true"">Secondary</BootButton>
+<BootButton Color=""Color.Info"" Outline=""true"">Info</BootButton>
+<BootButton Color=""Color.Warning"" Outline=""true"">Warning</BootButton>
+<BootButton Color=""Color.Success"" Outline=""true"">Success</BootButton>
+<BootButton Color=""Color.Danger"" Outline=""true"">Danger</BootButton>
+<BootButton Color=""Color.Light"" Outline=""true"">Light</BootButton>
+<BootButton Color=""Color.Dark"" Outline=""true"">Dark</BootButton>
 ```
 ")
     </CodeTemplate>
@@ -70,16 +70,16 @@
         设置 <code>Size</code> 改变按钮尺寸，分为 SM、LG 和 Default。
     </Description>
     <RunTemplate>
-        <Button Size="ControlSize.LG">大尺寸</Button>
-        <Button Size="ControlSize.Default">默认尺寸</Button>
-        <Button Size="ControlSize.SM">小尺寸</Button>
+        <BootButton Size="Size.LG">大尺寸</BootButton>
+        <BootButton Size="Size.Default">默认尺寸</BootButton>
+        <BootButton Size="Size.SM">小尺寸</BootButton>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Button Size=""ControlSize.LG"">大尺寸</Button>
-<Button Size=""ControlSize.Default"">默认尺寸</Button>
-<Button Size=""ControlSize.SM"">小尺寸</Button>
+<BootButton Size=""Size.LG"">大尺寸</BootButton>
+<BootButton Size=""Size.Default"">默认尺寸</BootButton>
+<BootButton Size=""Size.SM"">小尺寸</BootButton>
 ```
 ")
     </CodeTemplate>
@@ -95,16 +95,16 @@
         </p>
     </Description>
     <RunTemplate>
-        <Button Disabled="true">禁用</Button>
-        <Button Actived="true">活动</Button>
-        <Button>正常</Button>
+        <BootButton Disabled="true">禁用</BootButton>
+        <BootButton Actived="true">活动</BootButton>
+        <BootButton>正常</BootButton>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Button Disabled=""true"">禁用</Button>
-<Button Actived=""true"">活动</Button>
-<Button>正常</Button>
+<BootButton Disabled=""true"">禁用</BootButton>
+<BootButton Actived=""true"">活动</BootButton>
+<BootButton>正常</BootButton>
 ```
         ")
     </CodeTemplate>
@@ -115,32 +115,154 @@
         可设置 <code>Blocked="true"</code> 属性为块状，并占用整行。
     </Description>
     <RunTemplate>
-        <Button Blocked="true">块状</Button>
+        <BootButton Blocked="true">块状</BootButton>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Button Blocked=""true"">块状</Button>
+<BootButton Blocked=""true"">块状</BootButton>
 ```
         ")
     </CodeTemplate>
 </PresentationPart>
+<PresentationPart Title="点击事件">
+    <Description>
+        设置 <code>OnClick</code> 事件来触发点击按钮要处理的内容。
+    </Description>
+    <RunTemplate>
+        <BootButton OnClick="Click">点我一下试试看</BootButton>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootButton OnClick=""Click"">点我一下试试看</BootButton>
+```
+```cs
+@code{
+    async Task Click()
+    {
+      await _js.InvokeVoidAsync(""alert"", $""点击了按钮"");
+    }
+}
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@code{
+    async Task Click()
+    {
+      await _js.InvokeVoidAsync("alert", $"点击了按钮");
+    }
+}
+
+<PresentationPart  Title="表单提交">
+    <Description>
+        把按钮放在 <code>BootEditForm</code> 中，并提供 <code>OnValidSubmit</code> 事件，表单验证合法后会提交事件。当表单在提交时会将按钮呈现为 <code>OnSubmitTemplate</code> 或 <code>OnSubmitText</code> 的内容。
+    </Description>
+    <RunTemplate>
+        <BootEditForm Model="this">
+            <DataAnnotationsValidator />
+            <div class="form-group">
+                <InputText @bind-Value="Email" class="form-control" placeholder="默认设置" />
+                <ValidationMessage For="@(()=>Email)" />
+            </div>
+            <div class="form-group">
+                <BootButton ValidSubmitDelay="1000" OnValidSubmit="Submit">
+                    提交
+                </BootButton>
+            </div>
+        </BootEditForm>
+        <br />
+        <BootEditForm Model="this">
+            <DataAnnotationsValidator />
+            <div class="form-group">
+                <InputText @bind-Value="Email" class="form-control" placeholder="自定义提交中" />
+                <ValidationMessage For="@(()=>Email)" />
+            </div>
+            <div class="form-group">
+                <BootButton ValidSubmitDelay="5000" OnValidSubmit="Submit">
+                    <NonSubmitTemplate>
+                        保存功能
+                    </NonSubmitTemplate>
+                    <OnSubmitTemplate>
+                        <i class="fa fa-spinner fa-spin"></i> 正在提交...
+                    </OnSubmitTemplate>
+                </BootButton>
+            </div>
+        </BootEditForm>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootEditForm Model=""this"">
+    <DataAnnotationsValidator />
+    <div class=""form-group"">
+        <InputText @bind-Value=""Email"" class=""form-control"" placeholder=""默认设置"" />
+        <ValidationMessage For=""@(()=>Email)"" />
+    </div>
+    <BootButton ValidSubmitDelay=""1000"" OnValidSubmit=""Submit"">
+        提交
+    </BootButton>
+</BootEditForm>
+
+<BootEditForm Model=""this"">
+    <DataAnnotationsValidator />
+    <div class=""form-group"">
+        <InputText @bind-Value=""Email"" class=""form-control"" placeholder=""自定义提交中"" />
+        <ValidationMessage For=""@(()=>Email)"" />
+    </div>
+    <BootButton ValidSubmitDelay=""5000"" OnValidSubmit=""Submit"">
+        <NonSubmitTemplate>
+            保存功能
+        </NonSubmitTemplate>
+        <OnSubmitTemplate>
+            <i class=""fa fa-spinner fa-spin""></i> 正在提交...
+        </OnSubmitTemplate>
+    </BootButton>
+</BootEditForm>
+```
+```cs
+@code{
+
+    [System.ComponentModel.DataAnnotations.Required]
+    public string Email { get; set; }
+
+    async Task Submit()
+    {
+        await _js.InvokeVoidAsync(""alert"", ""表单提交啦"");
+    }
+}
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@inject IJSRuntime _js
+@code{
+
+    [System.ComponentModel.DataAnnotations.Required]
+    public string Email { get; set; }
+
+    async Task Submit()
+    {
+        await _js.InvokeVoidAsync("alert", "表单提交啦");
+    }
+}
 
 <ArgumentDescriptionTable Title="属性">
     <tr>
         <td>Color</td>
-        <td>ConctrolColor</td>
+        <td>Color</td>
         <td>设置按钮的主题配色。默认是 <code>Primary</code></td>
     </tr>
     <tr>
         <td>Size</td>
-        <td>ConctrolSize</td>
+        <td>Size</td>
         <td>设置按钮的尺寸。仅 <code>SM</code> <code>LG</code> 有效，不设置为 <code>Default</code></td>
     </tr>
     <tr>
         <td>Type</td>
         <td>ButtonType</td>
-        <td>设置按钮的类型。默认是 <code>Button</code></td>
+        <td>设置按钮的类型。默认是 <code>BootButton</code></td>
     </tr>
     <tr>
         <td>Outline</td>
@@ -156,6 +278,31 @@
         <td>Disabled</td>
         <td>Boolean</td>
         <td>设置一个布尔值，表示按钮呈现为禁用状态的样式。</td>
+    </tr>
+    <tr>
+        <td>IsSubmitting</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示当前按钮是否处于表单提交中的状态。</td>
+    </tr>
+    <tr>
+        <td>NonSubmitTemplate</td>
+        <td>RenderFragment</td>
+        <td>设置表单未提交时的自定义模板。当设置 <code>OnSubmitTemplate</code> 时，才设置该属性。</td>
+    </tr>
+    <tr>
+        <td>OnSubmitTemplate</td>
+        <td>RenderFragment</td>
+        <td>设置表单提交时的自定义模板。</td>
+    </tr>
+    <tr>
+        <td>OnSubmitText</td>
+        <td>String</td>
+        <td>设置表单提交时的文本。优先呈现 <code>OnSubmitTemplate</code> 的内容。</td>
+    </tr>
+    <tr>
+        <td>ValidSubmitDelay</td>
+        <td>Int32</td>
+        <td>设置当合法表单提交时的延迟时间，单位是毫秒。</td>
     </tr>
 </ArgumentDescriptionTable>
 <ArgumentDescriptionTable Title="方法">
@@ -176,6 +323,17 @@
         <td>EventCallBack&lt;MouseEventArgs></td>
         <td>当点击按钮时触发的事件。</td>
     </tr>
+    <tr>
+        <td>OnValidSubmit</td>
+        <td>EventCallBack&lt;EditContext></td>
+        <td>设置当表单验证合法时触发的事件。</td>
+    </tr>
+    <tr>
+        <td>OnInvalidSubmit</td>
+        <td>EventCallBack&lt;EditContext></td>
+        <td>设置当表单验证不合法时触发的事件。</td>
+    </tr>
+
     <tr>
         <td>OnDisabled</td>
         <td>EventCallBack&lt;bool></td>

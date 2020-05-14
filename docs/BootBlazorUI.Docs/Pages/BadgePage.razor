@@ -1,31 +1,31 @@
 ﻿@page "/badges"
 
-<PageTitle Title="徽章 Badges">
+<PageTitle Title="徽章(BootBadge)">
     徽章是一种小型标签的形式展现，可以醒目并优雅地呈现一些状态或醒目的文字。
 </PageTitle>
 
 <PresentationPart Title="简单示例">
     <RunTemplate>
-        <Badge Color="ControlColor.Primary">Primary</Badge>
-        <Badge Color="ControlColor.Secondary">Secondary</Badge>
-        <Badge Color="ControlColor.Info">Info</Badge>
-        <Badge Color="ControlColor.Success">Success</Badge>
-        <Badge Color="ControlColor.Warning">Warning</Badge>
-        <Badge Color="ControlColor.Danger">Danger</Badge>
-        <Badge Color="ControlColor.Light">Light</Badge>
-        <Badge Color="ControlColor.Dark">Dark</Badge>
+        <BootBadge Color="Color.Primary">Primary</BootBadge>
+        <BootBadge Color="Color.Secondary">Secondary</BootBadge>
+        <BootBadge Color="Color.Info">Info</BootBadge>
+        <BootBadge Color="Color.Success">Success</BootBadge>
+        <BootBadge Color="Color.Warning">Warning</BootBadge>
+        <BootBadge Color="Color.Danger">Danger</BootBadge>
+        <BootBadge Color="Color.Light">Light</BootBadge>
+        <BootBadge Color="Color.Dark">Dark</BootBadge>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Badge Color=""ControlColor.Primary"">Primary</Badge>
-<Badge Color=""ControlColor.Secondary"">Secondary</Badge>
-<Badge Color=""ControlColor.Info"">Info</Badge>
-<Badge Color=""ControlColor.Success"">Success</Badge>
-<Badge Color=""ControlColor.Warning"">Warning</Badge>
-<Badge Color=""ControlColor.Danger"">Danger</Badge>
-<Badge Color=""ControlColor.Light"">Light</Badge>
-<Badge Color=""ControlColor.Dark"">Dark</Badge>
+<BootBadge Color=""Color.Primary"">Primary</BootBadge>
+<BootBadge Color=""Color.Secondary"">Secondary</BootBadge>
+<BootBadge Color=""Color.Info"">Info</BootBadge>
+<BootBadge Color=""Color.Success"">Success</BootBadge>
+<BootBadge Color=""Color.Warning"">Warning</BootBadge>
+<BootBadge Color=""Color.Danger"">Danger</BootBadge>
+<BootBadge Color=""Color.Light"">Light</BootBadge>
+<BootBadge Color=""Color.Dark"">Dark</BootBadge>
 ```
 ")
     </CodeTemplate>
@@ -34,17 +34,17 @@
 
 <PresentationPart Title="组合使用">
     <RunTemplate>
-        <Button>
+        <BootButton>
             消息盒子
-            <Badge Color="ControlColor.Light">20</Badge>
-        </Button>
+            <BootBadge Color="Color.Light">20</BootBadge>
+        </BootButton>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Button>
-    <Badge Color=""ControlColor.Light"">20</Badge>
-</Button>
+<BootButton>
+    <BootBadge Color=""Color.Light"">20</BootBadge>
+</BootButton>
 ```
 ")
     </CodeTemplate>
@@ -53,29 +53,29 @@
 
 <PresentationPart Title="药丸样式">
     <Description>
-        设置 <code>Pills="true"</code> 属性以呈现为药丸的样式。
+        设置 <code>Pill="true"</code> 属性以呈现为药丸的样式。
     </Description>
     <RunTemplate>
-        <Badge Color="ControlColor.Primary" Pills="true">Primary</Badge>
-        <Badge Color="ControlColor.Secondary" Pills="true">Secondary</Badge>
-        <Badge Color="ControlColor.Info" Pills="true">Info</Badge>
-        <Badge Color="ControlColor.Success" Pills="true">Success</Badge>
-        <Badge Color="ControlColor.Warning" Pills="true">Warning</Badge>
-        <Badge Color="ControlColor.Danger" Pills="true">Danger</Badge>
-        <Badge Color="ControlColor.Light" Pills="true">Light</Badge>
-        <Badge Color="ControlColor.Dark" Pills="true">Dark</Badge>
+        <BootBadge Color="Color.Primary" Pill="true">Primary</BootBadge>
+        <BootBadge Color="Color.Secondary" Pill="true">Secondary</BootBadge>
+        <BootBadge Color="Color.Info" Pill="true">Info</BootBadge>
+        <BootBadge Color="Color.Success" Pill="true">Success</BootBadge>
+        <BootBadge Color="Color.Warning" Pill="true">Warning</BootBadge>
+        <BootBadge Color="Color.Danger" Pill="true">Danger</BootBadge>
+        <BootBadge Color="Color.Light" Pill="true">Light</BootBadge>
+        <BootBadge Color="Color.Dark" Pill="true">Dark</BootBadge>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Badge Color=""ControlColor.Primary"" Pills=""true"">Primary</Badge>
-<Badge Color=""ControlColor.Secondary"" Pills=""true"">Secondary</Badge>
-<Badge Color=""ControlColor.Info"" Pills=""true"">Info</Badge>
-<Badge Color=""ControlColor.Success"" Pills=""true"">Success</Badge>
-<Badge Color=""ControlColor.Warning"" Pills=""true"">Warning</Badge>
-<Badge Color=""ControlColor.Danger"" Pills=""true"">Danger</Badge>
-<Badge Color=""ControlColor.Light"" Pills=""true"">Light</Badge>
-<Badge Color=""ControlColor.Dark"" Pills=""true"">Dark</Badge>
+<BootBadge Color=""Color.Primary"" Pill=""true"">Primary</BootBadge>
+<BootBadge Color=""Color.Secondary"" Pill=""true"">Secondary</BootBadge>
+<BootBadge Color=""Color.Info"" Pill=""true"">Info</BootBadge>
+<BootBadge Color=""Color.Success"" Pill=""true"">Success</BootBadge>
+<BootBadge Color=""Color.Warning"" Pill=""true"">Warning</BootBadge>
+<BootBadge Color=""Color.Danger"" Pill=""true"">Danger</BootBadge>
+<BootBadge Color=""Color.Light"" Pill=""true"">Light</BootBadge>
+<BootBadge Color=""Color.Dark"" Pill=""true"">Dark</BootBadge>
 ```
 ")
     </CodeTemplate>
@@ -83,13 +83,13 @@
 
 <ArgumentDescriptionTable Title="属性">
     <tr>
-        <td>Pills</td>
+        <td>Pill</td>
         <td>Boolean</td>
         <td>设置一个布尔值，表示是否使用药丸样式。</td>
     </tr>
     <tr>
         <td>Color</td>
-        <td>ControlColor</td>
+        <td>Color</td>
         <td>设置徽章的颜色主题。默认是 <code>Primary</code>。</td>
     </tr>
 </ArgumentDescriptionTable>

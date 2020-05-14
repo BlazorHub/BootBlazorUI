@@ -1,0 +1,89 @@
+﻿@inherits BootComponentBase
+
+<div class="table-responsive bootblazor-datagrid">
+    <div class="d-flex flex-column flex-fill">
+        <section class="d-flex" style="@(FixHeader?"position:relative;top:0":string.Empty)">
+            <table class="@BuildCssClassString() mb-0" style="@BuildStylesString()">
+                <thead>
+                    <tr>
+                        @if (RowNumber)
+                        {
+                            <th style="width:20px" class="text-center">
+                                #
+                            </th>
+                        }
+                        @foreach (var item in Columns)
+                        {
+                            <th style="@(item.GetWidthStyleString())">@item.GetTitle()</th>
+                        }
+                    </tr>
+                </thead>
+            </table>
+        </section>
+
+        <section class="d-flex flex-column" style="height:100%;">
+            <div class="d-flex w-100 position-relative" style="@GetRowStyle()">
+                @if (!IsCompleted)
+                {
+                <div class="d-flex flex-column flex-fill align-items-center bg-dark text-light w-100 overflow-hidden p-2 position-absolute" style="height:100%;line-height:100%;opacity:0.6;left:0;top:0;z-index:9999">
+                    <div class="d-flex flex-row justify-content-center flex-fill align-items-center">
+                        <BootSpinner Size="Size.SM" AdditionalCssClass="mr-1" />
+                        @((MarkupString)LoadingText)
+                    </div>
+                </div>
+                }
+                <table class="@BuildCssClassString() position-relative" style="@BuildStylesString()">
+                    <tbody>
+                        
+                            @if (!Data.Any())
+                            {
+                                <tr>
+                                    <td colspan="@GetColSpan()" class="text-center">
+                                        @DataEmptyTemplate
+                                    </td>
+                                </tr>
+                            }
+
+                            @for (int i = 0; i < Data.Count; i++)
+                            {
+                                var item = Data[i];
+                                var rowIndex = i;
+                                <tr @key="rowIndex" @onclick="_ => ClickRow(rowIndex)" class="@GetRowCssByIndex(rowIndex) @(RowSelectedColor.HasValue?"cursor-pointer":"")">
+                                    @if (RowNumber)
+                                    {
+                                        <td class="text-center" style="width:20px">
+                                            @(i + 1)
+                                        </td>
+                                    }
+                                    @foreach (var col in Columns)
+                                    {
+                                        <td class="@col.BuildCssClassString()" style="@(col.GetWidthStyleString())">
+                                            @{
+                                                if (col is BootDataGridFieldColumn fieldColumn)
+                                                {
+                                                    var value = item.GetValue(fieldColumn.Field);
+                                                    if (!string.IsNullOrWhiteSpace(fieldColumn.Format))
+                                                    {
+                                                        value = string.Format(fieldColumn.Format, value);
+                                                    }
+                                                    @value;
+                                                }
+                                                if (col is BootDataGridTemplateColumn templateColumn)
+                                                {
+                                                    @templateColumn.ChildContent(item)
+                                                }
+                                            }
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>
+
+<CascadingValue Value="this">
+    @ChildContent
+</CascadingValue>

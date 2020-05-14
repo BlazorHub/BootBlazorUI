@@ -1,0 +1,355 @@
+﻿@page "/pagination"
+
+<PageTitle Title="分页(BootPagination)">
+    分页是最常见的数据组件之一，用户使用其他数据组件来呈现数据，并结合分页组件来使用。
+</PageTitle>
+<PresentationPart Title="简单示例">
+    <Description>
+        使用 <code>CurrentPage</code> 表示当前页码。
+    </Description>
+    <RunTemplate>
+        <BootPagination TotalCount="5" />
+        <BootPagination TotalCount="100" />
+        <BootPagination TotalCount="100" CurrentPage="3" />
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootPagination TotalCount=""5"" />
+<BootPagination TotalCount=""100"" />        
+<BootPagination TotalCount=""100"" CurrentPage=""3"" />
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="组件尺寸">
+    <Description>
+        设置 <code>Size</code> 来设置分页的尺寸。
+    </Description>
+    <RunTemplate>
+        <BootPagination Size="Size.SM" TotalCount="30" />
+        <BootPagination Size="Size.Default" TotalCount="30" />
+        <BootPagination Size="Size.LG" TotalCount="30" />
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+<BootPagination Size=""Size.SM"" TotalCount=""30"" />
+<BootPagination Size=""Size.Default"" TotalCount=""30"" />
+<BootPagination Size=""Size.LG"" TotalCount=""30"" />
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="隐藏“统计”和“跳转到”">
+    <Description>
+        设置 <code>ShowNavigateTo="false"</code> 隐藏“跳转到”面板。设置 <code>ShowTotalCount="false"</code> 隐藏分页的统计。
+    </Description>
+    <RunTemplate>
+        <BootPagination TotalCount="50" ShowNavigateTo="false"/>
+        <BootPagination TotalCount="50" ShowTotalCount="false"/>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootPagination TotalCount=""50"" ShowNavigateTo=""false""/>
+<BootPagination TotalCount=""50"" ShowTotalCount=""false""/>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="设置分页数字的个数">
+    <Description>
+        设置 <code>PageNumberCount</code> 自定义需要显示的分页数字的个数，默认是 7 个。只能是 5-21 的奇数。
+    </Description>
+    <RunTemplate>
+        <BootPagination TotalCount="50" PageNumberCount="9" />
+        <BootPagination TotalCount="1000" PageNumberCount="15" />
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootPagination TotalCount=""50"" PageNumberCount=""9"" />
+<BootPagination TotalCount=""1000"" PageNumberCount=""15"" />
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="显示每页数据量">
+    <Description>
+        设置 <code>PageSizeStakeholders</code> 自定义下拉框的选项，
+        这是一个数组，可设置 <code>PageSizeStakeholders = new []{ 10, 20, 30 }</code> 表示4个选项分别是 <strong>10/页、20/页、30/页</strong>，
+        默认选中第一个。
+    </Description>
+    <RunTemplate>
+        <BootPagination TotalCount="900" PageSizeStakeholders="new[] { 30,60,90}" />
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootPagination TotalCount=""900"" PageSizeStakeholders=""new[] { 30, 60, 90 }"" />
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="双向绑定">
+    <Description>
+        可以使用 <code>bind-CurrentPage</code>、<code>bind-PageSize</code> 和 <code>bind-TotalCount</code> 来进行双向绑定。
+    </Description>
+    <RunTemplate>
+        <div class="form-inline">
+            <EditForm Model="this">
+                当前页码：
+                <BootInputText @bind-Value="CurrentPage" />
+                每页数据：
+                <BootInputText @bind-Value="PageSize" />
+                总数据量：
+                <BootInputText @bind-Value="TotalCount" />
+            </EditForm>
+        </div>
+        <p>
+            当前页码：@CurrentPage
+            每页数据：@PageSize
+            总数据量：@TotalCount
+        </p>
+        <BootPagination @bind-CurrentPage="CurrentPage" @bind-PageSize="PageSize" @bind-TotalCount="TotalCount"/>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<div class=""form-inline"">
+    <EditForm Model=""this"">
+        当前页码：
+        <BootInputText @bind-Value=""CurrentPage"" />
+        每页数据：
+        <BootInputText @bind-Value=""PageSize"" />
+        总数据量：
+        <BootInputText @bind-Value=""TotalCount"" />
+    </EditForm>
+</div>
+<p>
+    当前页码：@CurrentPage
+    每页数据：@PageSize
+    总数据量：@TotalCount
+</p>
+<BootPagination @bind-CurrentPage=""CurrentPage"" @bind-PageSize=""PageSize"" @bind-TotalCount=""TotalCount""/>
+```
+```cs
+public int CurrentPage { get; set; } = 1;
+public int PageSize { get; set; } = 10;
+public int TotalCount { get; set; } = 100;
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@code{
+    public int CurrentPage { get; set; } = 1;
+    public int PageSize { get; set; } = 10;
+    public int TotalCount { get; set; } = 100;
+}
+
+@inject IJSRuntime _js
+
+<PresentationPart Title="对齐方式">
+    <Description>
+        设置 <code>HorizontalAlign</code> 选择横向的对齐方式。
+    </Description>
+    <RunTemplate>
+        <p>
+            <h3>左对齐</h3>
+            <BootPagination CurrentPage="3" TotalCount="50" HorizontalAlign="Flex.Start" />
+        </p>
+        <p>
+            <h3>右对齐</h3>
+            <BootPagination CurrentPage="3" TotalCount="50" HorizontalAlign="Flex.End" />
+        </p>
+        <p>
+            <h3>环绕对齐</h3>
+            <BootPagination CurrentPage="3" TotalCount="50" HorizontalAlign="Flex.Around" />
+        </p>
+        <p>
+            <h3>间隔对齐</h3>
+            <BootPagination CurrentPage="3" TotalCount="50" HorizontalAlign="Flex.Between" />
+        </p>
+        <p>
+            <h3>居中对齐</h3>
+            <BootPagination CurrentPage="3" TotalCount="50" />
+        </p>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<p>
+    <h3>左对齐</h3>
+    <BootPagination CurrentPage=""3"" TotalCount=""50"" HorizontalAlign=""Flex.Start"" />
+</p>
+<p>
+    <h3>右对齐</h3>
+    <BootPagination CurrentPage=""3"" TotalCount=""50"" HorizontalAlign=""Flex.End"" />
+</p>
+<p>
+    <h3>环绕对齐</h3>
+    <BootPagination CurrentPage=""3"" TotalCount=""50"" HorizontalAlign=""Flex.Around"" />
+</p>
+<p>
+    <h3>间隔对齐</h3>
+    <BootPagination CurrentPage=""3"" TotalCount=""50"" HorizontalAlign=""Flex.Between"" />
+</p>
+<p>
+    <h3>居中对齐</h3>
+    <BootPagination CurrentPage=""3"" TotalCount=""50"" />
+</p>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<ArgumentDescriptionTable Title="属性">
+    <tr>
+        <td>
+            CurrentPage
+            <BootBadge Color="Color.Success">
+                @@bind
+            </BootBadge>
+        </td>
+        <td>Int32</td>
+        <td>
+            设置当前页码，必须大于 0。默认是 1。
+        </td>
+    </tr>
+    <tr>
+        <td>
+            PageSize
+            <BootBadge Color="Color.Success">
+                @@bind
+            </BootBadge>
+        </td>
+        <td>Int32</td>
+        <td>
+            设置每一页呈现的数据量。
+        </td>
+    </tr>
+    <tr>
+        <td>
+            TotalCount
+            <BootBadge Color="Color.Success">
+                @@bind
+            </BootBadge>
+        </td>
+        <td>Int32</td>
+        <td>
+            设置数据的总记录数。
+        </td>
+    </tr>
+    <tr>
+        <td>Size</td>
+        <td>Size</td>
+        <td>设置分页的尺寸。</td>
+    </tr>
+    <tr>
+        <td>ShowTotalCount</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示是否显示总记录数统计，默认是 <code>true</code>。</td>
+    </tr>
+    <tr>
+        <td>ShowNavigateTo</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示是否显示“跳转到”的组件。默认是 <code>true</code>。</td>
+    </tr>
+    <tr>
+        <td>PageNumberCount</td>
+        <td>Int32</td>
+        <td>设置显示页码的个数，范围是5-21的奇数。默认是 7 个。</td>
+    </tr>
+    <tr>
+        <td>HorizontalAlign</td>
+        <td>Flex</td>
+        <td>设置水平线上的对齐方式。默认是 <code>Flex.Center</code> 居中。</td>
+    </tr>
+</ArgumentDescriptionTable>
+<ArgumentDescriptionTable Title="方法">
+
+    <tr>
+        <td>NavigateToFirst</td>
+        <td>Task</td>
+        <td>导航到首页。</td>
+    </tr>
+    <tr>
+        <td>NavigateToPrevious</td>
+        <td>Task</td>
+        <td>导航到上一页。</td>
+    </tr>
+    <tr>
+        <td>NavigateToNext</td>
+        <td>Task</td>
+        <td>导航到下一页。</td>
+    </tr>
+    <tr>
+        <td>NavigateToLast</td>
+        <td>Task</td>
+        <td>导航到末页。</td>
+    </tr>
+    <tr>
+        <td>NavigateToPage</td>
+        <td>Task</td>
+        <td>导航到自定义页。</td>
+    </tr>
+    <tr>
+        <td>ChangeCurrentPage</td>
+        <td>Task</td>
+        <td>变更当前分页的页码，并触发 <code>CurrentPageChanged</code> 事件。</td>
+    </tr>
+    <tr>
+        <td>ChangePageSize</td>
+        <td>Task</td>
+        <td>变更每页的呈现的数据，并触发 <code>PageSizeChanged</code> 事件。</td>
+    </tr>
+    <tr>
+        <td>ChangeTotalCount</td>
+        <td>Task</td>
+        <td>变更分页的总记录数，并触发 <code>TotalCountChanged</code> 事件。</td>
+    </tr>
+    <tr>
+        <td>SelectPageSize</td>
+        <td>Task</td>
+        <td>选择每页呈现的数据量选项。</td>
+    </tr>
+    <tr>
+        <td>ComputePageNumber</td>
+        <td>Tuple&lt;int, int></td>
+        <td>计算分页数字并返回开始和结束的索引。</td>
+    </tr>
+</ArgumentDescriptionTable>
+<ArgumentDescriptionTable Title="事件">
+    <tr>
+        <td>
+            CurrentPageChange
+            <BootBadge Color="Color.Success">
+                @@bind
+            </BootBadge>
+        </td>
+        <td>EventCallback&lt;int></td>
+        <td>设置当页码发生改变时触发的事件。</td>
+    </tr>
+    <tr>
+        <td>
+            PageSizeChanged
+            <BootBadge Color="Color.Success">
+                @@bind
+            </BootBadge>
+        </td>
+        <td>EventCallback&lt;int></td>
+        <td>设置当每页呈现的数据量发生变更后触发的事件。</td>
+    </tr>
+    <tr>
+        <td>
+            TotalCountChanged
+            <BootBadge Color="Color.Success">
+                @@bind
+            </BootBadge>
+        </td>
+        <td>EventCallback&lt;int></td>
+        <td>设置当总记录数发生变更后触发的事件。</td>
+    </tr>
+</ArgumentDescriptionTable>

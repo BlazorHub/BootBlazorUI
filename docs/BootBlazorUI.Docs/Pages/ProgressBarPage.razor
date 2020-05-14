@@ -1,7 +1,7 @@
 ﻿@page "/progressbar"
 
-<PageTitle Title="进度条 Progress Bar">
-
+<PageTitle Title="进度条(BootProgressBar)">
+    进度条带给用户一种对于操作中的时间反馈。
 </PageTitle>
 <PresentationPart Title="不同主题">
 
@@ -9,33 +9,33 @@
         设置 <code>Color</code> 属性使用不同的主题颜色。并设置 <code>Value</code> 来定义进度条的值，宽度会自动计算。
     </Description>
     <RunTemplate>
-        <ProgressBar Value="80" Color="ControlColor.Primary" />
+        <BootProgressBar Value="80" Color="Color.Primary" />
         <div class="mt-1"></div>
-        <ProgressBar Value="65" Color="ControlColor.Secondary" />
+        <BootProgressBar Value="65" Color="Color.Secondary" />
         <div class="mt-1"></div>
-        <ProgressBar Value="30" Color="ControlColor.Info" />
+        <BootProgressBar Value="30" Color="Color.Info" />
         <div class="mt-1"></div>
-        <ProgressBar Value="77" Color="ControlColor.Warning" />
+        <BootProgressBar Value="77" Color="Color.Warning" />
         <div class="mt-1"></div>
-        <ProgressBar Value="100" Color="ControlColor.Success" />
+        <BootProgressBar Value="100" Color="Color.Success" />
         <div class="mt-1"></div>
-        <ProgressBar Value="40" Color="ControlColor.Danger" />
+        <BootProgressBar Value="40" Color="Color.Danger" />
         <div class="mt-1"></div>
-        <ProgressBar Value="92" Color="ControlColor.Light" />
+        <BootProgressBar Value="92" Color="Color.Light" />
         <div class="mt-1"></div>
-        <ProgressBar Value="50" Color="ControlColor.Dark" />
+        <BootProgressBar Value="50" Color="Color.Dark" />
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<ProgressBar Value=""80"" Color=""ControlColor.Primary"" />
-<ProgressBar Value=""65"" Color=""ControlColor.Secondary"" />
-<ProgressBar Value=""30"" Color=""ControlColor.Info"" />
-<ProgressBar Value=""77"" Color=""ControlColor.Warning"" />
-<ProgressBar Value=""100"" Color=""ControlColor.Success"" />
-<ProgressBar Value=""40"" Color=""ControlColor.Danger"" />
-<ProgressBar Value=""92"" Color=""ControlColor.Light"" />
-<ProgressBar Value=""50"" Color=""ControlColor.Dark"" />
+<BootProgressBar Value=""80"" Color=""Color.Primary"" />
+<BootProgressBar Value=""65"" Color=""Color.Secondary"" />
+<BootProgressBar Value=""30"" Color=""Color.Info"" />
+<BootProgressBar Value=""77"" Color=""Color.Warning"" />
+<BootProgressBar Value=""100"" Color=""Color.Success"" />
+<BootProgressBar Value=""40"" Color=""Color.Danger"" />
+<BootProgressBar Value=""92"" Color=""Color.Light"" />
+<BootProgressBar Value=""50"" Color=""Color.Dark"" />
 ```
 ")
     </CodeTemplate>
@@ -46,23 +46,23 @@
         可以在控件之间插入任何要呈现的其他内容
     </Description>
     <RunTemplate>
-        <ProgressBar Value="90" Color="ControlColor.Info">
+        <BootProgressBar Value="90" Color="Color.Info">
             自定义文本
-        </ProgressBar>
+        </BootProgressBar>
         <div class="mt-1"></div>
-        <ProgressBar Value="60" Color="ControlColor.Success">
-            <Button Color="ControlColor.Warning">带按钮的进度条</Button>
-        </ProgressBar>
+        <BootProgressBar Value="60" Color="Color.Success">
+            <BootButton Color="Color.Warning">带按钮的进度条</BootButton>
+        </BootProgressBar>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<ProgressBar Value=""90"" Color=""ControlColor.Info"">
+<BootProgressBar Value=""90"" Color=""Color.Info"">
     自定义文本
-</ProgressBar>
-<ProgressBar Value=""60"" Color=""ControlColor.Success"">
-     <Button Color=""ControlColor.Warning"">带按钮的进度条</Button>
-</ProgressBar>
+</BootProgressBar>
+<BootProgressBar Value=""60"" Color=""Color.Success"">
+     <BootButton Color=""Color.Warning"">带按钮的进度条</BootButton>
+</BootProgressBar>
 ```
         ")
     </CodeTemplate>
@@ -72,12 +72,12 @@
         设置 <code>Striped=true</code> 呈现花纹样式的进度条。
     </Description>
     <RunTemplate>
-        <ProgressBar Value="90" Striped="true"/>
+        <BootProgressBar Value="90" Striped="true"/>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<ProgressBar Value=""90"" Striped=""true""/>
+<BootProgressBar Value=""90"" Striped=""true""/>
 ```
 ")
     </CodeTemplate>
@@ -87,18 +87,18 @@
         设置 <code>Height</code> 可以自定义进度条的高度，单位是 px。
     </Description>
     <RunTemplate>        
-        <ProgressBar Height="5" Value="90" Color="ControlColor.Info" />
+        <BootProgressBar Height="5" Value="90" Color="Color.Info" />
         <br />
-        <ProgressBar Height="30" Value="70" Color="ControlColor.Success" />
+        <BootProgressBar Height="30" Value="70" Color="Color.Success" />
         <br />
-        <ProgressBar Height="50" Value="40" Color="ControlColor.Danger" />
+        <BootProgressBar Height="50" Value="40" Color="Color.Danger" />
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<ProgressBar Height=""5"" Value=""90"" Color=""ControlColor.Info"" />
-<ProgressBar Height=""30"" Value=""70"" Color=""ControlColor.Success"" />
-<ProgressBar Height=""50"" Value=""40"" Color=""ControlColor.Danger"" />
+<BootProgressBar Height=""5"" Value=""90"" Color=""Color.Info"" />
+<BootProgressBar Height=""30"" Value=""70"" Color=""Color.Success"" />
+<BootProgressBar Height=""50"" Value=""40"" Color=""Color.Danger"" />
 ```
         ")
     </CodeTemplate>
@@ -109,153 +109,41 @@
         使用 <code>Template</code> 组件定义进度条中要显示的内容，可以用 <code>context</code> 变量获取当前进度条对象。
     </Description>
     <RunTemplate>
-        <ProgressBar Value="95" Color="ControlColor.Danger">
+        <BootProgressBar Value="95" Color="Color.Danger">
             <Template>
                 @(context.Percentage)%
             </Template>
-        </ProgressBar>
+        </BootProgressBar>
         <div class=" mt-1"></div>
-        <ProgressBar Value="60" Color="ControlColor.Primary">
+        <BootProgressBar Value="60" Color="Color.Primary">
             <Template>
                 @(context.Value)/@(context.Max)
             </Template>
-        </ProgressBar>
+        </BootProgressBar>
         <br />
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
 
-<ProgressBar Value=""95"" Color=""ControlColor.Danger"">
+<BootProgressBar Value=""95"" Color=""Color.Danger"">
     <Template>
         @(context.Percentage)%
     </Template>
-</ProgressBar>
-<ProgressBar Value=""60"" Color=""ControlColor.Primary"">
+</BootProgressBar>
+<BootProgressBar Value=""60"" Color=""Color.Primary"">
     <Template>
         @(context.Value)/@(context.Max)
     </Template>
-</ProgressBar>
+</BootProgressBar>
 ```
         ")
     </CodeTemplate>
 </PresentationPart>
-<PresentationPart Title="动画演示">
-    <Description>
-        下面演示一个进度条加载的动画，点击按钮后，进度条开始运行，按钮呈现禁用状态；当到达 100% 后停止加载并将按钮重置为可点击状态。
-    </Description>
-    <RunTemplate>
-        <ProgressBar @ref="pb">
-            <Template>
-                @(context.Percentage)%
-            </Template>
-            </ProgressBar>
-        <Button Color="ControlColor.Success" OnClick="Start" @ref="button">
-            @if (running)
-            {
-                @("运行中")
-            }
-            else
-            {
-                @("开始")
-            }
-        </Button>
-    </RunTemplate>
-    <CodeTemplate>
-        @Code.GetCode(@"
-```html
-<ProgressBar @ref=""pb"">
-<Template>
-    @(context.Percentage)%
-</Template>
-</ProgressBar>
-<Button Color=""ControlColor.Success"" OnClick=""Start"" @ref=""button"">
-    @if (running)
-    {
-        @(""运行中"")
-    }
-    else
-    {
-        @(""开始"")
-    }
-</Button>
-```
-```cs
-@code{
-    ProgressBar pb = new ProgressBar();
-    Button button = new Button();
-    int value = 0;
-    bool running = false;
-    System.Threading.Timer timer;
-
-    void Start()
-    {
-        running = true;
-        value = 0;
-        button.Disable(true);
-        timer = new System.Threading.Timer(Update,null, dueTime: 100, period: 100);
-    }
-
-    void Update(object state)
-    {
-        InvokeAsync(async () =>
-        {
-            if (value > pb.Max)
-            {
-                timer.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);
-                running = false;
-                await button.Disable(running);
-            }
-            else
-            {
-                await pb.TryUpdateValueAsync(value += 1);
-            }
-            StateHasChanged();
-        }).Wait();
-    }
-}
-```
-        ")
-    </CodeTemplate>
-</PresentationPart>
-@code{
-    ProgressBar pb = new ProgressBar();
-    Button button = new Button();
-    int value = 0;
-    bool running = false;
-    System.Threading.Timer timer;
-
-    void Start()
-    {
-        running = true;
-        value = 0;
-        button.Disable().Wait();
-        timer = new System.Threading.Timer(Update,null, dueTime: 100, period: 100);
-    }
-
-    void Update(object state)
-    {
-        InvokeAsync(async () =>
-        {
-            if (value > pb.Max)
-            {
-                timer.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);
-                running = false;
-                await button.Disable(running);
-            }
-            else
-            {
-                await pb.TryUpdateValue(value += 1);
-            }
-            StateHasChanged();
-        }).Wait();
-    }
-}
-
 <ArgumentDescriptionTable Title="属性">
     <tr>
         <td>Color</td>
-        <td>ControlColor</td>
+        <td>Color</td>
         <td>置进度条的主题颜色。默认是 <code>Primary</code></td>
     </tr>
     <tr>
@@ -275,7 +163,7 @@
     </tr>
     <tr>
         <td>Template</td>
-        <td>RenderFragment&lt;ProgressBar></td>
+        <td>RenderFragment&lt;BootProgressBar></td>
         <td>设置进度条自定义模板。</td>
     </tr>
     <tr>
@@ -292,12 +180,5 @@
         <td>Percentage</td>
         <td>Decimal</td>
         <td>获取进度条的百分比。</td>
-    </tr>
-</ArgumentDescriptionTable>
-<ArgumentDescriptionTable Title="方法">
-    <tr>
-        <td>TryUpdateValue</td>
-        <td>Task&lt;bool></td>
-        <td>尝试更新进度条的值为指定的值。更新成功返回 <cocde>true</cocde>；否则返回 <code>false</code>。</td>
     </tr>
 </ArgumentDescriptionTable>

@@ -1,0 +1,157 @@
+﻿@inherits BootComponentBase
+
+
+    <nav class="d-flex flex-row flex-fill @(ComponentUtil.GetFlexAlignCssClass(HorizontalAlign,"justify-content-"))  align-items-center">
+        <ul class="list-inline d-flex flex-row align-items-center">
+            @if (ShowTotalCount)
+            {
+                <li class="list-inline-item">
+                    共 @(TotalCount) 条
+                </li>
+            }
+        </ul>
+        <div class="d-flex flex-row align-items-center ml-1 mr-1">
+            <ul class="@BuildCssClassString()" @attributes="AdditionalAttributes" style="@BuildStylesString()">
+
+                <li class="page-item@(CurrentPage <= 1 ? " disabled" : "")" title="上一页">
+                    <a class="page-link" href="javascript:;" @onclick="NavigateToPrevious">&lt;</a>
+                </li>
+                @if (CurrentPage <= 1)
+                {
+                    <li class="page-item active">
+                        <span class="page-link">1</span>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:;" @onclick="NavigateToFirst">1</a>
+                    </li>
+                }
+
+                @{
+                    if (CurrentPage > PageNumberCount / 2)
+                    {
+                        var backTo = CurrentPage - 5;
+                        if (backTo <= 1)
+                        {
+                            backTo = 1;
+                        }
+
+                        <li class="page-item" title="后退5页">
+                            <a class="page-link" href="javascript:;" @onclick="e => NavigateToPage(backTo)">
+                                ...
+                            </a>
+                        </li>
+                    }
+                }
+
+                @{
+                    var pageNumberBound = ComputePageNumber();
+
+                    @for (int i = pageNumberBound.start + 1; i <= pageNumberBound.end - 1; i++)
+                    {
+                        int current = i;
+                        @if (CurrentPage == current)
+                        {
+                            <li class="page-item active"><span class="page-link">@i</span></li>
+                        }
+                        else
+                        {
+                            <li class="page-item" @key="current"><a class="page-link" href="javascript:;" @onclick="@(() => NavigateToPage(current))">@current</a></li>
+                        }
+                    }
+                }
+
+
+                @if (CurrentPage < TotalPages - PageNumberCount / 2)
+                {
+                    var nextTo = CurrentPage + 5;
+                    if (nextTo >= TotalPages)
+                    {
+                        nextTo = TotalPages;
+                    }
+                    <li class="page-item" title="前进5页">
+                        <a class="page-link" href="javascript:;" @onclick="e => NavigateToPage(nextTo)">
+                            ...
+                        </a>
+                    </li>
+                }
+
+
+                @{
+                    if (TotalPages > 1)
+                    {
+                        if (CurrentPage >= TotalPages)
+                        {
+                            <li class="page-item active">
+                                <span class="page-link">@TotalPages</span>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:;" @onclick="NavigateToLast">@TotalPages</a>
+                            </li>
+                        }
+                    }
+                }
+
+                <li class="page-item@(CurrentPage >= TotalPages ? " disabled" : "")" title="下一页">
+                    <a class="page-link" href="javascript:;" @onclick="NavigateToNext">></a>
+                </li>
+
+            </ul>
+        </div>
+
+        @if (ShowNavigateTo)
+        {
+            <div class="d-flex flex-row align-items-center ml-1">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <select class="form-control@(Size!= Size.Default? ComponentUtil.GetSizeCssClass(Size," form-control-"):"")" @onchange="e => SelectPageSize(e.Value.ToString())">
+                            @foreach (var item in PageSizeStakeholders)
+                            {
+                                <option value="@item" selected="@(PageSize == item)">@(item) /页</option>
+                            }
+                        </select>
+                    </li>
+                    <li class="list-inline-item text-right">
+                        跳转到
+                    </li>
+                    <li class="list-inline-item">
+                        <input class="form-control@(Size!= Size.Default? ComponentUtil.GetSizeCssClass(Size," form-control-"):"") text-center" style="width:80px" @bind="CurrentPage" />
+                    </li>
+                </ul>
+            </div>
+        }
+    </nav>
+@code{
+    NavigateToModel model = new NavigateToModel();
+    class NavigateToModel
+    {
+        [System.ComponentModel.DataAnnotations.Required]
+        public string NavigateTo { get; set; }
+    }
+
+    async Task GoToPage()
+    {
+        if (!int.TryParse(model.NavigateTo, out int page))
+        {
+            page = 1;
+        }
+
+        if (page <= 1)
+        {
+            page = 1;
+        }
+
+        if (page >= TotalPages)
+        {
+            page = TotalPages;
+        }
+        model.NavigateTo = page.ToString();
+
+        await NavigateToPage(page);
+    }
+}

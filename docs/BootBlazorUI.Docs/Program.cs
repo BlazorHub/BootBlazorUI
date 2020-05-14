@@ -19,6 +19,20 @@ namespace BootBlazorUI.Docs
             CreateHostBuilder(args).Build().Run();
         }
 
+        public static string GetVersion(bool full = false,int? preview=3)
+        {
+            var version = typeof(BootComponentBase).Assembly.GetName().Version;
+            if (version == null)
+            {
+                return string.Empty;
+            }
+            if (full)
+            {
+                return version.ToString();
+            }
+            return $"{version.Major}.{version.Minor}.{version.Build}{(preview.HasValue?$"-preview{preview}":"")}";
+        }
+
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
